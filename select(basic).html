@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style media="screen">
+        body {
+            margin: 0px;
+            font-size: 18px;
+        }
+        #box {
+            position: relative;
+            height: auto;
+            margin: auto;
+            background-color: #F90;
+        }
+
+        #left {
+            background-color: rgb(224, 224, 224);
+            float: left;
+            height: 100vh;
+            width: 40%;
+            position: relative;
+        }
+        #right {
+            float: left;
+            height: 100vh;
+            width: 60%;
+            position: relative; 
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+        #center {
+            background-color: #FFF;
+            border: 2px solid black;
+            height: 30vh;
+            width: 100vw;
+        }
+        #title {
+            width: 99%;
+            height: 50%;
+            margin-top: 35%;
+        }
+        #title p {
+            color: black;
+            font-size: 40px;
+            margin-left: 20%;
+        }
+        #title p+p {
+            font-size: 30px;
+        }
+        #title p+img {
+            margin-left: 20%;
+        }
+        #button1, #button2 {
+            width: 200px;
+            height: 60px;
+            font-size: 20px;
+            margin: 10px;
+        }
+
+        /* 팝업창 스타일 */
+        .popup {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            padding: 20px;
+            background-color: #FFF;
+            border: 2px solid black;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+            z-index: 9999;
+            max-width: 400px;
+        }
+
+        .popup p {
+            font-size: 16px;
+            margin: 10px 0;
+        }
+
+        .popup-close {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div id="box">
+        <div id="left">
+            <div id="title">
+                <p>우리도 금융해유 </p>
+                <p>모바일 뱅킹 속 다양한 서비스를 알려드려요</p>
+                <img src="./logo.jpg">
+            </div>
+        </div>
+        <div id="right">
+            <button id="button1"><span>송금</span></button>
+            <button id="button2"><span>계좌/자산 조회</span></button>
+            <button id="button2"><span>거래내역 조회</span></button>
+
+        </div>
+    </div>
+<script></script>
+</body>
+</html>
