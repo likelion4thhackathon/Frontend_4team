@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style media="screen">
+        body {
+            margin: 0px;
+            font-size: 18px;
+        }
+        #box {
+            position: relative;
+            height: auto;
+            margin: auto;
+            background-color: #F90;
+        }
+
+        #left {
+            background-color: rgb(224, 224, 224);
+            float: left;
+            height: 100vh;
+            width: 40%;
+            position: relative;
+            display: flex;
+            justify-content: center; /* 텍스트를 가로 중앙 정렬 */
+            align-items: center; /* 텍스트를 세로 중앙 정렬 */
+        }
+        #right {
+            float: left;
+            height: 100vh;
+            width: 60%;
+            position: relative; 
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+        #center {
+            background-color: #FFF;
+            border: 2px solid black;
+            height: 30vh;
+            width: 100vw;
+        }
+        #title {
+            width: 99%;
+            height: 50%;
+            margin-top:50%;
+        }
+        #title p{
+            font-size: 30px;
+            text-align: center; /* 텍스트 가운데 정렬 */
+        }
+        iframe{
+            width:50%;
+            height:80%;
+        }
+    </style>
+</head>
+<body>
+    <div id="box">
+        <div id="left">
+            <div id="title">
+                <p>보내기를 누르세요</p>
+            </div>
+        </div>
+        <div id="right">
+          <iframe src="simulator.html"></iframe>
+        </div>
+    </div>
+
+</body>
+</html>
