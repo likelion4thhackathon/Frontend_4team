@@ -4,6 +4,9 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+KR&display=swap" rel="stylesheet">
     <title>Document</title>
     <style media="screen">
         body {
@@ -15,6 +18,7 @@
             height: auto;
             margin: auto;
             background-color: #F90;
+            border: 1px solid black;
         }
 
         #left {
@@ -23,6 +27,26 @@
             height: 100vh;
             width: 40%;
             position: relative;
+            border: 1px solid black;
+        }
+        .title1{
+            color: #000;
+            margin-left:10%;
+            font-family: 'IBM Plex Sans KR', sans-serif;
+            font-size: 45px;
+            font-style: normal;
+            font-weight: 400;
+            line-height: normal;
+        }
+        .title2{
+            color: #000;
+            margin-left:10%;
+            margin-bottom:10%;
+            font-family: 'IBM Plex Sans KR', sans-serif;
+            font-size: 30px;
+            font-style: normal;
+            font-weight: 400;
+            line-height: normal;
         }
         #right {
             float: left;
@@ -33,34 +57,36 @@
             flex-direction: column;
             align-items: center;
             justify-content: center;
+            border: 1px solid black;
         }
         #center {
             background-color: #FFF;
             border: 2px solid black;
             height: 30vh;
             width: 100vw;
+            border: 1px solid black;
         }
         #title {
             width: 99%;
             height: 50%;
             margin-top: 35%;
+            border: 1px solid red;
+            fill: rgba(227, 229, 248, 0.45);
         }
-        #title p {
-            color: black;
-            font-size: 40px;
-            margin-left: 20%;
-        }
-        #title p+p {
-            font-size: 30px;
-        }
-        #title p+img {
-            margin-left: 20%;
+       
+        #logo {
+            width: 440px;
+            height: 258px;
+            flex-shrink: 0;
+            border: 1px solid black;
+            margin-left:20%;
         }
         #button1, #button2 {
             width: 200px;
             height: 60px;
             font-size: 20px;
             margin: 10px;
+            border: 1px solid black;
         }
 
         /* 팝업창 스타일 */
@@ -76,11 +102,13 @@
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
             z-index: 9999;
             max-width: 400px;
+            
         }
 
         .popup p {
             font-size: 16px;
             margin: 10px 0;
+            border: 1px solid black;
         }
 
         .popup-close {
@@ -88,6 +116,7 @@
             top: 10px;
             right: 10px;
             cursor: pointer;
+            border: 1px solid black;
         }
     </style>
 </head>
@@ -95,9 +124,11 @@
     <div id="box">
         <div id="left">
             <div id="title">
-                <p>우리도 금융해유 </p>
-                <p>모바일 뱅킹 속 다양한 서비스를 알려드려요</p>
-                <img src="./logo.jpg">
+                <p class="title1">우리도 금융해유 </p>
+                <p class="title2">모바일 뱅킹 속 다양한 서비스를 <br>알려드려요</p>
+                <div id="logo">
+                    <img src="./logo.jpg">
+                </div>
             </div>
         </div>
         <div id="right">
