@@ -18,5 +18,5 @@ document.getElementById("button2").addEventListener("click", function() {
 });
 
 function navigateToSelectPage(mode) {
-    window.location.href = "select(" + mode + ").html"; // 세부 서비스 선택 페이지로 이동
+    window.location.href = "index2.html"; // 세부 서비스 선택 페이지로 이동
 }

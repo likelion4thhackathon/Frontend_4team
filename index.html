@@ -5,53 +5,89 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+KR&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+KR&display=swap" rel="stylesheet">
     <title>Document</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            // 라디오 버튼 4개를 동적으로 생성하는 함수
+            function createRadioButtons() {
+                const rightDiv = $('#right');
+
+                for (let i = 1; i <= 4; i++) {
+                    const radioBtn = $('<input>').attr({
+                        type: 'radio',
+                        name: 'radioGroup', // 모두 같은 name으로 지정해야 라디오 그룹으로 작동합니다.
+                        id: `radio${i}`,
+                        value: `Option ${i}`
+                    });
+
+                    const label = $('<label>').attr('for', `radio${i}`); // 빈 레이블 생성
+
+                    rightDiv.append(radioBtn, label, '<br>');
+                }
+
+                // 라디오 버튼 클릭 이벤트 핸들러 등록
+                $('input[type="radio"]').on('click', function() {
+                    const selectedOption = $(this).val();
+                    // 페이지 이동하는 함수 호출
+                    navigateToPage(selectedOption);
+                });
+            }
+
+            // 페이지 이동 함수
+            function navigateToPage(selectedOption) {
+                // 여기에 각 라디오 버튼별로 이동할 페이지 URL을 지정해주세요.
+                // 예를 들어, Option 1을 선택한 경우 'page1.html'로 이동하도록 설정합니다.
+                switch (selectedOption) {
+                    case 'Option 1':
+                        window.location.href = 'page1.html';
+                        break;
+                    case 'Option 2':
+                        window.location.href = 'page2.html';
+                        break;
+                    case 'Option 3':
+                        window.location.href = 'page3.html';
+                        break;
+                    case 'Option 4':
+                        window.location.href = 'page4.html';
+                        break;
+                    default:
+                        // 기본적으로 어떤 선택지도 없을 때의 동작을 설정합니다.
+                        break;
+                }
+            }
+
+            // 페이지가 로드될 때 라디오 버튼 생성 함수를 호출합니다.
+            createRadioButtons();
+        });
+    </script>
     <style media="screen">
         body {
             margin: 0px;
             font-size: 18px;
         }
         #box {
+            display:flex;
             position: relative;
             height: auto;
             margin: auto;
-            background-color: #F90;
             border: 1px solid black;
         }
 
         #left {
-            background-color: rgb(224, 224, 224);
+            background: #F7F2FF;
             float: left;
             height: 100vh;
-            width: 40%;
+            width: 60%;
             position: relative;
             border: 1px solid black;
-        }
-        .title1{
-            color: #000;
-            margin-left:10%;
-            font-family: 'IBM Plex Sans KR', sans-serif;
-            font-size: 45px;
-            font-style: normal;
-            font-weight: 400;
-            line-height: normal;
-        }
-        .title2{
-            color: #000;
-            margin-left:10%;
-            margin-bottom:10%;
-            font-family: 'IBM Plex Sans KR', sans-serif;
-            font-size: 30px;
-            font-style: normal;
-            font-weight: 400;
-            line-height: normal;
         }
         #right {
             float: left;
             height: 100vh;
-            width: 60%;
+            width: 40%;
             position: relative; 
             display: flex;
             flex-direction: column;
@@ -59,6 +95,25 @@
             justify-content: center;
             border: 1px solid black;
         }
+        .title1{
+            color: #005ECC;
+            margin-left:10%;
+            font-family: 'Inter', sans-serif;
+            font-size: 45px;
+            font-style: normal;
+            font-weight: bold;
+            line-height: normal;
+        }
+        .title2{
+            color: #000;
+            margin-left:10%;
+            font-family: 'Inter', sans-serif;
+            font-size: 20px;
+            font-style: normal;
+            font-weight: 400;
+            line-height: normal;
+        }
+        
         #center {
             background-color: #FFF;
             border: 2px solid black;
@@ -68,25 +123,29 @@
         }
         #title {
             width: 99%;
-            height: 50%;
-            margin-top: 35%;
+            height: 60%;
+            margin-top: 20%;
             border: 1px solid red;
             fill: rgba(227, 229, 248, 0.45);
         }
        
         #logo {
-            width: 440px;
-            height: 258px;
+            width: 420px;
+            height: 280px;
             flex-shrink: 0;
             border: 1px solid black;
-            margin-left:20%;
+            margin-left:10%;
         }
-        #button1, #button2 {
-            width: 200px;
-            height: 60px;
-            font-size: 20px;
-            margin: 10px;
+        #button1
+        #button2 {
+            width: 98px;
+            height: 95px;
             border: 1px solid black;
+        }
+        #button2 {
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
         }
 
         /* 팝업창 스타일 */
@@ -104,7 +163,11 @@
             max-width: 400px;
             
         }
-
+        img{
+            width:100px;
+            height:100px;
+        
+        }
         .popup p {
             font-size: 16px;
             margin: 10px 0;
@@ -125,17 +188,14 @@
         <div id="left">
             <div id="title">
                 <p class="title1">우리도 금융해유 </p>
-                <p class="title2">모바일 뱅킹 속 다양한 서비스를 <br>알려드려요</p>
+                <p class="title2">모바일 뱅킹 속 다양한 서비스를 알려드려요</p>
                 <div id="logo">
-                    <img src="./logo.jpg">
                 </div>
             </div>
         </div>
         <div id="right">
-            <button id="button1"><span>튜토리얼 모드</span></button>
-            <p>모바일 뱅킹에 익숙하지 않은 사용자를 위한 모드입니다. 송금, 계좌/자산 조회, 거래내역 조회 방법을 알려줍니다.</p>
-            <button id="button2"><span>기본 모드</span></button>
-            <p>일반적인 모바일 뱅킹이 가능한 모드입니다.</p>
+            <img id="button2" src="data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='98' height='95' viewBox='0 0 98 95' fill='none'%3E%3Cpath d='M53.083 67.2916L73.4997 47.4999L53.083 27.7083' stroke='%239156F0' stroke-width='10' stroke-linecap='round' stroke-linejoin='round'/%3E%3Cpath d='M24.5 67.2916L44.9167 47.4999L24.5 27.7083' stroke='%239156F0' stroke-width='10' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E" alt="Button2" width="98" height="95">
+
         </div>
     </div>
 
