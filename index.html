@@ -11,53 +11,37 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
     <script>
         $(document).ready(function() {
-            function createButton() {
-                const rightDiv = $('#right');
+        // topBar 스타일 및 라디오 버튼 이벤트 처리
+        function createButton() {
+            $('.topBar').css({
+                display: 'flex',
+                justifyContent: 'flex-end',
+                marginRight: '15%',
+                marginTop: '3%',
+            });
 
-                for (let i = 1; i <= 4; i++) {
-                    const radioBtn = $('<input>').attr({
-                        type: 'radio',
-                        name: 'radioGroup', 
-                        id: `radio${i}`,
-                        value: `Option ${i}`
-                    });
-
-                    const label = $('<label>').attr('for', `radio${i}`); 
-
-                    rightDiv.append(radioBtn, label, '<br>');
-                }
-
-                // 라디오 버튼 클릭 이벤트 핸들러 등록
-                $('input[type="radio"]').on('click', function() {
-                    const selectedOption = $(this).val();
-                    // 페이지 이동
-                    navigateToPage(selectedOption);
-                });
-            }
-
+            // 클릭한 라디오 버튼에 따라 페이지 이동 처리
             function navigateToPage(selectedOption) {
-                switch (selectedOption) {
-                    case 'Option 1':
-                        window.location.href = 'page1.html';
-                        break;
-                    case 'Option 2':
-                        window.location.href = 'page2.html';
-                        break;
-                    case 'Option 3':
-                        window.location.href = 'page3.html';
-                        break;
-                    case 'Option 4':
-                        window.location.href = 'page4.html';
-                        break;
-                    default:
-                        break;
+                if (selectedOption === 0) {
+                    window.location.href = 'index.html';
+                } else if (selectedOption === 1) {
+                    window.location.href = 'index2.html';
+                } else if (selectedOption === 2) {
+                    window.location.href = 'select(basic).html';
                 }
             }
 
-            createButton();
-        });
+            // 라디오 버튼에 클릭 이벤트 리스너 추가
+            $('input[type="radio"]').on('click', function() {
+                var selectedOption = $(this).index('input[type="radio"]');
+                navigateToPage(selectedOption);
+            });
+        }
 
-        $(document).ready(function() {
+        createButton();
+    });
+    
+    $(document).ready(function() {
             function createButton() {
 
             }
@@ -68,12 +52,12 @@
 
             createButton();
 
-            // SVG 이미지에 클릭 이벤트 핸들러를 추가합니다
             $('#button2').on('click', function() {
                 window.location.href = 'index2.html';
             });
         });
     </script>
+
     <style media="screen">
         body {
             margin: 0px;
@@ -101,7 +85,7 @@
             width: 40%;
             position: relative; 
             display: flex;
-            flex-direction: column;
+            flex-direction: row;
             align-items: center;
             justify-content: center;
             border: 1px solid black;
@@ -147,18 +131,23 @@
             border: 1px solid black;
             margin-left:10%;
         }
-        #button1
-        #button2 {
-            width: 98px;
-            height: 95px;
-            border: 1px solid black;
+        #button2:hover{
+            cursor:pointer;
         }
         #button2 {
         position: fixed;
         bottom: 20px;
         right: 20px;
         }
-
+        .topBar {
+        position: absolute;
+        top: 10px; 
+        right: 10px; 
+        display: flex;
+        justify-content: flex-end;
+        width: 100%;
+        }
+        
         
     </style>
 </head>
@@ -173,8 +162,13 @@
             </div>
         </div>
         <div id="right">
+            <div class="topBar">
+                <input  type="radio" name="group" checked>
+                <input type="radio" name="group">
+                <input type="radio" name="group">
+            </div>
             <img id="button2" src="data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='98' height='95' viewBox='0 0 98 95' fill='none'%3E%3Cpath d='M53.083 67.2916L73.4997 47.4999L53.083 27.7083' stroke='%239156F0' stroke-width='10' stroke-linecap='round' stroke-linejoin='round'/%3E%3Cpath d='M24.5 67.2916L44.9167 47.4999L24.5 27.7083' stroke='%239156F0' stroke-width='10' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E" alt="Button2" width="98" height="95">
-
+            
         </div>
     </div>
 

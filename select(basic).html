@@ -5,6 +5,39 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+    <script>
+        $(document).ready(function() {
+        // topBar 스타일 및 라디오 버튼 이벤트 처리
+        function createButton() {
+            $('.topBar').css({
+                display: 'flex',
+                justifyContent: 'flex-end',
+                marginRight: '10%',
+                marginTop: '2%',
+            });
+
+            // 클릭한 라디오 버튼에 따라 페이지 이동 처리
+            function navigateToPage(selectedOption) {
+                if (selectedOption === 0) {
+                    window.location.href = 'index.html';
+                } else if (selectedOption === 1) {
+                    window.location.href = 'index2.html';
+                } else if (selectedOption === 2) {
+                    window.location.href = 'select(basic).html';
+                }
+            }
+
+            // 라디오 버튼에 클릭 이벤트 리스너 추가
+            $('input[type="radio"]').on('click', function() {
+                var selectedOption = $(this).index('input[type="radio"]');
+                navigateToPage(selectedOption);
+            });
+        }
+
+        createButton();
+    });
+    </script>
     <style media="screen">
         body {
             margin: 0px;
@@ -22,14 +55,14 @@
             background: #F7F2FF;
             float: left;
             height: 100vh;
-            width: 60%;
+            width: 40%;
             position: relative;
             border: 1px solid black;
         }
         #right {
             float: left;
             height: 100vh;
-            width: 40%;
+            width: 60%;
             position: relative; 
             display: flex;
             flex-direction: column;
@@ -106,6 +139,14 @@
             right: 10px;
             cursor: pointer;
         }
+        .topBar {
+        position: absolute;
+        top: 10px; 
+        right: 10px; 
+        display: flex;
+        justify-content: flex-end;
+        width: 100%;
+        }
     </style>
 </head>
 <body>
@@ -118,6 +159,11 @@
             </div>
         </div>
         <div id="right">
+            <div class="topBar">
+                <input type="radio" name="group">
+                <input type="radio" name="group">
+                <input type="radio" name="group" checked>
+            </div>
             <button id="button1" onclick="navigateToPage('remit.html')"><span>송금</span></button>
             <button id="button2" onclick="navigateToPage('account&property.html')"><span>계좌/자산 조회</span></button>
             <button id="button3" onclick="navigateToPage('transactional information.html')"><span>거래내역 조회</span></button>
@@ -125,7 +171,7 @@
     </div>
 <script>
     function navigateToPage(pageName) {
-            window.location.href = "Detailed Function Page/" + pageName; // 경로를 포함하여 페이지 이동
+            window.location.href = "Detailed Function Page/" + pageName; 
         }
 </script>
 </body>
