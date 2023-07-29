@@ -8,7 +8,7 @@ function closePopup(popupId) {
     popup.style.display = "none";
 }
 
-// 버튼 클릭 시 팝업창 열기
+//팝업창
 document.getElementById("button1").addEventListener("click", function() {
     openPopup("popupTutorial");
 });
@@ -18,5 +18,9 @@ document.getElementById("button2").addEventListener("click", function() {
 });
 
 function navigateToSelectPage(mode) {
-    window.location.href = "select(" + mode + ").html"; // 세부 서비스 선택 페이지로 이동
+    if (mode === "basic") {
+        window.location.href = "select(basic).html";
+    } else if (mode === "tutorial") {
+        window.location.href = "select(tutorial).html";
+    }
 }
