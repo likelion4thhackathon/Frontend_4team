@@ -73,7 +73,7 @@
         .title1{
             color: #005ECC;
             margin-left:10%;
-            font-family: 'Inter', sans-serif;
+            font-family: 'IBM Plex Sans KR', sans-serif;
             font-size: 45px;
             font-style: normal;
             font-weight: bold;
@@ -82,8 +82,8 @@
         .title2{
             color: #000;
             margin-left:10%;
-            font-family: 'Inter', sans-serif;
-            font-size: 20px;
+            font-family: 'Inter';
+            font-size: 30px;
             font-style: normal;
             font-weight: 400;
             line-height: normal;
@@ -100,17 +100,23 @@
             width: 99%;
             height: 60%;
             margin-top: 20%;
-            border: 1px solid red;
+
             fill: rgba(227, 229, 248, 0.45);
         }
         
         
         
-        #button1, #button2, #button3 {
-            width: 200px;
-            height: 60px;
+        #button1, #button2 ,#button3{
+            border-radius: 20px;
+            background: #F4EEFF;
+            box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25), 0px 4px 4px 0px rgba(0, 0, 0, 0.25) inset;
+            width: 453px;
+            height: 80px;
             font-size: 20px;
-            margin: 10px;
+            margin: 30px;
+            border: 1px solid black;
+            font-weight: 800;
+            
         }
 
         /* 팝업창 스타일 */
@@ -153,8 +159,8 @@
     <div id="box">
         <div id="left">
             <div id="title">
-                <p>우리도 금융해유 </p>
-                <p>모바일 뱅킹 속 다양한 서비스를 알려드려요</p>
+                <p class="title1">우리도 금융해유 </p>
+                <p class="title2">모바일 뱅킹 속 다양한 서비스를 알려드려요</p>
                 <img src="./logo.jpg">
             </div>
         </div>
@@ -163,10 +169,89 @@
                 <input type="radio" name="group">
                 <input type="radio" name="group">
                 <input type="radio" name="group" checked>
+                <input type="radio" name="group">
             </div>
-            <button id="button1" onclick="navigateToPage('remit.html')"><span>송금</span></button>
-            <button id="button2" onclick="navigateToPage('account&property.html')"><span>계좌/자산 조회</span></button>
-            <button id="button3" onclick="navigateToPage('transactional information.html')"><span>거래내역 조회</span></button>
+            <button id="button1" onclick="navigateToPage('remit.html')"><span class="mode">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;송금 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                <span style="position: relative; width: 50px; height: 50px;">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 41 43" fill="none" style="position: absolute; top: 0; left: 0;">
+                      <!-- 두 번째 SVG 이미지 코드 -->
+                      <g filter="url(#filter0_i_219_104)">
+                        <ellipse cx="20.5" cy="21.1836" rx="20.5" ry="21" fill="white"/>
+                      </g>
+                      <defs>
+                        <filter id="filter0_i_219_104" x="0" y="0.183594" width="41" height="46" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+                          <feFlood flood-opacity="0" result="BackgroundImageFix"/>
+                          <feBlend mode="normal" in="SourceGraphic" in2="BackgroundImageFix" result="shape"/>
+                          <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
+                          <feOffset dy="4"/>
+                          <feGaussianBlur stdDeviation="2"/>
+                          <feComposite in2="hardAlpha" operator="arithmetic" k2="-1" k3="1"/>
+                          <feColorMatrix type="matrix" values="0 0 0 0 0.414931 0 0 0 0 0.348854 0 0 0 0 0.820833 0 0 0 0.25 0"/>
+                          <feBlend mode="normal" in2="shape" result="effect1_innerShadow_219_104"/>
+                        </filter>
+                      </defs>
+                    </svg>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 29 30" fill="none" style="position: absolute; top: 60%; left: 50%; transform: translate(5%, -50%);">
+                      <!-- 첫 번째 SVG 이미지 코드 -->
+                      <path d="M13.2917 23.1419C18.6304 23.1419 22.9583 18.814 22.9583 13.4753C22.9583 8.13651 18.6304 3.80859 13.2917 3.80859C7.95291 3.80859 3.625 8.13651 3.625 13.4753C3.625 18.814 7.95291 23.1419 13.2917 23.1419Z" stroke="#2431AC" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+                      <path d="M25.3749 25.5585L20.1187 20.3022" stroke="#2431AC" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </span>
+            </button>
+            <button id="button2" onclick="navigateToPage('account&property.html')"><span class="mode">계좌/자산 조회 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                <span style="position: relative; width: 50px; height: 50px;">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 41 43" fill="none" style="position: absolute; top: 0; left: 0;">
+                      <!-- 두 번째 SVG 이미지 코드 -->
+                      <g filter="url(#filter0_i_219_104)">
+                        <ellipse cx="20.5" cy="21.1836" rx="20.5" ry="21" fill="white"/>
+                      </g>
+                      <defs>
+                        <filter id="filter0_i_219_104" x="0" y="0.183594" width="41" height="46" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+                          <feFlood flood-opacity="0" result="BackgroundImageFix"/>
+                          <feBlend mode="normal" in="SourceGraphic" in2="BackgroundImageFix" result="shape"/>
+                          <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
+                          <feOffset dy="4"/>
+                          <feGaussianBlur stdDeviation="2"/>
+                          <feComposite in2="hardAlpha" operator="arithmetic" k2="-1" k3="1"/>
+                          <feColorMatrix type="matrix" values="0 0 0 0 0.414931 0 0 0 0 0.348854 0 0 0 0 0.820833 0 0 0 0.25 0"/>
+                          <feBlend mode="normal" in2="shape" result="effect1_innerShadow_219_104"/>
+                        </filter>
+                      </defs>
+                    </svg>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 29 30" fill="none" style="position: absolute; top: 60%; left: 50%; transform: translate(5%, -50%);">
+                      <!-- 첫 번째 SVG 이미지 코드 -->
+                      <path d="M13.2917 23.1419C18.6304 23.1419 22.9583 18.814 22.9583 13.4753C22.9583 8.13651 18.6304 3.80859 13.2917 3.80859C7.95291 3.80859 3.625 8.13651 3.625 13.4753C3.625 18.814 7.95291 23.1419 13.2917 23.1419Z" stroke="#2431AC" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+                      <path d="M25.3749 25.5585L20.1187 20.3022" stroke="#2431AC" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </span>
+            </button>
+            <button id="button3" onclick="navigateToPage('transactional information.html')"><span class="mode">거래내역 조회 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                <span style="position: relative; width: 50px; height: 50px;">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 41 43" fill="none" style="position: absolute; top: 0; left: 0;">
+                      <!-- 두 번째 SVG 이미지 코드 -->
+                      <g filter="url(#filter0_i_219_104)">
+                        <ellipse cx="20.5" cy="21.1836" rx="20.5" ry="21" fill="white"/>
+                      </g>
+                      <defs>
+                        <filter id="filter0_i_219_104" x="0" y="0.183594" width="41" height="46" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+                          <feFlood flood-opacity="0" result="BackgroundImageFix"/>
+                          <feBlend mode="normal" in="SourceGraphic" in2="BackgroundImageFix" result="shape"/>
+                          <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
+                          <feOffset dy="4"/>
+                          <feGaussianBlur stdDeviation="2"/>
+                          <feComposite in2="hardAlpha" operator="arithmetic" k2="-1" k3="1"/>
+                          <feColorMatrix type="matrix" values="0 0 0 0 0.414931 0 0 0 0 0.348854 0 0 0 0 0.820833 0 0 0 0.25 0"/>
+                          <feBlend mode="normal" in2="shape" result="effect1_innerShadow_219_104"/>
+                        </filter>
+                      </defs>
+                    </svg>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 29 30" fill="none" style="position: absolute; top: 60%; left: 50%; transform: translate(5%, -50%);">
+                      <!-- 첫 번째 SVG 이미지 코드 -->
+                      <path d="M13.2917 23.1419C18.6304 23.1419 22.9583 18.814 22.9583 13.4753C22.9583 8.13651 18.6304 3.80859 13.2917 3.80859C7.95291 3.80859 3.625 8.13651 3.625 13.4753C3.625 18.814 7.95291 23.1419 13.2917 23.1419Z" stroke="#2431AC" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+                      <path d="M25.3749 25.5585L20.1187 20.3022" stroke="#2431AC" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </span>
+            </button>
         </div>
     </div>
 <script>
