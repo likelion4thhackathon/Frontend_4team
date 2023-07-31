@@ -7,7 +7,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+KR&display=swap" rel="stylesheet">
-    <title>모드 소개 페이지</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@500&family=Roboto:wght@100&display=swap" rel="stylesheet">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
     <script>
         $(document).ready(function() {
@@ -40,6 +40,45 @@
 
         createButton();
     });
+    
+        // 팝업창 열기
+        function openPopup(popupId) {
+                $("#" + popupId).fadeIn();
+                $("#popupBackground").fadeIn();
+        }
+
+        // 팝업창 닫기
+        function closePopup(popupId) {
+            $("#" + popupId).fadeOut();
+            $("#popupBackground").fadeOut();
+        }
+
+        // 페이지 이동
+        function navigateToSelectPage(mode) {
+            if (mode === 'basic') {
+                window.location.href = 'select(basic).html';
+            } else if (mode === 'tutorial') {
+                window.location.href = 'select(tutorial).html';
+            }
+        }
+
+        $(document).ready(function() {
+            // 팝업창 닫기
+            $(".popup-close").on("click", function() {
+                var popupId = $(this).closest('.popup').attr('id');
+                closePopup(popupId);
+            });
+
+            // 튜토리얼 모드 팝업 
+            $("#button1").on("click", function() {
+                openPopup("popupTutorial");
+            });
+
+            // 가본 모드 팝업
+            $("#button2").on("click", function() {
+                openPopup("popupBasic");
+            });
+        });
     </script>
     <style media="screen">
         body {
@@ -58,8 +97,19 @@
             background: #F7F2FF;
             float: left;
             height: 100vh;
-            width: 40%;
+            width: 30%;
             position: relative;
+            border: 1px solid black;
+        }
+        #right {
+            float: left;
+            height: 100vh;
+            width: 80%;
+            position: relative; 
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
             border: 1px solid black;
         }
         .title1{
@@ -68,7 +118,7 @@
             font-family: 'IBM Plex Sans KR', sans-serif;
             font-size: 45px;
             font-style: normal;
-            font-weight: 400;
+            font-weight: bold;
             line-height: normal;
         }
         .title2{
@@ -77,20 +127,10 @@
             font-family: 'IBM Plex Sans KR', sans-serif;
             font-size: 30px;
             font-style: normal;
-            font-weight: 400;
+            font-weight: 800;
             line-height: normal;
         }
-        #right {
-            float: left;
-            height: 100vh;
-            width: 60%;
-            position: relative; 
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            border: 1px solid black;
-        }
+        
         #center {
             background-color: #FFF;
             border: 2px solid black;
@@ -101,7 +141,7 @@
         #title {
             width: 99%;
             height: 60%;
-            margin-top: 35%;
+            margin-top: 55%;
             fill: rgba(227, 229, 248, 0.45);
         }
        
@@ -120,6 +160,7 @@
             font-size: 20px;
             margin: 10px;
             border: 1px solid black;
+            font-weight: 800;
         }
 
         /* 팝업창 스타일 */
@@ -130,30 +171,68 @@
             left: 50%;
             transform: translate(-50%, -50%);
             padding: 20px;
-            background-color: #FFF;
+            background-color: #f6f6f6;
             border: 2px solid black;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
             z-index: 9999;
             max-width: 400px;
+            border-radius: 20px;
             
         }
-        img{
-            width:100px;
-            height:100px;
+        #popupBackground {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(255, 255, 255, 0.5); /* 불투명 색 */
+            backdrop-filter: blur(5px); /* 블러처리 */
+            z-index: 9998; 
+        }
         
+        .popup+p {
+            color: #000;
+            text-align: center;
+            font-family: 'Inter', sans-serif;
+            font-size: 20px;
+            font-style: normal;
+            font-weight: 800;
+            line-height: normal;
         }
-        .popup p {
-            font-size: 16px;
-            margin: 10px 0;
-            border: 1px solid black;
+        
+        .modeTitle{
+            color: #000;
+            text-align: center;
+            font-family: 'Inter', sans-serif;
+            font-size: 35px;
+            font-style: normal;
+            font-weight: 800;
+            line-height: normal;
         }
-
+        .modeTitle+p{
+            color: #000;
+            font-family: 'Inter', sans-serif;
+            font-size: 20px;
+            font-style: normal;
+            line-height: normal;
+            text-align: center;
+        }
+        .modeTitle+p+p{
+            color: #000;
+            font-family: Inter;
+            font-size: 20px;
+            font-style: normal;
+            line-height: normal;
+            text-align: center;
+        }
         .popup-close {
             position: absolute;
-            top: 10px;
-            right: 10px;
+            top: 20px;
+            right: 20px;
             cursor: pointer;
-            border: 1px solid black;
+            font-family: 'Inter', sans-serif;
+            font-size:larger;
         }
         .topBar {
         position: absolute;
@@ -162,6 +241,53 @@
         display: flex;
         justify-content: flex-end;
         width: 100%;
+        }
+        .popup-buttons{
+            display:inline-block;
+            width: 400px;
+        }
+        .popup-button-yes{
+            background-color: #A9D6FF;
+            color:white;
+            border-radius: 15px; 
+           border: 1px solid #CCC;
+            font-size: 20px; 
+            font-weight: 500; 
+            width: 100px; 
+            height: 60px; 
+            cursor: pointer;
+            text-align: center;
+           margin-left:65px;
+
+        }
+        .popup-button-no{
+            background-color: #CCC;
+            border-radius: 15px; 
+            border: 1px solid #CCC;
+            font-size: 20px; 
+            font-weight: 500; 
+            width: 100px; 
+            height: 60px; 
+            cursor: pointer;
+            text-align: center;
+            margin-left:70px;
+        }
+        .svg:hover{
+            cursor: pointer;
+        }
+        input[type="radio"] {
+            appearance: none;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            border: 2px solid #9156F0;
+            margin-right: 10px;
+            background-color: transparent;
+            cursor: pointer;
+            }
+        input[type="radio"]:checked {
+            border-color: #9156F0;
+            background-color: #9156F0;
         }
 
         
@@ -184,7 +310,7 @@
                 <input type="radio" name="group">
             </div>
             <button id="button1"><span class="mode">튜토리얼 모드 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-                <span style="position: relative; width: 50px; height: 50px;">
+                <span class="svg" style="position: relative; width: 50px; height: 50px;">
                     <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 41 43" fill="none" style="position: absolute; top: 0; left: 0;">
                       <!-- 두 번째 SVG 이미지 코드 -->
                       <g filter="url(#filter0_i_219_104)">
@@ -211,7 +337,7 @@
                 </span>
             </button>
             <button id="button2"><span class="mode">기본 모드 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-                <span style="position: relative; width: 50px; height: 50px;">
+                <span class="svg" style="position: relative; width: 50px; height: 50px;">
                     <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 41 43" fill="none" style="position: absolute; top: 0; left: 0;">
                       <!-- 두 번째 SVG 이미지 코드 -->
                       <g filter="url(#filter0_i_219_104)">
@@ -242,26 +368,29 @@
     </div>
 
 <!-- 튜토리얼 모드 팝업창 -->
+<div id="popupBackground"></div>
+
 <div id="popupTutorial" class="popup">
-    <span class="popup-close" onclick="closePopup('popupTutorial')">X</span>
-    <p>튜토리얼 모드를 선택하시겠습니까?</p>
+    <span class="popup-close">X</span>
+    <p class="modeTitle">튜토리얼 모드는</p>
+    <p>해당 모드로 접속하시게 된다면<br>모바일 뱅킹에 익숙하지 않은 사용자를 위해<br>송금, 계좌/자산 조회, 거래내역 조회<br>방법을 알려줍니다.</p>
     <div class="popup-buttons">
-        <button class="popup-button yes" onclick="navigateToSelectPage('tutorial')">예</button>
-        <button class="popup-button no" onclick="closePopup('popupTutorial')">아니오</button>
+        <button class="popup-button-yes" onclick="navigateToSelectPage('tutorial')">계속하기</button>
+        <button class="popup-button-no" onclick="closePopup('popupTutorial')">초기화면</button>
     </div>
 </div>
 
 <!-- 기본 모드 팝업창 -->
 <div id="popupBasic" class="popup">
-    <span class="popup-close" onclick="closePopup('popupBasic')">X</span>
-    <p>기본 모드를 선택하시겠습니까?</p>
+    <span class="popup-close">X</span>
+    <p class="modeTitle">기본 모드는</p>
+    <p>일반적인 모바일 뱅킹이 가능한 모드입니다</p>
     <div class="popup-buttons">
-        <button class="popup-button yes" onclick="navigateToSelectPage('basic')">예</button>
-        <button class="popup-button no" onclick="closePopup('popupBasic')">아니오</button>
+        <button class="popup-button-yes" onclick="navigateToSelectPage('basic')">계속하기</button>
+        <button class="popup-button-no" onclick="closePopup('popupBasic')">초기화면</button>
     </div>
 </div>
 
-<script src="main.js"></script>
 
 </body>
 </html>
