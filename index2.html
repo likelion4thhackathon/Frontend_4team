@@ -63,11 +63,7 @@
         }
 
         $(document).ready(function() {
-            // 팝업창 닫기
-            $(".popup-close").on("click", function() {
-                var popupId = $(this).closest('.popup').attr('id');
-                closePopup(popupId);
-            });
+            
 
             // 튜토리얼 모드 팝업 
             $("#button1").on("click", function() {
@@ -159,8 +155,18 @@
             height: 113px;
             font-size: 20px;
             margin: 10px;
-            border: 1px solid black;
+            border: 1px solid #CCC;
             font-weight: 800;
+        }
+        .mode{
+            color: #000;
+            text-align: center;
+            font-size: 45px;
+            font-style: normal;
+            font-weight: 800;
+            line-height: normal;
+            font-family: 'IBM Plex Sans KR', sans-serif;
+
         }
 
         /* 팝업창 스타일 */
@@ -226,14 +232,7 @@
             line-height: normal;
             text-align: center;
         }
-        .popup-close {
-            position: absolute;
-            top: 20px;
-            right: 20px;
-            cursor: pointer;
-            font-family: 'Inter', sans-serif;
-            font-size:larger;
-        }
+       
         .topBar {
         position: absolute;
         top: 10px; 
@@ -309,59 +308,9 @@
                 <input type="radio" name="group" checked>
                 <input type="radio" name="group">
             </div>
-            <button id="button1"><span class="mode">튜토리얼 모드 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-                <span class="svg" style="position: relative; width: 50px; height: 50px;">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 41 43" fill="none" style="position: absolute; top: 0; left: 0;">
-                      <!-- 두 번째 SVG 이미지 코드 -->
-                      <g filter="url(#filter0_i_219_104)">
-                        <ellipse cx="20.5" cy="21.1836" rx="20.5" ry="21" fill="white"/>
-                      </g>
-                      <defs>
-                        <filter id="filter0_i_219_104" x="0" y="0.183594" width="41" height="46" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
-                          <feFlood flood-opacity="0" result="BackgroundImageFix"/>
-                          <feBlend mode="normal" in="SourceGraphic" in2="BackgroundImageFix" result="shape"/>
-                          <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
-                          <feOffset dy="4"/>
-                          <feGaussianBlur stdDeviation="2"/>
-                          <feComposite in2="hardAlpha" operator="arithmetic" k2="-1" k3="1"/>
-                          <feColorMatrix type="matrix" values="0 0 0 0 0.414931 0 0 0 0 0.348854 0 0 0 0 0.820833 0 0 0 0.25 0"/>
-                          <feBlend mode="normal" in2="shape" result="effect1_innerShadow_219_104"/>
-                        </filter>
-                      </defs>
-                    </svg>
-                    <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 29 30" fill="none" style="position: absolute; top: 60%; left: 50%; transform: translate(5%, -50%);">
-                      <!-- 첫 번째 SVG 이미지 코드 -->
-                      <path d="M13.2917 23.1419C18.6304 23.1419 22.9583 18.814 22.9583 13.4753C22.9583 8.13651 18.6304 3.80859 13.2917 3.80859C7.95291 3.80859 3.625 8.13651 3.625 13.4753C3.625 18.814 7.95291 23.1419 13.2917 23.1419Z" stroke="#2431AC" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
-                      <path d="M25.3749 25.5585L20.1187 20.3022" stroke="#2431AC" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
-                    </svg>
-                </span>
+            <button id="button1"><span class="mode">튜토리얼 모드</span>
             </button>
-            <button id="button2"><span class="mode">기본 모드 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-                <span class="svg" style="position: relative; width: 50px; height: 50px;">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 41 43" fill="none" style="position: absolute; top: 0; left: 0;">
-                      <!-- 두 번째 SVG 이미지 코드 -->
-                      <g filter="url(#filter0_i_219_104)">
-                        <ellipse cx="20.5" cy="21.1836" rx="20.5" ry="21" fill="white"/>
-                      </g>
-                      <defs>
-                        <filter id="filter0_i_219_104" x="0" y="0.183594" width="41" height="46" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
-                          <feFlood flood-opacity="0" result="BackgroundImageFix"/>
-                          <feBlend mode="normal" in="SourceGraphic" in2="BackgroundImageFix" result="shape"/>
-                          <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
-                          <feOffset dy="4"/>
-                          <feGaussianBlur stdDeviation="2"/>
-                          <feComposite in2="hardAlpha" operator="arithmetic" k2="-1" k3="1"/>
-                          <feColorMatrix type="matrix" values="0 0 0 0 0.414931 0 0 0 0 0.348854 0 0 0 0 0.820833 0 0 0 0.25 0"/>
-                          <feBlend mode="normal" in2="shape" result="effect1_innerShadow_219_104"/>
-                        </filter>
-                      </defs>
-                    </svg>
-                    <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 29 30" fill="none" style="position: absolute; top: 60%; left: 50%; transform: translate(5%, -50%);">
-                      <!-- 첫 번째 SVG 이미지 코드 -->
-                      <path d="M13.2917 23.1419C18.6304 23.1419 22.9583 18.814 22.9583 13.4753C22.9583 8.13651 18.6304 3.80859 13.2917 3.80859C7.95291 3.80859 3.625 8.13651 3.625 13.4753C3.625 18.814 7.95291 23.1419 13.2917 23.1419Z" stroke="#2431AC" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
-                      <path d="M25.3749 25.5585L20.1187 20.3022" stroke="#2431AC" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
-                    </svg>
-                </span>
+            <button id="button2"><span class="mode">기본 모드</span>
             </button>
             
         </div>
@@ -371,7 +320,6 @@
 <div id="popupBackground"></div>
 
 <div id="popupTutorial" class="popup">
-    <span class="popup-close">X</span>
     <p class="modeTitle">튜토리얼 모드는</p>
     <p>해당 모드로 접속하시게 된다면<br>모바일 뱅킹에 익숙하지 않은 사용자를 위해<br>송금, 계좌/자산 조회, 거래내역 조회<br>방법을 알려줍니다.</p>
     <div class="popup-buttons">
@@ -382,7 +330,6 @@
 
 <!-- 기본 모드 팝업창 -->
 <div id="popupBasic" class="popup">
-    <span class="popup-close">X</span>
     <p class="modeTitle">기본 모드는</p>
     <p>일반적인 모바일 뱅킹이 가능한 모드입니다</p>
     <div class="popup-buttons">
