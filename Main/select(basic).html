@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>튜토리얼 모드</title>
+    <title>기본 모드</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+KR&display=swap" rel="stylesheet">
@@ -80,12 +80,12 @@
             });
 
             // 튜토리얼 모드 팝업 
-            $("#button1").on("click", function() {
+            $("#button1").on("click", function(event) {
                 openPopup("popupRemit");
             });
 
-            // 기본 모드 팝업
-            $("#button2").on("click", function() {
+            // 기본 모드 팝업 (수정)
+            $("#button2").on("click", function(event) {
                 openPopup("popupBasic");
             });
         });
@@ -180,6 +180,22 @@
             line-height: normal;
             font-family: 'IBM Plex Sans KR', sans-serif;
 
+        }
+
+        .modeTitle{
+            display: flex;
+            width: 354px;
+            height: 67px;
+            flex-direction: column;
+            justify-content: center;
+            flex-shrink: 0;
+            color: #000;
+            text-align: center;
+            font-family: 'IBM Plex Sans KR', sans-serif;
+            font-size: 30px;
+            font-style: normal;
+            font-weight: 800;
+            line-height: normal;
         }
         .remitInfo, .accountInfo, .transInfo{
             display:inline-block;
@@ -458,7 +474,7 @@
     
 <script>
     function navigateToPage(pageName) {
-            window.location.href = "Detailed Function Page/" + pageName; 
+            window.location.href = "BasicMode/" + pageName; 
     }
 </script>
 </body>
