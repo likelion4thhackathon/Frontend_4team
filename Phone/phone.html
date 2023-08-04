@@ -5,6 +5,36 @@
         <link rel="preconnect" href="https://fonts.googleapis.com%22%3E/">
         <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+KR&display=swap" rel="stylesheet">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+        <script>
+            $(document).ready(function() {
+                $("#moneysend").click(function() {
+                    window.location.href = "../Phone/송금/계좌송금-1.html";
+                });
+            });
+
+            //잔액 숨ㅁㄱ기기
+            $(document).ready(function() {
+                $("#hidebutton").click(function() {
+                let moneychangeElement = $("#moneychange");
+                let currentBalance = "60,000원";
+
+                if (moneychangeElement.text() === "잔액숨김중") {
+                    moneychangeElement.text(currentBalance);
+                } else {
+                    moneychangeElement.text("잔액숨김중");
+                }
+            });
+        });
+            //토글버튼
+            $(document).ready(function() {
+                $("#money1").click(function() {
+                    $("#toggleBox").toggle();
+                });
+            });
+        
+        </script>
+
         <style>
             body {
                 margin: 0; 
@@ -214,6 +244,20 @@
                 flex-shrink: 0;
                 margin-left:20px;
             }
+            
+            #toggleBox {
+                width: 390px;
+                height: 413px;
+                flex-shrink: 0;
+                border-radius: 39px 38px 10px 0px;
+                border:1px solid black;
+                background: #FFF;
+                display: none;
+                position: absolute;
+                bottom: 0;
+                left: 0;
+                z-index: 999;
+            }
             #money2{
                 display:flex;
                 width: 24px;
@@ -279,12 +323,17 @@
                 border: 1px solid #54ADFF;
                 margin-top:20px;
             }
+            #hidebutton:hover{
+                cursor: pointer;
+                background-color: #0085FF;
+                color:#FFF
+            }
             #moneysendlist{
                 width: 165px;
                 height: 47px;
                 flex-shrink: 0;
                 margin-top:120px;
-                margin-left:-330px;
+                margin-left:-317.5px;
                 color: #0085FF;
                 font-family: 'IBM Plex Sans KR', sans-serif;
                 font-size: 16px;
@@ -295,8 +344,14 @@
                 text-align: center;
                 line-height:47px;
             }
+            #moneysendlist:hover{
+                background-color:#0085FF;
+                border-radius: 10px;
+                cursor: pointer;
+                color:#FFF
+            }
             #moneysend{
-                width: 164px;
+                width: 150px;
                 height: 47px;
                 flex-shrink: 0;
                 margin-top:120px;
@@ -309,6 +364,12 @@
                 letter-spacing: -0.32px;
                 text-align: center;
                 line-height:47px;
+            }
+            #moneysend:hover{
+                background-color:#0085FF;
+                border-radius: 10px;
+                cursor: pointer;
+                color:#FFF
             }
             #viewAccount{
                 color: #787D83;
@@ -320,6 +381,9 @@
                 line-height: 21px; /* 161.538% */
                 letter-spacing: -0.32px;
                 margin-top:-5px;
+            }
+            #viewAccount:hover{
+                cursor: pointer;
             }
             hr{
                 margin-bottom: 15px;
@@ -559,6 +623,7 @@
 
                 
                     </div>
+                    <div id="toggleBox">토글창 내용</div>
                     <div id="moneytext2">
                     </div>
                     <div id="moneymoney1">
@@ -612,7 +677,7 @@
                     
                 </div>
             </div>
-            <div id="viewAccount">등록 계좌 보기</div>
+            <div id="viewAccount"><span>등록 계좌 보기</span></div>
             <hr style="width: 20%">
             <div id="menu">
                 <div id="buttonheader"> 

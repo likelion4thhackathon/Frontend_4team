@@ -7,15 +7,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>휴대전화송금-1</title>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
-    <script>
-        $(document).ready(function() {
-            $("#centerbutton-1").click(function() {
-                window.location.href = "계좌송금-1.html";
-            });
-        });
-    </script>
+    <title>Document</title>
     <style>
         body {
                 margin: 0; 
@@ -67,8 +59,7 @@
                 flex: 1 0 0;
                 align-self: stretch;
                 margin-left: -80px;
-            }
-            #hellobox{
+            } #hellobox{
                 display: flex;
                 width: 389px;
                 height: 44px;
@@ -89,8 +80,8 @@
                 margin-top:10px;
             }
             #function{
-                width:50px;
-                color: #4E5459;
+                width:70px;
+                color: #000;
                 text-align: center;
                 font-family: 'IBM Plex Sans KR', sans-serif;
                 font-size: 16px;
@@ -123,27 +114,87 @@
                 margin-top:14px;
                 margin-left:10%;
                 margin-top:10px;
-
+            
             }
-            #moneybox{
+            .account-money-info {
                 width: 390px;
-                height: 220px;
+                height: 134px;
                 flex-shrink: 0;
-                box-shadow: 0 4px 4px rgba(0, 0, 0, 0.2);
+                display: flex;
 
             }
-            #money{
+            .account-info {
+                width: 185px;
+                height: 115px;
+                flex-shrink: 0;
+                font-family: 'IBM Plex Sans KR', sans-serif;
+                font-size: 18px;
+                font-weight: 500;
+                text-align: center;
+                line-height: 90px;
+            }
+            .money{
+                width: 185px;
+                height: 115px;
+                flex-shrink: 0;
+                margin-left: 80px;
+                margin-top: 65px;
+                font-family: 'IBM Plex Sans KR', sans-serif;
+                font-size: 18px;
+                font-style: normal;
+                font-weight: 500;
+                line-height: normal;
+            }
+            #highlight {
+                color: #0085ff;
+            }
+            #totalmoney {
+                margin-left: 35px;
+                font-size: 16px;
+                
+            }
+            #num {
+                display: block;
+                margin-left: 5px;
+                color: #0085ff;
+            }
+            .container {
+            
+                width: 390px;
+                height: 90px;
+            }
+
+            .custom-button {
+                margin-left: 20px;
+                margin-top: 24px;
+                width: 351px;
+                height: 62px;
+
+                font-size: 18px;
+                font-weight: 500;      
+            }
+            #depAndWid {
+                margin-right: 250px;
+            }
+
+            .moneybox {
+                margin-left: 35px;
+                width: 383px;
+                height: 70px;
+                flex-shrink: 0;
+            }
+            #moneybank{
                 display:flex;
                 width: 320.277px;
-                height: 60px;
+                height: 50px;
                 flex-shrink: 0;
                 border-radius: 20px;
-                margin:auto;
-                margin-top:5%;
+                line-height: 50px;
+
             }
             #profile{
-                width: 50px;
-                height: 54px;
+                width: 42.291px;
+                height: 42.61px;
                 flex-shrink: 0;
             }
             #logo{
@@ -151,12 +202,13 @@
 
             }
             #moneytext1{
-                width: 180px;
+                margin-top: 20px;
+                width: 300px;
                 height: 27px;
                 flex-shrink: 0;
+                margin-right: 20px;
             }
             .account{
-                color: black;
                 font-family: 'IBM Plex Sans KR', sans-serif;
                 font-size: 16px;
                 font-style: normal;
@@ -164,176 +216,132 @@
                 line-height: 21px; /* 131.25% */
                 letter-spacing: -0.32px;
                 display: block;
-                margin-top:12px;
-                margin-left:20px;
+                text-align: center;
+                margin-right: 50px;
             }
-            .account span{
-                color:black;
-                font-weight: 300;
-            }
-            .account1{
-                margin-top:-0px;
-                font-size:17px;
+            .account1 {
+                color: #686E7A;
+                font-family: 'IBM Plex Sans KR', sans-serif;
+                font-size: 15px;
+                font-style: normal;
                 font-weight: 500;
-                margin-left:20px;
-                width:200px;
+                line-height: normal;
             }
-            #moneymoney1{
-                width: 46px;
+            #moneyinfotext {
+                margin-left: -130px;
+            }
+
+            .container2 {
+            
+                width: 390px;
+                height: 90px;
+            }
+
+            .custom2-button {
+                margin-left: 20px;
+                margin-top: 24px;
+                width: 351px;
+                height: 62px;
+
+                font-size: 18px;
+                font-weight: 500;      
+            }
+            #depAndWid2 {
+                margin-right: 250px;
+            }
+
+            .moneybox2 {
+                margin-left: 35px;
+                width: 383px;
+                height: 81px;
+                flex-shrink: 0;
+            }
+            #moneybank2{
+                display:flex;
+                width: 320.277px;
+                height: 50px;
+                flex-shrink: 0;
+                border-radius: 20px;
+                line-height: 50px;
+
+            }
+            #profile2{
+                width: 42.291px;
+                height: 42.61px;
+                flex-shrink: 0;
+            }
+            #logo2{
+                margin:15px 16.5px;
+
+            }
+            #moneytext2{
+                margin-top: 20px;
+                width: 300px;
                 height: 27px;
                 flex-shrink: 0;
-                margin-top:28px;
+                margin-right: 20px;
             }
-            #money1{
-                display:flex;
-                width: 24px;
-                height: 24px;
-                flex-shrink: 0;
-                margin-left:60px;
-            }
-            #moneyLimit{
-                display:flex;
-            }
-            #moneylimit{
-                width: 190px;
-                height: 91px;
-                flex-shrink: 0;
-                margin-left:30px;
+            .account2{
                 font-family: 'IBM Plex Sans KR', sans-serif;
-            }
-            #moneylimit2{
-                width: 150px;
-                height: 91px;
-                flex-shrink: 0;
-                text-align: center;
-                margin-left:10px;
-                font-family: 'IBM Plex Sans KR', sans-serif;
-            }
-            #limitText{
-                font-size:18px;
-            }
-            #moneylimit2 p:first-child{
-                color:blue;
-                color: #0085FF;
-            }
-            #centerbox-1{
-                width: 367px;
-                height: 30px;
-                flex-shrink: 0;
-                margin-top:10%;
-                margin-left:25px;  
-                display: flex;
-                line-height: 30px;
-                text-align: center;
-            }
-            #centerbutton-1{
-                width: 81px;
-                height: 30px;
-                flex-shrink: 0;
-                border-radius: 48px;
-                background: #EDECEC;
-                color: #000;
-                text-align: center;
-                font-family: 'IBM Plex Sans KR', sans-serif;
-                font-size: 14px;
+                font-size: 16px;
                 font-style: normal;
-                font-weight: 600;
-                line-height: 30px; /* 150% */
+                font-weight: 800;
+                line-height: 21px; /* 131.25% */
                 letter-spacing: -0.32px;
-            }
-            #centerbutton-1:active{
-                color: #FFF;
-                background: #0085FF;
-            }
-            #centerbutton-2{
-                width: 95px;
-                height: 30px;
-                flex-shrink: 0;
-                border-radius: 48px;
-                background: #0085FF;
-                color: #FFF;
+                display: block;
                 text-align: center;
-                font-family: 'IBM Plex Sans KR', sans-serif;
-                font-size: 14px;
-                font-style: normal;
-                font-weight: 600;
-                line-height: 30px; /* 150% */
-                letter-spacing: -0.32px;
-                margin-left: 10px;
+                margin-right: 50px;
             }
-            #centerbutton-2:active{
-                color:#000;
-                background: #EDECEC;
-            }
-            #centerbox-2{
-                width: 367px;
-                height: 110px;
-                flex-shrink: 0;
-                margin-top:5%;
-                margin-left:18px;  
-            }
-            #enterNum{
-                width: 340.966px;
-                height: 86.853px;
-                flex-shrink: 0;
-                border-radius: 10px;
-                border: 1px solid #CCC;
-                margin-left:5px;
-            }
-            #number{
-                width: 75px;
-                height: 32px;
-                flex-shrink: 0;
-                text-align: center;
-                line-height: 32px;
-                color: #7D828F;
+            .account3 {
+                color: #686E7A;
                 font-family: 'IBM Plex Sans KR', sans-serif;
                 font-size: 15px;
                 font-style: normal;
                 font-weight: 500;
+                line-height: normal;
             }
-            #receive{
-                width: 75px;
-                height: 32px;
-                flex-shrink: 0;
-                text-align: center;
-                line-height: 32px;
-                color: #7D828F;
-                font-family: 'IBM Plex Sans KR', sans-serif;
-                font-size: 15px;
-                font-style: normal;
-                font-weight: 500;
-                margin-left:15px;
+            #moneyinfotext2 {
+                margin-left: -145px;
             }
-          
-            input.num{
-                width:200px;
-                font-size: 20px;
-                margin-top:5px;
-                margin-left:13px;
-                height:30px;
-                border-style: none;
+            .container3 {
+            
+                width: 390px;
+                height: 90px;
             }
-            input.name{
-                width:200px;
-                font-size: 20px;
-                margin-top:5px;
-                margin-left:13px;
-                height:30px;
-                border-style: none;
+
+            .custom3-button {
+                margin-left: 20px;
+                margin-top: 24px;
+                width: 351px;
+                height: 62px;
+
+                font-size: 18px;
+                font-weight: 500;      
             }
-            #nextbutton{
-                margin-top:10%;
-                margin-left:8%;
+            #depAndWid3 {
+                margin-right: 250px;
             }
-            #nextbutton button{
-                width: 326.868px;
-                height: 56.512px;
-                flex-shrink: 0;
-                border-radius: 10px;
-                background: #CCC;
-                border-style:none;            
-            }
+            .container4 {
+            
+                width: 390px;
+                height: 90px;
+        }
+
+        .custom4-button {
+            margin-left: 20px;
+            margin-top: 24px;
+            width: 351px;
+            height: 62px;
+
+            font-size: 18px;
+            font-weight: 500;      
+        }
+        #depAndWid4 {
+            margin-right: 250px;
+        }
+
+
+
     </style>
 </head>
 <body>
@@ -368,7 +376,7 @@
                 <svg xmlns="http://www.w3.org/2000/svg" width="34" height="36" viewBox="0 0 34 36" fill="none">
                     <path d="M21.25 27L12.75 18L21.25 9" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                   </svg>
-                <span id="function">송금</span>
+                <span id="function">계좌/자산</span>
             </div>
             <div id="icon">
                 <div id="icon1">
@@ -386,67 +394,62 @@
                 </div>
             </div>
         </div>
-        <div id="moneybox">
-            <div id="money">
+        <div class="account-money-info">
+            <div class="account-info">
+                총 계좌 <span id="highlight">2</span>건
+            </div>
+            <div class="money">
+                <span id="totalmoney">총 자산</span>
+                <span id="num">425,700원</span>
+            </div>
+        </div>
+          
+        <div class="container">
+            <button class="custom-button">
+              <span id="depAndWid">입출금</span>
+            </button>
+        </div>
+        <div class="moneybox">
+            <div id="moneybank">
                 <div id="profile">
                     <svg id="logo" xmlns="http://www.w3.org/2000/svg" width="38" height="37" viewBox="0 0 38 37" fill="none">
                         <ellipse cx="18.954" cy="18.5254" rx="18.4415" ry="18.3301" fill="#D9D9D9"/>
                       </svg>
                 </div>
                 <div id="moneytext1">
-                    <span class="account">[한도제한]<span> 자립예탁금</span></span>
-                    <span class="account account1">730 - 1912 - 1943 -23</span>            
-                </div>
-                <div id="moneymoney1">
-                    <div id="money1">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="29" height="28" viewBox="0 0 29 28" fill="none">
-                            <path d="M21.6924 10.8694L14.6351 17.3071L7.69299 10.7454" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                          </svg>
-                    </div>
-                    
-                </div>
-            </div>
-            <hr style="width: 80%">
-            <div id="moneyLimit">
-                <div id="moneylimit">
-                    <div id="limitText">
-                        <p>출금가능금액</p>
-                        <p>1일 송금 잔여한도</p>
-                    </div>
-
-                </div>
-                <div id="moneylimit2">
-                    <div id="limitText">
-                        <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;60,000원</p>
-                        <p>5,000,000원</p>
-                    </div>
+                    <span class="account" id="moneyinfotext">자립예탁금</span>
+                    <span class="account account1">[바오 은행] 351 0220 0730 23</span>            
                 </div>
             </div>
         </div>
-        <div id="centerbox-1">
-            <div id="centerbutton-1">계좌송금</div>
-            <div id="centerbutton-2">휴대전화 송금</div>
+        <div class="container2">
+            <button class="custom2-button">
+              <span id="depAndWid2">예적금</span>
+            </button>
         </div>
-        <div id="centerbox-2">
-            <div id="enterNum">
-                <div id="number"><span>연락처</span></div>
-                <input class="num" type="text" id="account_number" name="account_number" placeholder="휴대전화번호 입력" />
+        <div class="moneybox2">
+            <div id="moneybank2">
+                <div id="profile2">
+                    <svg id="logo2" xmlns="http://www.w3.org/2000/svg" width="38" height="37" viewBox="0 0 38 37" fill="none">
+                        <ellipse cx="18.954" cy="18.5254" rx="18.4415" ry="18.3301" fill="#D9D9D9"/>
+                      </svg>
+                </div>
+                <div id="moneytext2">
+                    <span class="account2" id="moneyinfotext2">적금적금</span>
+                    <span class="account2 account3">[바오 은행] 351 0220 0730 23</span>            
+                </div>
             </div>
         </div>
-        <div id="centerbox-2">
-            <div id="enterNum">
-                <div id="receive"><span>받는 분 이름</span></div>
-                <input class="num" type="text" id="account_number" name="account_number" placeholder="실명 입력 (성+이름)" />
-            </div>
+        <div class="container3">
+            <button class="custom3-button">
+              <span id="depAndWid3">대출</span>
+            </button>
         </div>
-
-        <div id="nextbutton">
-            <button>다음</button>
+        <div class="container4">
+            <button class="custom4-button">
+              <span id="depAndWid4">펀드</span>
+            </button>
         </div>
-     
-       
-        
     </div>
-    
 </body>
 </html>

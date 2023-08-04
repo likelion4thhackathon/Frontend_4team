@@ -7,7 +7,76 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>계좌송금-2</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+    <script>
+        //휴대전화 송금 버튼 클릭 시
+        $(document).ready(function() {
+        $("#centerbutton-2").click(function() {
+            window.location.href = "휴대전화송금-1.html";
+            });
+        });
+
+        //뒤로가기 버튼
+        $(document).ready(function() {
+        $("#back").click(function() {
+            window.location.href = "../phone.html";
+            });
+        });
+
+        //최근 입금한 계좌 선택시 은행과 계좌번호가 자동으로 입력됨
+        $(document).ready(function() {
+            $("#bottombox-2").click(function() {
+                $("#select1").val("value5");
+                $("#account_number").val("730 1947 1948 23");
+                checkNextButton(); 
+            });
+        });
+
+        function checkNextButton() {
+            const accountNumber = $("#account_number").val().trim();
+
+            if (accountNumber.length > 0) {
+                $("#nextbutton button").prop("disabled", false);
+            } else {
+                $("#nextbutton button").prop("disabled", true);
+            }
+        }
+
+        // 텍스트가 입력되면 다음 버튼 활성화
+        $(document).ready(function() {
+            $("input").keyup(checkNextButton);
+        });
+
+        $(document).ready(function() {
+            $("#nextbutton button").click(function() {
+                const accountNumber = $("#account_number").val().trim();
+                const accountForm = /^[0-9]{3}\s[0-9]{4}\s[0-9]{4}\s[0-9]{2}$/; //계좌번호 형식..을 정해두자
+
+                if (accountNumber.length > 0 && !accountForm.test(accountNumber)) {
+                    alert("계좌번호 형식이 올바르지 않습니다. \n 123-1234-1234-12 형식으로 입력해 주세요. (총 13자리)");
+                } else {
+                    window.location.href = "계좌송금-4.html";
+                }
+            });
+        });
+        //최근입금 - 내 계좌 - 자주쓰는 버튼들 클릭 시 이동
+        $(document).ready(function() {
+            $("#bottombutton-1").click(function() {
+                window.location.href = "계좌송금-1.html";
+            });
+        });
+        $(document).ready(function() {
+            $("#bottombutton-2").click(function() {
+                window.location.href = "계좌송금-2.html";
+            });
+        });
+        $(document).ready(function() {
+            $("#bottombutton-3").click(function() {
+                window.location.href = "계좌송금-3.html";
+            });
+        });
+    </script>
     <style>
         body {
                 margin: 0; 
@@ -66,6 +135,9 @@
                 height: 44px;
                 flex-shrink: 0;
                
+            }
+            #back{
+                cursor: pointer;
             }
             #header{
                 display: flex;
@@ -295,8 +367,12 @@
             }
             input{
                 margin-left:10px;
-                height:20px;
+                width:200px;
+                height:30px;
                 border-radius: 5px;
+                font-size: 16px;
+                margin-left: 25px;
+                border-style: none;
             }
             #bottombox-1{
                 width: 340px;
@@ -317,6 +393,8 @@
                 font-style: normal;
                 font-weight: 500;
                 line-height: normal;
+                
+                margin-left: 10px;
             }
             #bottombutton-1:active{
                 color: #0085FF;
@@ -327,13 +405,13 @@
                 width: 83px;
                 height: 44px;
                 flex-shrink: 0;
-                color: #0085FF;
                 font-family: 'IBM Plex Sans KR', sans-serif;
                 font-size: 20px;
                 font-style: normal;
                 font-weight: 500;
                 line-height: normal;
                 margin-left:-7px;
+                color: #0085FF;
                 text-decoration: underline;
                 text-underline-position : under;
             }
@@ -358,25 +436,28 @@
                 text-underline-position : under;
             }
             #bottombox-2{
-                width: 330px;
-                height: 80px;
-                flex-shrink: 0;
-                margin-left:20px;   
+                width: 315px;
+                height: 100px;
                 display:flex;   
-                justify-content: space-evenly;
+                margin-left: 35px;
+                border-radius: 10px;
+                background-color: white;
+                border: 1px solid #ccc;
+            }
+            #bottombox-2:active{
+                background-color: #CCC;
             }
             
             #recent{
                 width: 53px;
                 height: 88px;
-                flex-shrink: 0;
             }
             #logo-2{
-                margin-top:50%;
-                margin-left:15%;
+                margin-top:65%;
+                margin-left:32%;
             }
             #recentAccount{
-                width: 160px;
+                width: 350px;
                 height: 88px;
                 flex-shrink: 0;
                 line-height: 88px;
@@ -387,35 +468,62 @@
                 font-weight: 500;
                 display:flex;
                 flex-direction: column;
+                justify-content: left;
+                margin-left: -90px;
             }
             .recent-account{
                 color: #4A4D52;
-              
+                margin-left: 19.5px;
             }
             #recentAccount span{
                 height:20px;
                 line-height: 70px;
             }
+            
+            #add-button{
+                width: 50px;
+                height: 88px;
+                flex-shrink: 0;
+            }
+            #delete-button{
+                width: 48px;
+                height: 88px;
+                flex-shrink: 0;
+            }
+            #add-button button, #delete-button button{
+                width: 29.955px;
+                height: 29.926px;
+                flex-shrink: 0;
+                margin-top:50%;
+                margin-left:15%;
+            }
+            #nextbutton{
+                margin-top:10%;
+                margin-left:8%;
+            }
+            #nextbutton button{
+                width: 326.868px;
+                height: 56.512px;
+                flex-shrink: 0;
+                border-radius: 10px;
+                background: #CCC;
+            }
+        
+            select::-ms-expand {
+            display: none; /* Microsoft Edge에서 화살표 제거 */
+            }
+
+            select {
+            appearance: none;
+            height:25px;
+            font-size: 16px;
+            }
             #balance{
-                width: 100px;
-                height: 80px;
-                display: flex;
-                flex-direction: column;
-                justify-content: flex-end;
-                align-items: flex-end;  
+                text-align: right;
+                margin-left: 50px;
             }
-            #register{
-                margin-top:3%;
-                margin-left:40%;
-                text-decoration: underline;
-                text-underline-position : under;
-                height:25px;
-            }
-            
-            
-            
-            
-            
+
+       
     </style>
 </head>
 <body>
@@ -447,7 +555,7 @@
         </div>
         <div id="hellobox">
             <div id="header">
-                <svg xmlns="http://www.w3.org/2000/svg" width="34" height="36" viewBox="0 0 34 36" fill="none">
+                <svg id="back" xmlns="http://www.w3.org/2000/svg" width="34" height="36" viewBox="0 0 34 36" fill="none">
                     <path d="M21.25 27L12.75 18L21.25 9" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                   </svg>
                 <span id="function">송금</span>
@@ -512,12 +620,14 @@
             <div id="enterNum">
                 <div id="receive"><span>받는 분</span></div>
                 <div id="receiveAccount">
-                    <select>
-                        <option value="value1">NH 농협</option>
-                        <option value="value2">우리은행</option>
-                        <option value="value3">국민은행</option>
+                    <select id="select1">
+                        <option value="value1">&nbsp;NH 농협&nbsp;</option>
+                        <option value="value2">&nbsp;우리은행&nbsp;</option>
+                        <option value="value3">&nbsp;국민은행&nbsp;</option>
+                        <option value="value4">&nbsp;바오은행&nbsp;</option>
+                        <option value="value5">&nbsp;&nbsp;범 은행&nbsp;</option>
                     </select>
-                    <input type="text" id="account_number" name="account_number" placeholder="계좌번호를 입력하세요" />
+                    <input type="text" id="account_number" name="account_number" placeholder="계좌번호 입력" />
                 </div>
 
             </div>
@@ -527,38 +637,22 @@
             <div id="bottombutton-2"><span>내 계좌</span></div>
             <div id="bottombutton-3"><span>자주쓰는</span></div>
         </div>
-        <div id="bottombox-2">
+        <button id="bottombox-2">
             <div id="recent">
                 <svg id="logo-2" xmlns="http://www.w3.org/2000/svg" width="38" height="37" viewBox="0 0 38 37" fill="none">
                     <ellipse cx="18.954" cy="18.5254" rx="18.4415" ry="18.3301" fill="#D9D9D9"/>
                   </svg>
             </div>
             <div id="recentAccount">
-                    <span>[범 은행] 김진범</span>
-                    <span class="recent-account">730 1947 1948 23</span>    
+                    <span>[바오 은행] 이솔비</span>
+                    <span class="recent-account">351 0220 0730 23</span><span id="balance">잔액&nbsp;&nbsp;<span style="color:#0085FF">60,000원</span>    
+    
             </div>
-            <div id="balance">
-                잔액 얼마얼마
-            </div>
-            
-        </div>
+        </button>
         <hr style="width:80%">
-        <div id="bottombox-2">
-            <div id="recent">
-                <svg id="logo-2" xmlns="http://www.w3.org/2000/svg" width="38" height="37" viewBox="0 0 38 37" fill="none">
-                    <ellipse cx="18.954" cy="18.5254" rx="18.4415" ry="18.3301" fill="#D9D9D9"/>
-                  </svg>
-            </div>
-            <div id="recentAccount">
-                    <span>[범 은행] 김진범</span>
-                    <span class="recent-account">730 1947 1948 23</span>    
-            </div>
-            <div id="balance">
-                잔액 얼마얼마
-            </div>
+        <div id="nextbutton">
+            <button disabled>다음</button>
         </div>
-        <hr style="width:80%">
-        <button id="register">+ 계좌등록</button>
         
     </div>
     
