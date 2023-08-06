@@ -7,24 +7,9 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>계좌,자산조회-1</title>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
-    <script>
-        //입출금 버튼 토글
-        $(document).ready(function () {
-            $(".custom-button").on("click", function () {
-                $(".moneybox").toggle(); 
-            });
-        });
-        //예적금 버튼 토글
-        $(document).ready(function () {
-            $(".custom2-button").on("click", function () {
-                $(".moneybox2").toggle(); 
-            });
-        });
-    </script>
+    <title>Document</title>
     <style>
-        body {
+            body {
                 margin: 0; 
                 display: flex;
                 justify-content: center;
@@ -46,7 +31,7 @@
                 justify-content: center;
                 align-items: flex-end;
                 flex-shrink: 0;
-               
+                
             }
             #time{
                 display: flex;
@@ -64,7 +49,7 @@
                 line-height: 21px; /* 131.25% */
                 letter-spacing: -0.32px;
                 margin-left:40px;
-                
+                    
             }
             #status{
                 display: flex;
@@ -74,18 +59,18 @@
                 flex: 1 0 0;
                 align-self: stretch;
                 margin-left: -80px;
-            } #hellobox{
-                display: flex;
-                width: 389px;
-                height: 44px;
-                flex-shrink: 0;
-               
+            }
+            #hellobox{
+                    display: flex;
+                    width: 389px;
+                    height: 44px;
+                    flex-shrink: 0;
             }
             #header{
                 display: flex;
                 justify-content: center;
                 align-items: center;
-                width: 100px;
+                width: 180px;
                 height: 25px;
                 flex-shrink: 0;
                 border-radius: 15px;
@@ -95,8 +80,8 @@
                 margin-top:10px;
             }
             #function{
-                width:70px;
-                color: #000;
+                width:130px;
+                color: #4E5459;
                 text-align: center;
                 font-family: 'IBM Plex Sans KR', sans-serif;
                 font-size: 16px;
@@ -110,7 +95,7 @@
                 width: 125px;
                 height: 38px;
                 flex-shrink: 0;
-                margin-left:67%;
+                margin-left:46.25%;
             }
             #icon1{
                 display: flex;
@@ -127,236 +112,223 @@
                 height: 24px;
                 flex-shrink: 0;
                 margin-top:14px;
-                margin-left:10%;
+                margin-left:10.5%;
                 margin-top:10px;
-            
             }
-            .account-money-info {
-                width: 390px;
-                height: 134px;
-                flex-shrink: 0;
+            #presendlimit {
+                margin-top: 40px;
+                margin-left: 30px;
                 display: flex;
-
-            }
-            .account-info {
-                width: 185px;
-                height: 115px;
-                flex-shrink: 0;
-                font-family: 'IBM Plex Sans KR', sans-serif;
-                font-size: 18px;
-                font-weight: 500;
-                text-align: center;
-                line-height: 90px;
-            }
-            .money{
-                width: 185px;
-                height: 115px;
-                flex-shrink: 0;
-                margin-left: 80px;
-                margin-top: 65px;
-                font-family: 'IBM Plex Sans KR', sans-serif;
-                font-size: 18px;
-                font-style: normal;
-                font-weight: 500;
-                line-height: normal;
-            }
-            #highlight {
-                color: #0085ff;
-            }
-            #totalmoney {
-                margin-left: 35px;
-                font-size: 16px;
+                align-items: center;
+                width: 345px;
+                height: 42px;
                 
             }
-            #num {
-                display: block;
-                margin-left: 5px;
-                color: #0085ff;
-            }
-            .container {
-            
-                width: 390px;
-                height: 90px;
-            }
-
-            .custom-button {
-                margin-left: 20px;
-                margin-top: 24px;
-                width: 351px;
-                height: 62px;
-
+            #presendlimittext {
+                font-family: 'SF Pro Text', Helvetica, Arial;
                 font-size: 18px;
-                font-weight: 500;      
-            }
-            #depAndWid {
-                margin-right: 250px;
-            }
-
-            .moneybox {
-                margin-left: 35px;
-                width: 383px;
-                height: 70px;
-                flex-shrink: 0;
-            }
-            #moneybank{
-                display:flex;
-                width: 320.277px;
-                height: 50px;
-                flex-shrink: 0;
-                border-radius: 20px;
-                line-height: 50px;
-
-            }
-            #profile{
-                width: 42.291px;
-                height: 42.61px;
-                flex-shrink: 0;
-            }
-            #logo{
-                margin:15px 16.5px;
-
-            }
-            #moneytext1{
-                margin-top: 20px;
-                width: 300px;
-                height: 27px;
-                flex-shrink: 0;
-                margin-right: 20px;
-            }
-            .account{
-                font-family: 'IBM Plex Sans KR', sans-serif;
-                font-size: 16px;
                 font-style: normal;
-                font-weight: 800;
-                line-height: 21px; /* 131.25% */
-                letter-spacing: -0.32px;
-                display: block;
-                text-align: center;
-                margin-right: 50px;
+                font-weight: 600;
+                line-height: normal;
             }
-            .account1 {
+            #security {
+                color: #0085FF;
+                display: inline-block;
+                border-radius: 5px;
+                width: 81px;
+                height: 24px;
+                margin-left: 135px;
+                text-align: center;
+                background: rgba(0, 133, 255, 0.20);
+                font-family: 'SF Pro Text', Helvetica, Arial;
+                font-size: 12px;
+                font-style: normal;
+                font-weight: 500;
+                line-height: normal;
+            }
+            .sendlimitbox {
+                width: 345px;
+                height: 90px;
+                flex-shrink: 0;
+                margin: 15px auto;
+                line-height: 90px;
+                border-radius: 10px;
+                background: #F5F5F5;
+
+            }
+            #oncesendlimit {
+                width: 345px;
+                height: 45px;
+                font-family: 'SF Pro Text', Helvetica, Arial;
+                font-size: 20px;
+                font-style: normal;
+                font-weight: 600;
+                line-height: 45px;
+
+            }
+            #moneyaccount{
+                width: 345px;
+                height: 45px;
+                font-family: 'SF Pro Text', Helvetica, Arial;
+                font-size: 20px;
+                font-style: normal;
+                font-weight: 600;
+                line-height:45px;
+
+
+            }
+            .blacktext {
+
+                font-family: 'SF Pro Text', Helvetica, Arial;
+                font-size: 18px;
+                font-style: normal;
+                font-weight: 500;
+                line-height: normal;
+            }
+            .bluetext {
+                color: #0085FF;
+                font-family: 'SF Pro Text', Helvetica, Arial;
+                font-size: 20px;
+                font-style: normal;
+                font-weight: 500;
+                line-height: normal;
+                margin-left: 140px;
+            }
+            #changesendlimit {
+                padding-top: 10px;
+                width: 340px;
+                height: 37px;
+                flex-shrink: 0;
+                margin-left: 20px;
+                font-size: 18px;
+                color: #0085FF;
+                font-weight: 600;
+                font-family: 'SF Pro Text', Helvetica, Arial;
+            }
+            #oncelimit {
+                width: 340px;
+                height: 18px;
+                flex-shrink: 0;
                 color: #686E7A;
+                font-family: 'SF Pro Text', Helvetica, Arial;
+                font-size: 15px;
+                font-style: normal;
+                font-weight: 500;
+                line-height: normal;
+                margin-top: 15px;
+                margin-left: 20px;
+            }
+            /*hr {
+                width: 150px;
+            }
+            */
+            #centerbox {
+                width: 340px;
+                height: 41px;
+                flex-shrink: 0;
+                margin-top: 5px;
+                line-height: 41px;
+            }
+            #enterNum{
+                width: 340px;
+                height: 41px;
+                flex-shrink: 0;
+                margin-left:20px;
+            }
+            #moneyfit {
+                margin-left: 50px;
+                color: #0085FF;
+                font-family: 'IBM Plex Sans KR', sans-serif;
+                font-size: 20px;
+                font-style: normal;
+                font-weight: 500;
+            }
+            .num {
+                border: none;
+                color: #7D828F;
                 font-family: 'IBM Plex Sans KR', sans-serif;
                 font-size: 15px;
                 font-style: normal;
                 font-weight: 500;
                 line-height: normal;
+                margin-top: 15px;
+                
             }
-            #moneyinfotext {
-                margin-left: -130px;
+            hr {
+                width: 285px;
+                margin-left: 2px;
             }
-
-            .container2 {
-            
-                width: 390px;
-                height: 90px;
-            }
-
-            .custom2-button {
-                margin-left: 20px;
-                margin-top: 24px;
-                width: 351px;
-                height: 62px;
-
+            #biggestsendinfo {
+                margin-left: 15px;
+                margin-top: 40px;
+                width: 345px;
+                height: 30px;
+                flex-shrink: 0;
+                font-family: 'IBM Plex Sans KR', sans-serif;
                 font-size: 18px;
-                font-weight: 500;      
-            }
-            #depAndWid2 {
-                margin-right: 250px;
-            }
-
-            .moneybox2 {
-                margin-left: 35px;
-                width: 383px;
-                height: 81px;
-                flex-shrink: 0;
-            }
-            #moneybank2{
-                display:flex;
-                width: 320.277px;
-                height: 50px;
-                flex-shrink: 0;
-                border-radius: 20px;
-                line-height: 50px;
-
-            }
-            #profile2{
-                width: 42.291px;
-                height: 42.61px;
-                flex-shrink: 0;
-            }
-            #logo2{
-                margin:15px 16.5px;
-
-            }
-            #moneytext2{
-                margin-top: 20px;
-                width: 300px;
-                height: 27px;
-                flex-shrink: 0;
-                margin-right: 20px;
-            }
-            .account2{
-                font-family: 'IBM Plex Sans KR', sans-serif;
-                font-size: 16px;
                 font-style: normal;
-                font-weight: 800;
-                line-height: 21px; /* 131.25% */
-                letter-spacing: -0.32px;
-                display: block;
-                text-align: center;
-                margin-right: 50px;
-            }
-            .account3 {
-                color: #686E7A;
-                font-family: 'IBM Plex Sans KR', sans-serif;
-                font-size: 15px;
-                font-style: normal;
-                font-weight: 500;
+                font-weight: 600;
                 line-height: normal;
             }
-            #moneyinfotext2 {
-                margin-left: -145px;
+            .tableform {
+                flex-direction: column;
+                width: 300px;
+                height: 240px;
+                margin: auto;
+
             }
-            .container3 {
-            
-                width: 390px;
-                height: 90px;
+
+            .row {
+                display: flex;
+                flex-direction: row;
+                justify-content: center;
+                align-items: center;
             }
 
-            .custom3-button {
-                margin-left: 20px;
-                margin-top: 24px;
-                width: 351px;
-                height: 62px;
-
-                font-size: 18px;
-                font-weight: 500;      
+            .box-container {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
             }
-            #depAndWid3 {
-                margin-right: 250px;
+
+            .box {
+                border: 1px solid #828282;
+                text-align: center;
+
+                width: 100px;
+                height: 60px;
             }
-            .container4 {
-            
-                width: 390px;
-                height: 90px;
-        }
+            #sec, #real, #basic, #mobile,#once, #oneday{
+                background: #edebeb;
+                
+            }
+            .cancelAndsend {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+            }
 
-        .custom4-button {
-            margin-left: 20px;
-            margin-top: 24px;
-            width: 351px;
-            height: 62px;
+            #button-cancel, #button-sendmoney {
+                width: 138px;
+                height: 57px;
+                background-color: #ccc;
+                border: none;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                margin-top: 30px;
+                border-radius: 10px;
+                
 
-            font-size: 18px;
-            font-weight: 500;      
-        }
-        #depAndWid4 {
-            margin-right: 250px;
-        }
+            }
 
+            #button-sendmoney {
+                margin-left: 30px;
+            }
 
-
+            #canceltext, #sendmoneytext {
+                color: #040D1F;
+            }
     </style>
 </head>
 <body>
@@ -391,7 +363,7 @@
                 <svg xmlns="http://www.w3.org/2000/svg" width="34" height="36" viewBox="0 0 34 36" fill="none">
                     <path d="M21.25 27L12.75 18L21.25 9" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                   </svg>
-                <span id="function">계좌/자산</span>
+                <span id="function">송금한도 설정</span>
             </div>
             <div id="icon">
                 <div id="icon1">
@@ -409,62 +381,64 @@
                 </div>
             </div>
         </div>
-        <div class="account-money-info">
-            <div class="account-info">
-                총 계좌 <span id="highlight">2</span>건
-            </div>
-            <div class="money">
-                <span id="totalmoney">총 자산</span>
-                <span id="num">425,700원</span>
-            </div>
+        <div id="presendlimit">
+            <span id="presendlimittext">현재 송금한도</span>
+            <span id="security">보안매체 없음</span>
         </div>
-          
-        <div class="container">
-            <button class="custom-button">
-              <span id="depAndWid">입출금</span>
-            </button>
-        </div>
-        <div class="moneybox">
-            <div id="moneybank">
-                <div id="profile">
-                    <svg id="logo" xmlns="http://www.w3.org/2000/svg" width="38" height="37" viewBox="0 0 38 37" fill="none">
-                        <ellipse cx="18.954" cy="18.5254" rx="18.4415" ry="18.3301" fill="#D9D9D9"/>
-                      </svg>
-                </div>
-                <div id="moneytext1">
-                    <span class="account" id="moneyinfotext">자립예탁금</span>
-                    <span class="account account1">[바오 은행] 351 0220 0730 23</span>            
-                </div>
+        <div class="sendlimitbox">
+            <div id="oncesendlimit">
+                <span class="blacktext">1회 송금 한도</span>
+                <span class="bluetext">500만원</span>
+            </div>
+            <div id="moneyaccount">
+                <span class="blacktext">1일 송금 한도</span>
+                <span class="bluetext">500만원</span>
             </div>
         </div>
-        <div class="container2">
-            <button class="custom2-button">
-              <span id="depAndWid2">예적금</span>
-            </button>
-        </div>
-        <div class="moneybox2">
-            <div id="moneybank2">
-                <div id="profile2">
-                    <svg id="logo2" xmlns="http://www.w3.org/2000/svg" width="38" height="37" viewBox="0 0 38 37" fill="none">
-                        <ellipse cx="18.954" cy="18.5254" rx="18.4415" ry="18.3301" fill="#D9D9D9"/>
-                      </svg>
-                </div>
-                <div id="moneytext2">
-                    <span class="account2" id="moneyinfotext2">적금적금</span>
-                    <span class="account2 account3">[바오 은행] 351 0220 0730 23</span>            
-                </div>
+        <div id="changesendlimit">변경할 송금한도</div>
+        <div id="oncelimit">1일 송금한도 (최대 500만원)</div>
+        <div id="centerbox">
+            <div id="enterNum">
+                <input class="num" type="text" id="account_number" name="account_number" placeholder="금액을 입력해주세요">
+                <span id="moneyfit">만원</span>
+                <hr>
             </div>
         </div>
-        <div class="container3">
-            <button class="custom3-button">
-              <span id="depAndWid3">대출</span>
+        <div id="biggestsendinfo">최대 송금한도 안내</div>
+        <div class="tableform">
+            <div class="row">
+                <div class="box" id="sec">보안매체</div>
+                <div class="box" id="once">1회</div>
+                <div class="box" id="oneday">1일</div>
+            </div>
+            <div class="row">
+                <div class="box" id="basic">기본<br>(간편인증)</div>
+                <div class="box" id="fivemill">5백만원</div>
+                <div class="box" id="fivehundred">5백만원</div>
+            </div>
+            <div class="row">
+                <div class="box" id="mobile">모바일<br>OTP</div>
+                <div class="box" id="onemill">1천만원</div>
+                <div class="box" id="fivethousand">5천만원</div>
+            </div>
+            <div class="row">
+                <div class="box" id="real">실물<br>OTP</div>
+                <div class="box" id="tenmill">1억원</div>
+                <div class="box" id="fiftymillion">5억원</div>
+            </div>
+        </div>
+        <div class="cancelAndsend">
+            <button id="button-cancel">
+                <span id="canceltext">
+                    취소
+                </span>
+            </button>
+            <button id="button-sendmoney">
+                <span id="sendmoneytext">
+                    송금
+                </span>
             </button>
         </div>
-        <div class="container4">
-            <button class="custom4-button">
-              <span id="depAndWid4">펀드</span>
-            </button>
-        </div>
-    </div>
+    </div>   
 </body>
 </html>

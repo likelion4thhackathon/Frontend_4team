@@ -7,24 +7,9 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>계좌,자산조회-1</title>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
-    <script>
-        //입출금 버튼 토글
-        $(document).ready(function () {
-            $(".custom-button").on("click", function () {
-                $(".moneybox").toggle(); 
-            });
-        });
-        //예적금 버튼 토글
-        $(document).ready(function () {
-            $(".custom2-button").on("click", function () {
-                $(".moneybox2").toggle(); 
-            });
-        });
-    </script>
+    <title>Document</title>
     <style>
-        body {
+            body {
                 margin: 0; 
                 display: flex;
                 justify-content: center;
@@ -46,7 +31,7 @@
                 justify-content: center;
                 align-items: flex-end;
                 flex-shrink: 0;
-               
+                
             }
             #time{
                 display: flex;
@@ -64,7 +49,7 @@
                 line-height: 21px; /* 131.25% */
                 letter-spacing: -0.32px;
                 margin-left:40px;
-                
+                    
             }
             #status{
                 display: flex;
@@ -74,18 +59,18 @@
                 flex: 1 0 0;
                 align-self: stretch;
                 margin-left: -80px;
-            } #hellobox{
-                display: flex;
-                width: 389px;
-                height: 44px;
-                flex-shrink: 0;
-               
+            }
+            #hellobox{
+                    display: flex;
+                    width: 389px;
+                    height: 44px;
+                    flex-shrink: 0;
             }
             #header{
                 display: flex;
                 justify-content: center;
                 align-items: center;
-                width: 100px;
+                width: 180px;
                 height: 25px;
                 flex-shrink: 0;
                 border-radius: 15px;
@@ -95,8 +80,8 @@
                 margin-top:10px;
             }
             #function{
-                width:70px;
-                color: #000;
+                width:130px;
+                color: #4E5459;
                 text-align: center;
                 font-family: 'IBM Plex Sans KR', sans-serif;
                 font-size: 16px;
@@ -110,7 +95,7 @@
                 width: 125px;
                 height: 38px;
                 flex-shrink: 0;
-                margin-left:67%;
+                margin-left:46.25%;
             }
             #icon1{
                 display: flex;
@@ -127,235 +112,66 @@
                 height: 24px;
                 flex-shrink: 0;
                 margin-top:14px;
-                margin-left:10%;
+                margin-left:10.5%;
                 margin-top:10px;
-            
             }
-            .account-money-info {
-                width: 390px;
-                height: 134px;
-                flex-shrink: 0;
+            #statisticBox {
                 display: flex;
-
-            }
-            .account-info {
-                width: 185px;
-                height: 115px;
-                flex-shrink: 0;
-                font-family: 'IBM Plex Sans KR', sans-serif;
-                font-size: 18px;
-                font-weight: 500;
-                text-align: center;
-                line-height: 90px;
-            }
-            .money{
-                width: 185px;
-                height: 115px;
-                flex-shrink: 0;
-                margin-left: 80px;
-                margin-top: 65px;
-                font-family: 'IBM Plex Sans KR', sans-serif;
-                font-size: 18px;
-                font-style: normal;
-                font-weight: 500;
-                line-height: normal;
-            }
-            #highlight {
-                color: #0085ff;
-            }
-            #totalmoney {
-                margin-left: 35px;
-                font-size: 16px;
-                
-            }
-            #num {
-                display: block;
-                margin-left: 5px;
-                color: #0085ff;
-            }
-            .container {
-            
                 width: 390px;
-                height: 90px;
-            }
-
-            .custom-button {
-                margin-left: 20px;
-                margin-top: 24px;
-                width: 351px;
-                height: 62px;
-
-                font-size: 18px;
-                font-weight: 500;      
-            }
-            #depAndWid {
-                margin-right: 250px;
-            }
-
-            .moneybox {
-                margin-left: 35px;
-                width: 383px;
-                height: 70px;
+                height: 67px;
                 flex-shrink: 0;
             }
-            #moneybank{
-                display:flex;
-                width: 320.277px;
-                height: 50px;
-                flex-shrink: 0;
-                border-radius: 20px;
-                line-height: 50px;
+            #statisticText {
 
-            }
-            #profile{
-                width: 42.291px;
-                height: 42.61px;
-                flex-shrink: 0;
-            }
-            #logo{
-                margin:15px 16.5px;
-
-            }
-            #moneytext1{
-                margin-top: 20px;
-                width: 300px;
-                height: 27px;
-                flex-shrink: 0;
-                margin-right: 20px;
-            }
-            .account{
+                margin-top: 45px;
+                text-align: center;
                 font-family: 'IBM Plex Sans KR', sans-serif;
                 font-size: 16px;
-                font-style: normal;
-                font-weight: 800;
+                font-weight: 700;
                 line-height: 21px; /* 131.25% */
                 letter-spacing: -0.32px;
-                display: block;
+                margin-left: 180px;  
+            }
+            #imagebox {
+                width: 334px;
+                height: 250px;
+                flex-shrink: 0;
                 text-align: center;
-                margin-right: 50px;
             }
-            .account1 {
-                color: #686E7A;
-                font-family: 'IBM Plex Sans KR', sans-serif;
-                font-size: 15px;
-                font-style: normal;
-                font-weight: 500;
-                line-height: normal;
+            #imagecircle {
+                display: flex;
+                margin-left: 70px;
+                align-items: center;
+                width: 334px;
+                height: 250px;
+                flex-shrink: 0;
             }
-            #moneyinfotext {
-                margin-left: -130px;
-            }
-
-            .container2 {
-            
-                width: 390px;
-                height: 90px;
-            }
-
-            .custom2-button {
+            .svg1 {
                 margin-left: 20px;
-                margin-top: 24px;
-                width: 351px;
-                height: 62px;
-
-                font-size: 18px;
-                font-weight: 500;      
-            }
-            #depAndWid2 {
-                margin-right: 250px;
-            }
-
-            .moneybox2 {
-                margin-left: 35px;
-                width: 383px;
-                height: 81px;
-                flex-shrink: 0;
-            }
-            #moneybank2{
-                display:flex;
-                width: 320.277px;
-                height: 50px;
-                flex-shrink: 0;
-                border-radius: 20px;
-                line-height: 50px;
-
-            }
-            #profile2{
-                width: 42.291px;
-                height: 42.61px;
-                flex-shrink: 0;
-            }
-            #logo2{
-                margin:15px 16.5px;
-
-            }
-            #moneytext2{
-                margin-top: 20px;
-                width: 300px;
-                height: 27px;
-                flex-shrink: 0;
                 margin-right: 20px;
             }
-            .account2{
-                font-family: 'IBM Plex Sans KR', sans-serif;
-                font-size: 16px;
-                font-style: normal;
-                font-weight: 800;
-                line-height: 21px; /* 131.25% */
-                letter-spacing: -0.32px;
-                display: block;
-                text-align: center;
-                margin-right: 50px;
+            #percent1, #percent2, #percent3, #percent4, #percent5 {
+                width: 202px;
+                height: 43px;
+                margin: 20px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
             }
-            .account3 {
-                color: #686E7A;
-                font-family: 'IBM Plex Sans KR', sans-serif;
-                font-size: 15px;
-                font-style: normal;
-                font-weight: 500;
-                line-height: normal;
-            }
-            #moneyinfotext2 {
-                margin-left: -145px;
-            }
-            .container3 {
-            
-                width: 390px;
-                height: 90px;
+            #percent5{
+                margin-left: 12px;
             }
 
-            .custom3-button {
+            .graynum1, .graynum2, .graynum3, .graynum4, .graynum5 {
+                color: #ccc;
                 margin-left: 20px;
-                margin-top: 24px;
-                width: 351px;
-                height: 62px;
-
-                font-size: 18px;
-                font-weight: 500;      
             }
-            #depAndWid3 {
-                margin-right: 250px;
+   
+
+            #hobbytext, #fashiontext, #healthtext, #commutext, #transfertext {
+                color: black;
             }
-            .container4 {
-            
-                width: 390px;
-                height: 90px;
-        }
-
-        .custom4-button {
-            margin-left: 20px;
-            margin-top: 24px;
-            width: 351px;
-            height: 62px;
-
-            font-size: 18px;
-            font-weight: 500;      
-        }
-        #depAndWid4 {
-            margin-right: 250px;
-        }
-
-
+      
 
     </style>
 </head>
@@ -409,61 +225,58 @@
                 </div>
             </div>
         </div>
-        <div class="account-money-info">
-            <div class="account-info">
-                총 계좌 <span id="highlight">2</span>건
-            </div>
-            <div class="money">
-                <span id="totalmoney">총 자산</span>
-                <span id="num">425,700원</span>
-            </div>
+        <div id="statisticBox">
+            <span id="statisticText">통계</span>
         </div>
-          
-        <div class="container">
-            <button class="custom-button">
-              <span id="depAndWid">입출금</span>
-            </button>
-        </div>
-        <div class="moneybox">
-            <div id="moneybank">
-                <div id="profile">
-                    <svg id="logo" xmlns="http://www.w3.org/2000/svg" width="38" height="37" viewBox="0 0 38 37" fill="none">
-                        <ellipse cx="18.954" cy="18.5254" rx="18.4415" ry="18.3301" fill="#D9D9D9"/>
-                      </svg>
-                </div>
-                <div id="moneytext1">
-                    <span class="account" id="moneyinfotext">자립예탁금</span>
-                    <span class="account account1">[바오 은행] 351 0220 0730 23</span>            
-                </div>
+        <div id="imagebox">
+            <div id="imagecircle">
+                <svg xmlns="http://www.w3.org/2000/svg" width="260" height="260" viewBox="0 0 260 260" fill="none">
+                    <path d="M91.955 45.8698C82.6123 50.2816 74.0799 56.2366 66.7166 63.4846L100.811 98.1219C104.282 94.7053 108.304 91.8981 112.708 89.8183L91.955 45.8698Z" fill="#FF7878"/>
+                    <path d="M67.7334 62.3477C49.7909 78.8618 39.1435 101.827 38.1335 126.192L86.694 128.205C87.1701 116.719 92.1894 105.893 100.647 98.1087L67.7334 62.3477Z" fill="#6CFFB9"/>
+                    <path d="M49.2176 173.911C41.269 159.288 37.4386 142.782 38.135 126.153L86.6097 128.183C86.2808 136.037 88.0899 143.834 91.8443 150.741L49.2176 173.911Z" fill="#FAFF0E"/>
+                    <path d="M222.542 130C222.542 117.848 220.149 105.814 215.498 94.586C210.847 83.3582 204.031 73.1564 195.437 64.563C186.844 55.9697 176.642 49.1531 165.414 44.5024C154.187 39.8517 142.153 37.458 130 37.458L130 86.3758C135.729 86.3758 141.402 87.5042 146.694 89.6966C151.987 91.8889 156.796 95.1023 160.847 99.1532C164.898 103.204 168.111 108.013 170.304 113.306C172.496 118.599 173.625 124.272 173.625 130H222.542Z" fill="#FF91D9"/>
+                    <path d="M130 37.458C116.32 37.458 102.81 40.491 90.4426 46.3385L111.353 90.5621C117.183 87.8056 123.551 86.3758 130 86.3758L130 37.458Z" fill="#FF7878"/>
+                    <path d="M222.542 130C222.542 150.808 215.529 171.01 202.636 187.342C189.742 203.674 171.721 215.185 151.481 220.015C131.241 224.845 109.963 222.713 91.0843 213.962C72.2051 205.212 57.8707 190.431 48.4745 171.864L91.0763 149.699C95.5056 158.451 102.755 165.455 111.655 169.58C120.555 173.705 130.585 174.71 140.126 172.433C149.667 170.156 158.163 164.73 164.241 157.031C170.319 149.332 173.624 139.809 173.624 130H222.542Z" fill="#60B2FF"/>
+                    <path d="M122.797 135.159C121.983 135.159 121.263 135.019 120.638 134.739C120.017 134.458 119.53 134.072 119.178 133.58C118.825 133.087 118.651 132.527 118.655 131.898C118.651 131.405 118.752 130.953 118.956 130.54C119.164 130.123 119.447 129.777 119.803 129.5C120.159 129.22 120.557 129.042 120.996 128.966V128.898C120.416 128.758 119.952 128.447 119.604 127.966C119.255 127.485 119.083 126.932 119.087 126.307C119.083 125.712 119.24 125.182 119.558 124.716C119.88 124.246 120.322 123.877 120.882 123.608C121.443 123.339 122.081 123.205 122.797 123.205C123.505 123.205 124.138 123.341 124.695 123.614C125.255 123.883 125.697 124.252 126.019 124.722C126.341 125.187 126.504 125.716 126.507 126.307C126.504 126.932 126.325 127.485 125.973 127.966C125.621 128.447 125.163 128.758 124.598 128.898V128.966C125.034 129.042 125.426 129.22 125.774 129.5C126.127 129.777 126.407 130.123 126.615 130.54C126.827 130.953 126.935 131.405 126.939 131.898C126.935 132.527 126.757 133.087 126.405 133.58C126.053 134.072 125.564 134.458 124.939 134.739C124.318 135.019 123.604 135.159 122.797 135.159ZM122.797 133.722C123.278 133.722 123.695 133.642 124.047 133.483C124.399 133.32 124.672 133.095 124.865 132.807C125.058 132.515 125.157 132.174 125.161 131.784C125.157 131.379 125.051 131.021 124.843 130.71C124.638 130.4 124.36 130.155 124.007 129.977C123.655 129.799 123.252 129.71 122.797 129.71C122.339 129.71 121.932 129.799 121.575 129.977C121.219 130.155 120.939 130.4 120.735 130.71C120.53 131.021 120.43 131.379 120.433 131.784C120.43 132.174 120.522 132.515 120.712 132.807C120.905 133.095 121.18 133.32 121.536 133.483C121.892 133.642 122.312 133.722 122.797 133.722ZM122.797 128.307C123.183 128.307 123.526 128.229 123.825 128.074C124.125 127.919 124.36 127.703 124.53 127.426C124.704 127.15 124.793 126.826 124.797 126.455C124.793 126.091 124.706 125.773 124.536 125.5C124.369 125.227 124.136 125.017 123.837 124.869C123.538 124.718 123.191 124.642 122.797 124.642C122.396 124.642 122.043 124.718 121.74 124.869C121.441 125.017 121.208 125.227 121.041 125.5C120.875 125.773 120.793 126.091 120.797 126.455C120.793 126.826 120.877 127.15 121.047 127.426C121.218 127.703 121.452 127.919 121.752 128.074C122.055 128.229 122.403 128.307 122.797 128.307ZM132.207 127.768H133.535V130.344H132.207V127.768ZM138.847 121.784H140.175V130.296H138.847V121.784ZM128.447 128.216L128.287 127.224C131.071 127.224 134.607 127.208 137.695 126.856L137.775 127.72C134.607 128.184 131.151 128.216 128.447 128.216ZM130.479 130.824H140.175V133.832H131.807V135.464H130.511V132.952H138.863V131.784H130.479V130.824ZM130.511 135.128H140.655V136.088H130.511V135.128ZM135.967 128.664H139.263V129.528H135.967V128.664ZM132.959 122.056C135.103 122.056 136.511 122.888 136.511 124.232C136.511 125.576 135.103 126.408 132.959 126.408C130.799 126.408 129.391 125.576 129.391 124.232C129.391 122.888 130.799 122.056 132.959 122.056ZM132.959 122.984C131.535 122.984 130.623 123.464 130.623 124.232C130.623 125 131.535 125.48 132.959 125.48C134.351 125.48 135.263 125 135.263 124.232C135.263 123.464 134.351 122.984 132.959 122.984Z" fill="black"/>
+                    <path d="M174 130C174 154.311 154.514 174 130.5 174C106.486 174 87 154.311 87 130C87 105.689 106.486 86 130.5 86C154.514 86 174 105.689 174 130Z" stroke="#0085FF" stroke-width="2"/>
+                    <circle cx="130" cy="130" r="92" stroke="#0085FF" stroke-width="2"/>
+                    </svg>
             </div>
         </div>
-        <div class="container2">
-            <button class="custom2-button">
-              <span id="depAndWid2">예적금</span>
-            </button>
+        <div id="percent1">
+            <svg xmlns="http://www.w3.org/2000/svg" class="svg1" width="15" height="15" viewBox="0 0 15 15" fill="none">
+                <circle opacity="0.8" cx="7.5" cy="7.5" r="7.5" fill="#60B2FF"/>
+            </svg>
+            <span id="hobbytext">여가생활</span>
+            <span class="graynum1">45%</span>
         </div>
-        <div class="moneybox2">
-            <div id="moneybank2">
-                <div id="profile2">
-                    <svg id="logo2" xmlns="http://www.w3.org/2000/svg" width="38" height="37" viewBox="0 0 38 37" fill="none">
-                        <ellipse cx="18.954" cy="18.5254" rx="18.4415" ry="18.3301" fill="#D9D9D9"/>
-                      </svg>
-                </div>
-                <div id="moneytext2">
-                    <span class="account2" id="moneyinfotext2">적금적금</span>
-                    <span class="account2 account3">[바오 은행] 351 0220 0730 23</span>            
-                </div>
-            </div>
+        <div id="percent2">
+            <svg xmlns="http://www.w3.org/2000/svg" class="svg1" width="15" height="15" viewBox="0 0 15 15" fill="none">
+                <circle opacity="0.8" cx="7.5" cy="7.5" r="7.5" fill="#FF90D9"/>
+            </svg>
+            <span id="fashiontext">패션/쇼핑</span>
+            <span class="graynum2">25%</span>
         </div>
-        <div class="container3">
-            <button class="custom3-button">
-              <span id="depAndWid3">대출</span>
-            </button>
+        <div id="percent3">
+            <svg xmlns="http://www.w3.org/2000/svg" class="svg1" width="15" height="15" viewBox="0 0 15 15" fill="none">
+                <circle opacity="0.8" cx="7.5" cy="7.5" r="7.5" fill="#6CFFB9"/>
+            </svg>
+            <span id="healthtext">의료/건강</span>
+            <span class="graynum3">12%</span>
         </div>
-        <div class="container4">
-            <button class="custom4-button">
-              <span id="depAndWid4">펀드</span>
-            </button>
+        <div id="percent4">
+            <svg xmlns="http://www.w3.org/2000/svg" class="svg1" width="15" height="15" viewBox="0 0 15 15" fill="none">
+                <circle opacity="0.8" cx="7.5" cy="7.5" r="7.5" fill="#FF7878"/>
+            </svg>
+            <span id="commutext">교육/학습</span>
+            <span class="graynum4">12%</span>
+        </div>
+        <div id="percent5">
+            <svg xmlns="http://www.w3.org/2000/svg" class="svg1" width="15" height="15" viewBox="0 0 15 15" fill="none">
+                <circle opacity="0.8" cx="7.5" cy="7.5" r="7.5" fill="#FAFF0E"/>
+            </svg>
+            <span id="transfertext">&nbsp;&nbsp;&nbsp;교통비</span>
+            <span class="graynum5">6%</span>
         </div>
     </div>
 </body>

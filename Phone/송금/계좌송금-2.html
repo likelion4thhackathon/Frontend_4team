@@ -27,12 +27,13 @@
         //최근 입금한 계좌 선택시 은행과 계좌번호가 자동으로 입력됨
         $(document).ready(function() {
             $("#bottombox-2").click(function() {
-                $("#select1").val("value5");
-                $("#account_number").val("730 1947 1948 23");
+                $("#select1").val("value4");
+                $("#account_number").val("351 0220 0730 23");
                 checkNextButton(); 
             });
         });
 
+        // 텍스트가 입력되면 다음 버튼 활성화
         function checkNextButton() {
             const accountNumber = $("#account_number").val().trim();
 
@@ -43,11 +44,11 @@
             }
         }
 
-        // 텍스트가 입력되면 다음 버튼 활성화
         $(document).ready(function() {
             $("input").keyup(checkNextButton);
         });
 
+        //계좌번호 형식 체크
         $(document).ready(function() {
             $("#nextbutton button").click(function() {
                 const accountNumber = $("#account_number").val().trim();
@@ -74,6 +75,25 @@
         $(document).ready(function() {
             $("#bottombutton-3").click(function() {
                 window.location.href = "계좌송금-3.html";
+            });
+        });
+
+        //홈버튼
+        $(document).ready(function() {
+        $("#icon1").click(function() {
+            window.location.href = "../phone.html";
+            });
+        });
+
+        //계좌번호, 계좌주 로컬변수 저장
+        $(document).ready(function() {
+            $('#nextbutton').on('click', function() {
+            const accountName = $('#account_name').text().trim();
+            const accountNumber = $('#account_number').val().trim();
+            localStorage.setItem('account_name', accountName);
+            localStorage.setItem('account_number', accountNumber);
+
+            window.location.href = '계좌송금-4.html'; 
             });
         });
     </script>
@@ -179,6 +199,7 @@
                 margin-left:35%;
                 margin-top:10px;
             }
+            
             #icon2{
                 display: flex;
                 width: 24px;
@@ -188,6 +209,9 @@
                 margin-left:10%;
                 margin-top:10px;
 
+            }
+            #icon1,#icon2,#money1,#centerbutton-1,#centerbutton-2,select,option,#bottombutton-1,#bottombutton-2,#bottombutton-3,#bottombox-2,button{
+                cursor: pointer;
             }
             #moneybox{
                 width: 390px;

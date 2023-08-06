@@ -32,6 +32,8 @@
             });
         });
 
+
+        // 텍스트가 입력되면 다음 버튼 활성화
         function checkNextButton() {
             const accountNumber = $("#account_number").val().trim();
 
@@ -42,7 +44,6 @@
             }
         }
 
-        // 텍스트가 입력되면 다음 버튼 활성화
         $(document).ready(function() {
             $("input").keyup(checkNextButton);
         });
@@ -59,6 +60,7 @@
                 }
             });
         });
+
         //최근입금 - 내 계좌 - 자주쓰는 버튼들 클릭 시 이동
         $(document).ready(function() {
             $("#bottombutton-1").click(function() {
@@ -76,7 +78,27 @@
             });
         });
         
+        //홈버튼
+        $(document).ready(function() {
+        $("#icon1").click(function() {
+            window.location.href = "../phone.html";
+            });
+        });
 
+        //메뉴버튼
+
+
+        //계좌번호, 계좌주 로컬변수 저장
+        $(document).ready(function() {
+            $('#nextbutton').on('click', function() {
+            const accountName = $('#account_name').text().trim();
+            const accountNumber = $('#account_number').val().trim();
+            localStorage.setItem('account_name', accountName);
+            localStorage.setItem('account_number', accountNumber);
+
+            window.location.href = '계좌송금-4.html'; 
+            });
+        });
     </script>
     <style>
         body {
@@ -180,6 +202,7 @@
                 margin-left:35%;
                 margin-top:10px;
             }
+            
             #icon2{
                 display: flex;
                 width: 24px;
@@ -189,6 +212,9 @@
                 margin-left:10%;
                 margin-top:10px;
 
+            }
+            #icon1,#icon2,#money1,#centerbutton-1,#centerbutton-2,select,option,#bottombutton-1,#bottombutton-2,#bottombutton-3,#bottombox-2,button{
+                cursor: pointer;
             }
             #moneybox{
                 width: 390px;
