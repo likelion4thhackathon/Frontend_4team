@@ -8,6 +8,90 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>계좌,자산조회-2</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+    <script>
+
+        $(document).ready(function() {
+            // 로컬 스토리지에서 계좌번호를 불러와 할당
+            const accountNameP = localStorage.getItem('account_name-p');
+            const accountNumP = localStorage.getItem('account_number-p');
+
+            // 계좌번호 화면에 출력
+            $('#account_number_display').text(accountNumP).css("margin-left","20px");
+            $('#account_name_display').text(accountNameP);
+
+
+        });
+
+        
+        // 돈 천단위 콤마 찍기
+        function formatNumberWithCommas(number) {
+            return number.toString().replace(/\,/g, '').replace(/(\d)(?=(?:\d{3})+(?!\d))/g, '$1,');
+        }
+
+
+        // 텍스트가 입력되면 다음 버튼 활성화
+        function checkNextButton() {
+            const accountNumber = $("#account_number").val().trim();
+            const formattedAccountNumber = formatNumberWithCommas(accountNumber);
+
+            if (accountNumber.length > 0) {
+                $("#account_number").val(formattedAccountNumber);
+                $("#nextbutton button").prop("disabled", false);
+            } else {
+                $("#nextbutton button").prop("disabled", true);
+            }
+        }
+
+        $(document).ready(function() {
+            $("input").keyup(checkNextButton);
+        });
+
+        //뒤로가기 버튼
+        $(document).ready(function() {
+        $("#back").click(function() {
+            window.location.href = "계좌송금-1.html";
+            });
+        });
+
+        // 금액란에 정확한 기입이 되었는지 확인
+        function isValidAmount(number) {
+            return !isNaN(number) && number.length > 0;
+        }
+
+        $(document).ready(function() {
+        $("#nextbutton button").click(function() {
+            //콤마 제거한 금액 값을 accountNumber에 저장
+            const accountNumber = $("#account_number").val().trim().replace(/,/g, ''); 
+
+            if (!isValidAmount(accountNumber)) {
+                alert("정확한 금액을 입력해주세요.");
+            } else {
+                window.location.href="휴대전화송금-3.html";
+            }
+        });
+    });
+
+        //홈버튼
+        $(document).ready(function() {
+            $("#icon1").click(function() {
+                window.location.href = "../phone.html";
+                });
+        });
+
+        //보낼 금액 로컬변수 저장
+        $(document).ready(function() {
+            $('#nextbutton').on('click', function() {
+            const sendMoney = $('.num').val().trim();
+            localStorage.setItem('send_money', sendMoney);
+
+            window.location.href = '휴대전화송금-3.html'; 
+            });
+        });
+
+        
+    </script>
+    <title>계좌송금-4</title>
     <style>
         body {
                 margin: 0; 
@@ -60,141 +144,305 @@
                 align-self: stretch;
                 margin-left: -80px;
             }
-            #checksendmoney {
-                width: 388px;
-                height: 71px;
+            #hellobox{
+                display: flex;
+                width: 389px;
+                height: 44px;
+                flex-shrink: 0;
+               
+            }
+            #back{
+                cursor: pointer;
+            }
+            #header{
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                width: 100px;
+                height: 25px;
+                flex-shrink: 0;
+                border-radius: 15px;
+                background: #FFF;
+                margin-right:-120px;
+                margin-left:20px;
+                margin-top:10px;
+            }
+            #function{
+                width:50px;
+                color: #4E5459;
+                text-align: center;
+                font-family: 'IBM Plex Sans KR', sans-serif;
+                font-size: 16px;
+                font-style: normal;
+                font-weight: 800;
+                letter-spacing: -0.32px;
+                margin-left: 5px;
+            }
+            #icon{
+                display:flex;
+                width: 125px;
+                height: 38px;
+                flex-shrink: 0;
+                margin-left:67%;
+            }
+            #icon1{
+                display: flex;
+                width: 24px;
+                height: 24px;
+                flex-shrink: 0;
+                margin-top:14px;
+                margin-left:35%;
+                margin-top:10px;
+            }
+            #icon2{
+                display: flex;
+                width: 24px;
+                height: 24px;
+                flex-shrink: 0;
+                margin-top:14px;
+                margin-left:10%;
+                margin-top:10px;
+
+            }
+            #icon1,#icon2,#money1,#centerbutton-1,#centerbutton-2,select,option,#bottombutton-1,#bottombutton-2,#bottombutton-3,#bottombox-2,button{
+                cursor: pointer;
+            }
+            #moneybox{
+                width: 390px;
+                height: 220px;
+                flex-shrink: 0;
+                box-shadow: 0 4px 4px rgba(0, 0, 0, 0.2);
+
+            }
+            #money{
+                display:flex;
+                width: 320.277px;
+                height: 60px;
+                flex-shrink: 0;
+                border-radius: 20px;
+                margin:auto;
+                margin-top:5%;
+            }
+            #profile{
+                width: 50px;
+                height: 54px;
+                flex-shrink: 0;
+            }
+            #logo{
+                margin:15px 16.5px;
+
+            }
+            #moneytext1{
+                width: 180px;
+                height: 27px;
+                flex-shrink: 0;
+            }
+            .account{
+                color: black;
+                font-family: 'IBM Plex Sans KR', sans-serif;
+                font-size: 16px;
+                font-style: normal;
+                font-weight: 800;
+                line-height: 21px; /* 131.25% */
+                letter-spacing: -0.32px;
+                display: block;
+                margin-top:12px;
+                margin-left:20px;
+            }
+            .account span{
+                color:black;
+                font-weight: 300;
+            }
+            .account1{
+                margin-top:-0px;
+                font-size:17px;
+                font-weight: 500;
+                margin-left:20px;
+                width:200px;
+            }
+            #moneymoney1{
+                width: 46px;
+                height: 27px;
+                flex-shrink: 0;
+                margin-top:28px;
+            }
+            #money1{
+                display:flex;
+                width: 24px;
+                height: 24px;
+                flex-shrink: 0;
+                margin-left:60px;
+            }
+            #moneyLimit{
+                display:flex;
+            }
+            #moneylimit{
+                width: 190px;
+                height: 91px;
+                flex-shrink: 0;
+                margin-left:30px;
+                font-family: 'IBM Plex Sans KR', sans-serif;
+            }
+            #moneylimit2{
+                width: 150px;
+                height: 91px;
                 flex-shrink: 0;
                 text-align: center;
-                line-height: 71px;
-                
-                
+                margin-left:10px;
+                font-family: 'IBM Plex Sans KR', sans-serif;
             }
-            #checksendmoneytext1 {
-                color: #000;
-                font-family: Inter;
-                font-size: 20px;
-                font-style: normal;
-                font-weight: 600;
-                line-height: normal;
+            #limitText{
+                font-size:18px;
             }
-            .sendmoney-info {
-            width: 366.821px;
-            height: 113.426px;
-            flex-shrink: 0;
-
+            #moneylimit2 p:first-child{
+                color:blue;
+                color: #0085FF;
             }
-
-            #sendmoney, #moneyaccount, #receiver {
-                width: 366px;
-                height: 35px;
+            
+            #centerbox-1{
+                width: 367px;
+                height: 50px;
                 flex-shrink: 0;
-
-                padding: 0 10px;
-                background: rgba(197, 191, 191, 0.20);
-
-
+                margin-top:10%;
+                margin-left:18px;  
             }
-            .gray {
+            #centerbox-2{
+                width: 367px;
+                height: 90px;
+                flex-shrink: 0;
+                margin-top:5%;
+                margin-left:18px;  
+            }
+            #enterName{
+                width: 340.966px;
+                height: 50px;
+                flex-shrink: 0;
+                border-radius: 10px;
+                border: 1px solid #CCC;
+                margin-left:5px;
+            }
+            #enterNum{
+                width: 340.966px;
+                height: 80px;
+                flex-shrink: 0;
+                border-radius: 10px;
+                border: 1px solid #CCC;
+                margin-left:5px;
+            }
+            
+            #number:first-child{
+                width:390px;
+                height: 32px;
+                flex-shrink: 0;
+                line-height: 32px;
                 color: #7D828F;
                 font-family: 'IBM Plex Sans KR', sans-serif;
                 font-size: 15px;
                 font-style: normal;
                 font-weight: 500;
-                line-height: 35px;
-                margin-left: 30px;
+                line-height: 40px;
+                margin-left: 15px;
             }
-            .blue-1{
-                color: #0085FF;
-                font-family: 'IBM Plex Sans KR', sans-serif;
-                font-size: 17px;
-                font-style: normal;
-                font-weight: 500;
-                line-height: 35px;
-                margin-left: 180px;
+            #number span+span{
+                color:#000;
+                font-size:20px;
+                margin-left: 40px;
+                line-height:45px;
+            }
+            #number span+span+span{
+                color:#0085FF;
+                margin-left: 5px;
 
             }
-            .blue-2{
-                color: #0085FF;
-                font-family: 'IBM Plex Sans KR', sans-serif;
-                font-size: 17px;
-                font-style: normal;
-                font-weight: 500;
-                line-height: 35px;
-                margin-left: 110px;
-            }
-            .blue-3 {
-                color: #0085FF;
-                font-family: 'IBM Plex Sans KR', sans-serif;
-                font-size: 17px;
-                font-weight: 500;
-                line-height: 35px;
-                margin-left: 215px;
-            }
-            .tableform {
-                flex-wrap: wrap;
-                margin-left: 2.5px;
-                margin-top: 30px;
-            }
-
-            .row {
-                display: flex;
-            }
-
-            .box {
-                width: 120px;
-                height: 55px;
-                flex-shrink: 0;
-                display: flex;
-                flex-direction: column;
-                justify-content: center;
-                font-size: 14px;
-                border: 1px solid #ccc;
-                padding: 5px;
-                font-family: 'IBM Plex Sans KR', sans-serif;
-                
-                
-            }
-
-            #tablebaobank, #sendsol, #sendsol2 {
-                width: 240px;
+            .memo{
+                width:300px;
                 font-size: 20px;
+                height:30px;
+                margin-left:15px;
+                border-style: none;
+                text-align: left;
             }
-
-            #baobanktext {
-                font-size: 14px;
-            }
-
-            #baobanknum {
-                font-size: 14px;
-            }
-
             
-            .cancelAndsend {
-                display: flex;
-                justify-content: center;
-                align-items: center;
+            #receive{
+                width: 75px;
+                height: 32px;
+                flex-shrink: 0;
+                text-align: center;
+                line-height: 32px;
+                color: #7D828F;
+                font-family: 'IBM Plex Sans KR', sans-serif;
+                font-size: 15px;
+                font-style: normal;
+                font-weight: 500;
+                margin-left:5px;
             }
-
-            #button-cancel, #button-sendmoney {
-                width: 138px;
-                height: 57px;
-                background-color: #ccc;
-                border: none;
-                display: flex;
-                justify-content: center;
-                align-items: center;
-                margin-top: 40px;
+          
+            input.num{
+                width:120px;
+                font-size: 20px;
+                margin-top:5px;
+                margin-left:180px;
+                height:30px;
+                border-style: none;
+                text-align: right;
+                color:#0085FF
+            }
+            .num+span{
+                font-family: 'IBM Plex Sans KR', sans-serif;
+                text-align: right;
+                font-size: 20px;
+                margin-left: 10px;
+            }
+            input.name{
+                width:200px;
+                font-size: 20px;
+                margin-top:5px;
+                margin-left:13px;
+                height:30px;
+                border-style: none;
+            }
+            #nextbutton{
+                margin-top:10%;
+                margin-left:8%;
+            }
+            #nextbutton button{
+                width: 326.868px;
+                height: 56.512px;
+                flex-shrink: 0;
                 border-radius: 10px;
-                
-
+                background: #CCC;
+                border-style:none;            
             }
-
-            #button-sendmoney {
-                margin-left: 30px;
+            #bottombox-1{
+                width: 372px;
+                height: 80px;
+                flex-shrink: 0;
+                margin-left:10px;
+                margin-top:5%;
             }
-
-            #canceltext, #sendmoneytext {
-                color: #040D1F;
+            #bottombox-2{
+                width: 372px;
+                height: 80px;
+                flex-shrink: 0;
+                margin-left:10px;
+            }
+            #bottombox-1 span:first-child, #bottombox-2 span:first-child{
+                margin-left: 20px;
+                color: #7D828F;
+                font-family: 'IBM Plex Sans KR', sans-serif;
+                font-size: 15px;
+                font-style: normal;
+                font-weight: 500;
+                line-height: normal;
+            }
+            #userName, #memo{
+                margin-left: 20px;
+                color: #000;
+                font-family: 'IBM Plex Sans KR', sans-serif;
+                font-size: 20px;
+                font-style: normal;
+                font-weight: 500;
+                line-height: normal;
             }
     </style>
 </head>
@@ -225,52 +473,97 @@
                 </div>
             </div>
         </div>
-        <div id="checksendmoney">
-            <span id="checksendmoneytext1">송금확인</span>
-        </div>
-        <div class="sendmoney-info">
-            <div id="sendmoney">
-                <span class="gray">보낼 금액</span>
-                <span class="blue-1">10000원</span>
+        <div id="hellobox">
+            <div id="header">
+                <svg id="back" xmlns="http://www.w3.org/2000/svg" width="34" height="36" viewBox="0 0 34 36" fill="none">
+                    <path d="M21.25 27L12.75 18L21.25 9" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                <span id="function">송금</span>
             </div>
-            <div id="moneyaccount">
-                <span class="gray">계좌번호</span>
-                <span class="blue-2">251 0220 0730 23</span>
-            </div>
-            <div id="receiver">
-                <span class="gray">받는 분</span>
-                <span class="blue-3">이솔비</span>
-            </div>
-        </div>
-        <div class="tableform">
-            <div class="row">
-                <div class="box" id="tablesendaccount">출금계좌</div>
-                <div class="box" id="tablebaobank">
-                    <span id="baobanktext">[바오 은행]</span>
-                    <span id="baobanknum">730 1912 1943 23</span>
+            <div id="icon">
+                <div id="icon1">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="25" height="24" viewBox="0 0 25 24" fill="none">
+                        <path d="M15.1894 21.7471C15.7198 21.7471 20.0885 21.6837 20.4635 21.3107C20.8386 20.9376 21.0493 20.4316 21.0493 19.904V8.96266L12.0493 2L3.04932 8.96266V19.904C3.04932 20.4316 3.26003 20.9376 3.6351 21.3107C4.01018 21.6837 8.01161 21.7003 8.54204 21.7003" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M9.41754 21.7471L9.50032 14.7434L15.0591 14.7432V21.7471" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                      </svg>
+                </div>
+                <div id="icon2">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 25 25" fill="none">
+                        <path d="M3.55908 12.5322H21.5591" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M3.55908 6.53223H21.5591" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M3.55908 18.5322H21.5591" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
                 </div>
             </div>
-            <div class="row">
-                <div class="box" id="sendperson">보내는 사람</div>
-                <div class="box" id="sendsol">이솔비</div>
+        </div>
+        <div id="moneybox">
+            <div id="money">
+                <div id="profile">
+                    <svg id="logo" xmlns="http://www.w3.org/2000/svg" width="38" height="37" viewBox="0 0 38 37" fill="none">
+                        <ellipse cx="18.954" cy="18.5254" rx="18.4415" ry="18.3301" fill="#D9D9D9"/>
+                      </svg>
+                </div>
+                <div id="moneytext1">
+                    <span class="account">[한도제한]<span> 자립예탁금</span></span>
+                    <span class="account account1">730 - 1912 - 1943 -23</span>            
+                </div>
+                <div id="moneymoney1">
+                    <div id="money1">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="29" height="28" viewBox="0 0 29 28" fill="none">
+                            <path d="M21.6924 10.8694L14.6351 17.3071L7.69299 10.7454" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                          </svg>
+                    </div>
+                    
+                </div>
             </div>
-            <div class="row">
-                <div class="box" id="receiverperson">받는 사람</div>
-                <div class="box" id="sendsol2">이솔비</div>
+            <hr style="width: 80%">
+            <div id="moneyLimit">
+                <div id="moneylimit">
+                    <div id="limitText">
+                        <p>출금가능금액</p>
+                        <p>1일 송금 잔여한도</p>
+                    </div>
+
+                </div>
+                <div id="moneylimit2">
+                    <div id="limitText">
+                        <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;60,000원</p>
+                        <p>5,000,000원</p>
+                    </div>
+                </div>
             </div>
         </div>
-        <div class="cancelAndsend">
-            <button id="button-cancel">
-                <span id="canceltext">
-                    취소
-                </span>
-            </button>
-            <button id="button-sendmoney">
-                <span id="sendmoneytext">
-                    송금
-                </span>
-            </button>
+        
+        <div id="centerbox-1">
+            <div id="enterName">
+                <div id="number"><span>받는 분</span>
+                    <span id="account_name_display"></span>
+                    <span id="account_number_display"></span></div>
+            </div>
         </div>
+        <div id="centerbox-2">
+            <div id="enterNum">
+                <div id="receive"><span>보낼금액</span></div>
+                <input class="num" type="text" id="account_number" name="account_number" placeholder="금액 입력" /><span>원</span>
+            </div>
+        </div>
+        <div id="bottombox-1">
+            <span>받는계좌에 표시</span><br>
+            <span id="userName">이솔비</span>
+            <hr style="width: 90%">
+        </div>
+        <div id="bottombox-2">
+            <span>거래 메모</span><br>
+            <input class="memo" type="text" id="memo" name="memo" placeholder="메모 입력" />
+            <hr style="width: 90%">
+        </div>
+        <div id="nextbutton">
+            <button disabled>다음</button>
+        </div>
+     
+       
+        
     </div>
+    
 </body>
 </html>

@@ -11,13 +11,15 @@
     <script>
 
         $(document).ready(function() {
-            // 로컬 스토리지에서 계좌번호와 이름을 불러와서 변수에 할당
+            // 로컬 스토리지에서 계좌번호를 불러와 할당
             const accountName = localStorage.getItem('account_name');
             const accountNumber = localStorage.getItem('account_number');
 
-            // 계좌번호와 이름을 화면에 출력
-            $('#account_name_display').text(accountName);
+            // 계좌번호 화면에 출력
             $('#account_number_display').text(accountNumber);
+            $('#account_name_display').text(accountName);
+
+
         });
 
         
@@ -75,6 +77,18 @@
                 window.location.href = "../phone.html";
                 });
         });
+
+        //보낼 금액 로컬변수 저장
+        $(document).ready(function() {
+            $('#nextbutton').on('click', function() {
+            const sendMoney = $('.num').val().trim();
+            localStorage.setItem('send_money', sendMoney);
+
+            window.location.href = '계좌송금-5.html'; 
+            });
+        });
+
+        
     </script>
     <title>계좌송금-4</title>
     <style>
@@ -523,7 +537,6 @@
             <div id="enterName">
                 <div id="number"><span>받는 분</span>
                     <span id="account_name_display"></span>
-                    <span> </span>
                     <span id="account_number_display"></span></div>
             </div>
         </div>

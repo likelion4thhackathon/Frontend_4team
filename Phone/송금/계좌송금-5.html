@@ -8,6 +8,64 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>계좌송금-5</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+    <script>
+
+        $(document).ready(function() {
+            const accountName = localStorage.getItem('account_name');
+            const accountNumber = localStorage.getItem('account_number');
+            const sendMoney = localStorage.getItem('send_money');
+
+            $('#account_name_display').text(accountName);
+            $('.account_name_display').text(accountName);
+            $('#account_number_display').text(accountNumber);
+            $('#send_money').text(sendMoney);
+            $('.send_money').text(sendMoney);
+        });
+
+
+
+        $(document).ready(function() {
+
+            $("#button-cancel").click(function() {
+                window.location.href = "계좌송금-4.html";
+            });
+
+
+            $("#button-sendmoney").click(function() {
+                $("#popupBasic").css("display", "block");
+                $("#popupBackground").css("display", "block");
+            });
+            
+            function closePopup(popupId) {
+                $("#" + popupId).css("display", "none");
+                $("#popupBackground").css("display", "none");
+            }
+
+            $(".popup-button-no").click(function() {
+                closePopup($(this).closest('.popup').attr('id'));
+            });
+
+            $(".popup-button-yes").click(function() {
+                $("#popupCompleted").css("display", "block");
+                $("#popupBackground").css("display", "block");
+            });
+
+            $(".popup-button-close").click(function() {
+                closePopup($(this).closest('.popup-2').attr('id'));
+                $("#popupBasic").css("display", "none");
+
+
+            });
+        });
+
+        
+        
+
+
+
+
+    </script>
     <style>
         body {
                 margin: 0; 
@@ -71,7 +129,7 @@
             }
             #checksendmoneytext1 {
                 color: #000;
-                font-family: Inter;
+                font-family: 'IBM Plex Sans KR', sans-serif;
                 font-size: 20px;
                 font-style: normal;
                 font-weight: 600;
@@ -81,6 +139,10 @@
             width: 366.821px;
             height: 113.426px;
             flex-shrink: 0;
+            border-radius: 10px;
+            border: 1px solid #CCC;
+            background: #EDECEC;
+            margin:auto;
 
             }
 
@@ -88,12 +150,10 @@
                 width: 366px;
                 height: 35px;
                 flex-shrink: 0;
-
                 padding: 0 10px;
-                background: rgba(197, 191, 191, 0.20);
-
-
+                margin-left: -15px;
             }
+            
             .gray {
                 color: #7D828F;
                 font-family: 'IBM Plex Sans KR', sans-serif;
@@ -110,8 +170,8 @@
                 font-style: normal;
                 font-weight: 500;
                 line-height: 35px;
-                margin-left: 180px;
-
+                text-align: right;
+                margin-left: 42.5%;
             }
             .blue-2{
                 color: #0085FF;
@@ -130,16 +190,22 @@
                 line-height: 35px;
                 margin-left: 215px;
             }
+            #receiver span.account_name_display{
+                font-size:17px;
+                font-weight: 500;
+            }
             .tableform {
-                flex-wrap: wrap;
-                margin-left: 2.5px;
+                margin-left: 3px;
                 margin-top: 30px;
             }
 
             .row {
                 display: flex;
             }
-
+            .row div.account_name_display{
+                color:#000;
+                font-weight: 200;
+            }
             .box {
                 width: 120px;
                 height: 55px;
@@ -147,25 +213,25 @@
                 display: flex;
                 flex-direction: column;
                 justify-content: center;
-                font-size: 14px;
+                font-size: 16px;
                 border: 1px solid #ccc;
                 padding: 5px;
                 font-family: 'IBM Plex Sans KR', sans-serif;
-                
-                
+                text-align: center;
             }
 
             #tablebaobank, #sendsol, #sendsol2 {
+                text-align: right;
                 width: 240px;
                 font-size: 20px;
             }
 
             #baobanktext {
-                font-size: 14px;
+                font-size: 16px;
             }
 
             #baobanknum {
-                font-size: 14px;
+                font-size: 16px;
             }
 
             
@@ -185,6 +251,7 @@
                 align-items: center;
                 margin-top: 40px;
                 border-radius: 10px;
+                cursor: pointer;
                 
 
             }
@@ -194,8 +261,142 @@
             }
 
             #canceltext, #sendmoneytext {
-                color: #040D1F;
+                font-family: 'IBM Plex Sans KR', sans-serif;
+                font-size: 20px;
+                font-style: normal;
+                font-weight: 400;
+                line-height: normal;            
             }
+            .popup {
+                display: none;
+                position: fixed;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+                padding: 20px;
+                background-color: #f6f6f6;
+                border: 2px solid black;
+                box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+                z-index: 9999;
+                max-width: 330px;
+                height:170px;
+                border-radius: 20px;
+                font-family: 'IBM Plex Sans KR', sans-serif;
+                color: #000;
+                font-size: 25px;
+                font-style: normal;
+                font-weight: 600;
+                text-align: center;
+            }
+            .popup-2{
+                display: none;
+                position: fixed;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+                padding: 20px;
+                background-color: #f6f6f6;
+                border: 2px solid black;
+                box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+                z-index: 9999;
+                max-width: 330px;
+                height:170px;
+                border-radius: 20px;
+                font-family: 'IBM Plex Sans KR', sans-serif;
+                color: #000;
+                font-size: 25px;
+                font-style: normal;
+                font-weight: 600;
+                text-align: center;
+            }
+            
+            
+            #popupBackground{
+                display: none;
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background-color: rgba(255, 255, 255, 0.5); /* 불투명 색 */
+                backdrop-filter: blur(5px); /* 블러처리 */
+                z-index: 9998; /* 팝업 창 뒤에 위치하도록 설정 */
+                justify-content: center;
+                align-items: center;
+            }
+            .popup-buttons{
+                display:inline-block;
+                width: 400px;
+            }
+            .popup-button-yes{
+                background-color: #ccc;
+                color:#000;
+                border-radius: 15px; 
+                border: 1px solid #CCC;
+                font-size: 20px; 
+                font-weight: 500; 
+                width: 150px; 
+                height: 60px; 
+                cursor: pointer;
+                text-align: center;
+                margin-top:10%;
+                margin-left:-70px;
+            }
+            .popup-button-no{
+                background-color: #CCC;
+                border-radius: 15px; 
+                border: 1px solid #CCC;
+                font-size: 20px; 
+                font-weight: 500; 
+                width: 150px; 
+                height: 60px; 
+                cursor: pointer;
+                text-align: center;
+                margin-left:30px;
+            }
+            .popup-button-yes:hover, #button-sendmoney:hover{
+                color:#FFF;
+                background-color:#0085FF
+                
+            }
+            .popup-button-no:hover, #button-cancel:hover{
+                color:#FFF;
+                background-color:#0085FF
+                
+            }
+
+            #account_name_display,.account_name_display{
+                color: #0085FF;
+                font-family: 'IBM Plex Sans KR', sans-serif;
+                font-size: 25px;
+                font-style: normal;
+                font-weight: 600;
+                line-height: normal;
+            }
+            
+            .popup-button-close{
+                cursor: pointer;
+                position:fixed;
+                top:15px;
+                right:15px;
+            }
+            #popupCompleted span{
+                text-align: center;
+            }
+
+            #send_money +span{
+                color: #0085FF;
+                font-family: 'IBM Plex Sans KR', sans-serif;
+                font-size: 17px;
+                font-style: normal;
+                line-height: normal;
+                margin-left: 10px;
+            }
+            .send_money,.send_money-1{
+                color: #0085FF;
+                
+            }
+            
     </style>
 </head>
 <body>
@@ -231,16 +432,17 @@
         <div class="sendmoney-info">
             <div id="sendmoney">
                 <span class="gray">보낼 금액</span>
-                <span class="blue-1">10000원</span>
+                <span class="blue-1" id="send_money"></span><span>원</span>
             </div>
             <div id="moneyaccount">
                 <span class="gray">계좌번호</span>
-                <span class="blue-2">251 0220 0730 23</span>
+                <span class="blue-2" id="account_number_display"></span>
             </div>
             <div id="receiver">
                 <span class="gray">받는 분</span>
-                <span class="blue-3">이솔비</span>
+                <span class="blue-3 account_name_display"></span>
             </div>
+            
         </div>
         <div class="tableform">
             <div class="row">
@@ -256,7 +458,7 @@
             </div>
             <div class="row">
                 <div class="box" id="receiverperson">받는 사람</div>
-                <div class="box" id="sendsol2">이솔비</div>
+                <div class="box account_name_display" id="sendsol2"></div>
             </div>
         </div>
         <div class="cancelAndsend">
@@ -272,5 +474,27 @@
             </button>
         </div>
     </div>
+
+    <div id="popupBackground"></div>
+    <div id="popupBasic" class="popup">
+        <span><span id="account_name_display"></span>님께 &nbsp;<span class="send_money"></span><span class=send_money-1>원</span>을 <br>송금하시겠습니까?</span>
+        <div class="popup-buttons">
+            <button class="popup-button-yes" onclick="navigateToSelectPage('basic')">예</button>
+            <button class="popup-button-no" onclick="closePopup('popupBasic')">아니요</button>
+        </div>
+    </div>
+
+    <div id="popupCompleted" class="popup-2">
+        <br>
+        <span><span class="account_name_display"></span>님께<br>송금이 완료되었습니다.</span>
+        <div class="popup-buttons">
+            <svg class="popup-button-close" onclick="closePopup('popupCompleted')" xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 14 14" fill="none">
+                <path d="M13 1L1 13" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M1 1L13 13" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+        </div>
+    </div>
+    
+
 </body>
 </html>
