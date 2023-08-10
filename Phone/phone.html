@@ -7,9 +7,36 @@
         <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+KR&display=swap" rel="stylesheet">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
         <script>
+            //송금 버튼 클릭
             $(document).ready(function() {
                 $("#moneysend").click(function() {
                     window.location.href = "../Phone/송금/계좌송금-1.html";
+                });
+            });
+            // 거래내역 버튼 클릭
+            $(document).ready(function() {
+                $("#realbutton2").click(function() {
+                    window.location.href = "../Phone/중단 메뉴/송금한도설정.html";
+                });
+            });
+            //송금한도 버튼 클릭
+            $(document).ready(function() {
+                $("#realbutton2").click(function() {
+                    window.location.href = "../Phone/중단 메뉴/송금한도설정.html";
+                });
+            });
+
+            //지출분석 버튼 클릭
+            $(document).ready(function() {
+                $("#realbutton1").click(function() {
+                    window.location.href = "../Phone/중단 메뉴/지출분석.html";
+                });
+            });
+
+            //새로고침 버튼
+            $(document).ready(function() {
+            $("#money2").click(function() {
+                window.location.href = "phone.html";
                 });
             });
 
@@ -28,7 +55,8 @@
                     }
                 });
             });
-            //계좌 선택
+
+            //money1 아이콘 클릭
             $(document).ready(function() {
             $("#money1").click(function() {
                 $("#toggleBox").toggle(); 
@@ -50,6 +78,55 @@
                 $("#fullscreen2").hide(); 
             });
         });
+
+
+        //등록 계좌 보기
+        $(document).ready(function() {
+            $("#viewAccount").click(function() {
+                $("#toggleBox").toggle(); 
+                if ($("#toggleBox").is(":visible")) {
+                    $("#fullscreen2").show();
+                } else {
+                    $("#fullscreen2").hide(); 
+                }
+            });
+            //fullscreen 화면 아무곳 클릭하면 토글창 닫힘
+            $("#fullscreen2").click(function() {
+                $("#toggleBox").hide();
+                $("#fullscreen2").hide(); 
+            });
+
+            //x 버튼 클릭해도 토글창 닫힘
+            $("#toggleClose").on("click", function (event) {
+                $("#toggleBox").hide();
+                $("#fullscreen2").hide(); 
+            });
+        });
+
+        //계좌 선택 버튼
+        $(document).ready(function() {
+            $("#realbutton3").click(function() {
+                $("#toggleBox").toggle(); 
+                if ($("#toggleBox").is(":visible")) {
+                    $("#fullscreen2").show();
+                } else {
+                    $("#fullscreen2").hide(); 
+                }
+            });
+            //fullscreen 화면 아무곳 클릭하면 토글창 닫힘
+            $("#fullscreen2").click(function() {
+                $("#toggleBox").hide();
+                $("#fullscreen2").hide(); 
+            });
+
+            //x 버튼 클릭해도 토글창 닫힘
+            $("#toggleClose").on("click", function (event) {
+                $("#toggleBox").hide();
+                $("#fullscreen2").hide(); 
+            });
+        });
+
+
             //광고? 이미지 5초마다 변경 (이미지는 대체 필요)
             $(document).ready(function() {
                 const images = ["../ad/ad-2.jpg", "../ad/ad-3.jpg", "../ad/ad-4.jpg"];
@@ -276,7 +353,7 @@
                 flex-shrink: 0;
                 margin-left:20px;
             }
-            #money1:hover{
+            #money1:hover,#realbutton1:hover,#realbutton2:hover,#realbutton3:hover,#money2:hover{
                 cursor: pointer;
             }
             
@@ -917,7 +994,7 @@
                                 <path d="M32.4552 26.1494L29.7861 30.1104L27.3093 26.2813" stroke="#CCCCCC" stroke-linecap="round" stroke-linejoin="round"/>
                               </svg>
                             <div id="boxtext3">
-                                지출분석
+                                계좌 선택
                             </div>
                         </div>
                     </div>

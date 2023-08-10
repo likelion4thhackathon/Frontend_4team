@@ -51,15 +51,46 @@
         $(document).ready(function() {
             $("#nextbutton button").click(function() {
                 const accountNumber = $("#account_number").val().trim();
-                const accountForm = /^[0-9]{3}\s[0-9]{4}\s[0-9]{4}\s[0-9]{2}$/; //계좌번호 형식..을 정해두자
+                const accountFormat = /^[0-9]{5}-[0-9]{5}$/;
 
-                if (accountNumber.length > 0 && !accountForm.test(accountNumber)) {
-                    alert("계좌번호 형식이 올바르지 않습니다. \n 123-1234-1234-12 형식으로 입력해 주세요. (총 13자리)");
+                if (accountNumber.length > 0 && !accountFormat.test(accountNumber)) {
+                    alert("계좌번호 형식이 올바르지 않습니다. 12345-12345 형식으로 입력해 주세요");
+                    event.stopPropagation();
+                } else if (accountNumber.length === 0) {
+                    alert("계좌번호를 입력해 주세요");
                 } else {
-                    window.location.href = "계좌송금-4.html";
+                    if (accountNumber.length > 0) {
+                        localStorage.setItem('account_number', accountNumber);
+                    }
+                    
+                    if (accountFormat.test(accountNumber)) {
+                        window.location.href = "계좌송금-4.html";
+                    }
                 }
             });
         });
+
+        $(document).ready(function() {
+            $("#account_number").on("input", function() {
+
+                let inputValue = $(this).val().trim();
+
+                inputValue = inputValue.replace(/[^0-9]/g, "");
+                
+                // 다섯번째 자리에 - 삽입
+                if (inputValue.length > 5) {
+                    inputValue = inputValue.slice(0, 5) + "-" + inputValue.slice(5);
+                }
+
+                $(this).val(inputValue);
+                
+                checkNextButton();
+            });
+
+        });
+
+
+
 
         //최근입금 - 내 계좌 - 자주쓰는 버튼들 클릭 시 이동
         $(document).ready(function() {
@@ -123,7 +154,7 @@
                 height: 100vh;
             }
             #fullscreen{
-                width: 380px;
+                width: 390px;
                 height: 870px;
                 background: #FFF;
                 border:1px solid black;
@@ -783,13 +814,13 @@
                 <div id="receive"><span>받는 분</span></div>
                 <div id="receiveAccount">
                     <select id="select1">
-                        <option value="value1">&nbsp;NH 농협&nbsp;</option>
+                        <option value="value1">&nbsp;행복은행&nbsp;</option>
                         <option value="value2">&nbsp;우리은행&nbsp;</option>
                         <option value="value3">&nbsp;국민은행&nbsp;</option>
                         <option value="value4">&nbsp;바오은행&nbsp;</option>
                         <option value="value5">&nbsp;&nbsp;범 은행&nbsp;</option>
                     </select>
-                    <input type="text" id="account_number" name="account_number" placeholder="계좌번호 입력" />
+                    <input type="text" id="account_number" name="account_number" placeholder="계좌번호 입력 (12345-12345)" />
                 </div>
 
             </div>

@@ -7,7 +7,76 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>송금한도설정</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            const inputElement = $('#remitLimit');
+
+            inputElement.on('input', function() {
+                let value = inputElement.val().replace(/,/g, ''); // 콤마 제거
+                value = parseInt(value); // 문자열을 정수로 변환
+
+                // 입력값이 NaN인 경우 빈 문자열로 설정
+                if (isNaN(value)) {
+                    value = '';
+                }
+
+                // 입력값이 500만원 이상이면 최대값 500만원으로 설정
+                if (value > 500) {
+                    value = 500;
+                }
+
+                const formattedValue = value === '' ? '' : value.toLocaleString('en-US'); // 천 단위 콤마 추가
+                inputElement.val(formattedValue);
+            });
+
+            $('#nextbutton').on('click', function() {
+
+                const moneyLimit = $('.num').val().replace(/,/g, '').trim();
+
+                if (isNaN(moneyLimit) || moneyLimit === '') {
+                    alert('금액을 입력하세요.');
+                    return; 
+                }
+
+                localStorage.setItem('money_limit', moneyLimit);
+                window.location.href = '송금한도설정.html'; 
+            });
+        });
+
+        $(document).ready(function() {
+            const moneyLimit = localStorage.getItem('money_limit');
+
+            // 송금한도 화면에 출력
+            const formattedMoneyLimit = numberWithCommas(moneyLimit * 10000);
+            $('.money_limit_display').text(formattedMoneyLimit + ' 원');
+        });
+
+        function numberWithCommas(money) {
+            return money.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+        }
+        
+
+        //뒤로가기 버튼
+        $(document).ready(function() {
+            $("#back").click(function() {
+                window.location.href = "../phone.html";
+            });
+        });
+
+        //홈버튼
+        $(document).ready(function() {
+        $("#icon1").click(function() {
+            window.location.href = "../phone.html";
+            });
+        });
+
+
+
+    
+    
+    </script>
     <style>
             body {
                 margin: 0; 
@@ -118,8 +187,6 @@
             #presendlimit {
                 margin-top: 40px;
                 margin-left: 30px;
-                display: flex;
-                align-items: center;
                 width: 345px;
                 height: 42px;
                 
@@ -129,7 +196,6 @@
                 font-size: 18px;
                 font-style: normal;
                 font-weight: 600;
-                line-height: normal;
             }
             #security {
                 color: #0085FF;
@@ -144,7 +210,7 @@
                 font-size: 12px;
                 font-style: normal;
                 font-weight: 500;
-                line-height: normal;
+                line-height: 24px;
             }
             .sendlimitbox {
                 width: 345px;
@@ -154,6 +220,7 @@
                 line-height: 90px;
                 border-radius: 10px;
                 background: #F5F5F5;
+                text-align: center;
 
             }
             #oncesendlimit {
@@ -192,7 +259,7 @@
                 font-style: normal;
                 font-weight: 500;
                 line-height: normal;
-                margin-left: 140px;
+                margin-left: 80px;
             }
             #changesendlimit {
                 padding-top: 10px;
@@ -223,17 +290,21 @@
             }
             */
             #centerbox {
-                width: 340px;
+                width: 200px;
                 height: 41px;
                 flex-shrink: 0;
                 margin-top: 5px;
                 line-height: 41px;
+                display:inline;
+
             }
             #enterNum{
-                width: 340px;
+                width: 200px;
                 height: 41px;
                 flex-shrink: 0;
                 margin-left:20px;
+                display: inline;
+                
             }
             #moneyfit {
                 margin-left: 50px;
@@ -242,25 +313,32 @@
                 font-size: 20px;
                 font-style: normal;
                 font-weight: 500;
+                width:100px;
+                display:inline;
+                
             }
             .num {
                 border: none;
                 color: #7D828F;
                 font-family: 'IBM Plex Sans KR', sans-serif;
-                font-size: 15px;
+                font-size: 20px;
                 font-style: normal;
                 font-weight: 500;
                 line-height: normal;
                 margin-top: 15px;
-                
+                width:200px;
+                text-align: center;
             }
-            hr {
-                width: 285px;
-                margin-left: 2px;
+            .num::placeholder{
+                text-align: center;
+                font-size: 18px;
             }
+
+            
             #biggestsendinfo {
                 margin-left: 15px;
-                margin-top: 40px;
+                margin-top: 10px;
+                margin-bottom:10px;
                 width: 345px;
                 height: 30px;
                 flex-shrink: 0;
@@ -275,7 +353,8 @@
                 width: 300px;
                 height: 240px;
                 margin: auto;
-
+                line-height: 60px;
+                font-family: 'IBM Plex Sans KR', sans-serif;
             }
 
             .row {
@@ -329,6 +408,25 @@
             #canceltext, #sendmoneytext {
                 color: #040D1F;
             }
+            #nextbutton{
+                margin-top:7%;
+                margin-left:8%;
+              
+            }
+            #nextbutton button{
+                width: 326.868px;
+                height: 56.512px;
+                flex-shrink: 0;
+                border-radius: 10px;
+                background: #CCC;
+                border-style:none;         
+                font-family: 'IBM Plex Sans KR', sans-serif;
+                font-size: 18px;   
+                font-weight:800px;
+            }
+            #back:hover,#icon1:hover{
+                cursor: pointer;
+            }
     </style>
 </head>
 <body>
@@ -360,7 +458,7 @@
         </div>
         <div id="hellobox">
             <div id="header">
-                <svg xmlns="http://www.w3.org/2000/svg" width="34" height="36" viewBox="0 0 34 36" fill="none">
+                <svg id="back" xmlns="http://www.w3.org/2000/svg" width="34" height="36" viewBox="0 0 34 36" fill="none">
                     <path d="M21.25 27L12.75 18L21.25 9" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                   </svg>
                 <span id="function">송금한도 설정</span>
@@ -388,20 +486,20 @@
         <div class="sendlimitbox">
             <div id="oncesendlimit">
                 <span class="blacktext">1회 송금 한도</span>
-                <span class="bluetext">500만원</span>
+                <span class="bluetext money_limit_display">500만원</span>
             </div>
             <div id="moneyaccount">
                 <span class="blacktext">1일 송금 한도</span>
-                <span class="bluetext">500만원</span>
+                <span class="bluetext money_limit_display">500만원</span>
             </div>
         </div>
         <div id="changesendlimit">변경할 송금한도</div>
         <div id="oncelimit">1일 송금한도 (최대 500만원)</div>
         <div id="centerbox">
             <div id="enterNum">
-                <input class="num" type="text" id="account_number" name="account_number" placeholder="금액을 입력해주세요">
-                <span id="moneyfit">만원</span>
-                <hr>
+                <input class="num" type="text" id="remitLimit" name="remitLimit" placeholder="만원 단위로 입력" />
+                <div id="moneyfit">만원</div>
+                <hr style="width:90%">
             </div>
         </div>
         <div id="biggestsendinfo">최대 송금한도 안내</div>
@@ -417,27 +515,19 @@
                 <div class="box" id="fivehundred">5백만원</div>
             </div>
             <div class="row">
-                <div class="box" id="mobile">모바일<br>OTP</div>
+                <div class="box" id="mobile">모바일 OTP</div>
                 <div class="box" id="onemill">1천만원</div>
                 <div class="box" id="fivethousand">5천만원</div>
             </div>
             <div class="row">
-                <div class="box" id="real">실물<br>OTP</div>
+                <div class="box" id="real">실물 OTP</div>
                 <div class="box" id="tenmill">1억원</div>
                 <div class="box" id="fiftymillion">5억원</div>
             </div>
         </div>
-        <div class="cancelAndsend">
-            <button id="button-cancel">
-                <span id="canceltext">
-                    취소
-                </span>
-            </button>
-            <button id="button-sendmoney">
-                <span id="sendmoneytext">
-                    송금
-                </span>
-            </button>
+        <div id="nextbutton">
+            <button>송금한도 변경</button>
+        </div>
         </div>
     </div>   
 </body>
