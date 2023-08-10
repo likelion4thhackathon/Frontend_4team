@@ -7,7 +7,65 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>휴대전화송금-3</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+    <script>
+
+        $(document).ready(function() {
+            const accountNameP = localStorage.getItem('account_name-p');
+            const accountNumP = localStorage.getItem('account_number-p');
+            const sendMoney = localStorage.getItem('send_money');
+
+            $('#account_name_display').text(accountNameP);
+            $('.account_name_display').text(accountNameP);
+            $('#account_number_display').text(accountNumP).css("margin-left","140px");
+            $('#send_money').text(sendMoney);
+            $('.send_money').text(sendMoney);
+        });
+
+
+
+        $(document).ready(function() {
+
+            $("#button-cancel").click(function() {
+                window.location.href = "휴대전화송금-2.html";
+            });
+
+
+            $("#button-sendmoney").click(function() {
+                $("#popupBasic").css("display", "block");
+                $("#popupBackground").css("display", "block");
+            });
+            
+            function closePopup(popupId) {
+                $("#" + popupId).css("display", "none");
+                $("#popupBackground").css("display", "none");
+            }
+
+            $(".popup-button-no").click(function() {
+                closePopup($(this).closest('.popup').attr('id'));
+            });
+
+            $(".popup-button-yes").click(function() {
+                $("#popupCompleted").css("display", "block");
+                $("#popupBackground").css("display", "block");
+            });
+
+            $(".popup-button-close").click(function() {
+                closePopup($(this).closest('.popup-2').attr('id'));
+                $("#popupBasic").css("display", "none");
+
+
+            });
+        });
+
+        
+        
+
+
+
+
+    </script>
     <style>
         body {
                 margin: 0; 
@@ -60,158 +118,283 @@
                 align-self: stretch;
                 margin-left: -80px;
             }
-            #function{
-                width: 371px;
-                height: 53px;
+            #checksendmoney {
+                width: 388px;
+                height: 71px;
                 flex-shrink: 0;
+                text-align: center;
+                line-height: 71px;
+                
+                
+            }
+            #checksendmoneytext1 {
                 color: #000;
                 font-family: 'IBM Plex Sans KR', sans-serif;
                 font-size: 20px;
                 font-style: normal;
                 font-weight: 600;
                 line-height: normal;
-                margin-left: 10px;
-                line-height: 53px;
             }
-            #checkBox-1{
-                width: 352px;
-                height: 192px;
-                flex-shrink: 0;
-                border-radius: 10px;
-                background: #F4F4F4;
-                color: #000;
-                font-family: 'IBM Plex Sans KR', sans-serif;
-                font-size: 25px;
-                font-style: normal;
-                font-weight: 600;
-                margin-top: 7%;
-                margin-left:5%;
+            .sendmoney-info {
+            width: 366.821px;
+            height: 113.426px;
+            flex-shrink: 0;
+            border-radius: 10px;
+            border: 1px solid #CCC;
+            background: #EDECEC;
+            margin:auto;
 
             }
-            #ask{
-                margin-left: 10%;
-            }
-            #userName, #sendMoney{
-                display:inline-block;
-                height:50px;
-                color: #0085FF;
-                font-family: 'IBM Plex Sans KR', sans-serif;
-                font-size: 25px;
-                font-style: normal;
-                font-weight: 600;
-                line-height: 140px;
-                margin-left: 10%;
-            }
-            #sendMoney{
-                margin-left: 5%;
-            }
-            #checkBox-2{
-                width: 350px;
-                height: 115px;
+
+            #sendmoney, #moneyaccount, #receiver {
+                width: 366px;
+                height: 35px;
                 flex-shrink: 0;
-                border-radius: 10px;
-                border: 1px solid #CCC;
-                background: #EDECEC;
-                margin-top: 10%;
-                margin-left: 5%;
+                padding: 0 10px;
+                margin-left: -15px;
             }
-            #sendMoneyBox{
-                width: 305px;
-                height: 36px;
-                flex-shrink: 0;
-                display: flex;
-                justify-content:space-between;
-                align-items: center;
-                margin-left: 20px;
+            
+            .gray {
                 color: #7D828F;
                 font-family: 'IBM Plex Sans KR', sans-serif;
                 font-size: 15px;
                 font-style: normal;
                 font-weight: 500;
-                line-height: normal;
-
+                line-height: 35px;
+                margin-left: 30px;
             }
-            #sendMoney-2,#sendName-2,#phoneNumber{
+            .blue-1{
                 color: #0085FF;
                 font-family: 'IBM Plex Sans KR', sans-serif;
                 font-size: 17px;
                 font-style: normal;
                 font-weight: 500;
-                line-height: normal;
-            }
-            #bottombox-1{
-                margin-left: 20px;
-                color: #7D828F;
-                font-family: 'IBM Plex Sans KR', sans-serif;
-                font-size: 15px;
-                font-style: normal;
-                font-weight: 500;
-                line-height: normal;
-                display: flex;
-                margin-top: 5%;
-            }
-            #withdraw{
-                width: 218px;
-                height: 50px;
-                flex-shrink: 0;
-            }
-            #withdrawName{
-                width: 139px;
-                height: 50px;
-                flex-shrink: 0;
+                line-height: 35px;
                 text-align: right;
+                margin-left: 42.5%;
             }
-            #withdrawName span{
-                margin-right: 10px;
-            }
-            #bottombox-2{
-                width: 340px;
-                height: 37px;
-                flex-shrink: 0;
-                display:flex;
-                justify-content: space-between;
-                margin-left: 20px;
-                color: #7D828F;
+            .blue-2{
+                color: #0085FF;
                 font-family: 'IBM Plex Sans KR', sans-serif;
-                font-size: 15px;
+                font-size: 17px;
                 font-style: normal;
                 font-weight: 500;
-                line-height: normal;
+                line-height: 35px;
+                margin-left: 110px;
             }
-            #button{
-                margin-top:15%;
-                margin-left:10%;
-                color: #040D1F;
+            .blue-3 {
+                color: #0085FF;
+                font-family: 'IBM Plex Sans KR', sans-serif;
+                font-size: 17px;
+                font-weight: 500;
+                line-height: 35px;
+                margin-left: 215px;
+            }
+            #receiver span.account_name_display{
+                font-size:17px;
+                font-weight: 500;
+            }
+            .tableform {
+                margin-left: 3px;
+                margin-top: 30px;
+            }
+
+            .row {
+                display: flex;
+            }
+            .row div.account_name_display{
+                color:#000;
+                font-weight: 200;
+            }
+            .box {
+                width: 120px;
+                height: 55px;
+                flex-shrink: 0;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                font-size: 16px;
+                border: 1px solid #ccc;
+                padding: 5px;
+                font-family: 'IBM Plex Sans KR', sans-serif;
+                text-align: center;
+            }
+
+            #tablebaobank, #sendsol, #sendsol2 {
+                text-align: right;
+                width: 240px;
+                font-size: 20px;
+            }
+
+            #baobanktext {
+                font-size: 16px;
+            }
+
+            #baobanknum {
+                font-size: 16px;
+            }
+
+            
+            .cancelAndsend {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+            }
+
+            #button-cancel, #button-sendmoney {
+                width: 138px;
+                height: 57px;
+                background-color: #ccc;
+                border: none;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                margin-top: 40px;
+                border-radius: 10px;
+                cursor: pointer;
+                
+
+            }
+
+            #button-sendmoney {
+                margin-left: 30px;
+            }
+
+            #canceltext, #sendmoneytext {
+                font-family: 'IBM Plex Sans KR', sans-serif;
+                font-size: 20px;
+                font-style: normal;
+                font-weight: 400;
+                line-height: normal;            
+            }
+            .popup {
+                display: none;
+                position: fixed;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+                padding: 20px;
+                background-color: #f6f6f6;
+                border: 2px solid black;
+                box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+                z-index: 9999;
+                max-width: 330px;
+                height:170px;
+                border-radius: 20px;
+                font-family: 'IBM Plex Sans KR', sans-serif;
+                color: #000;
+                font-size: 25px;
+                font-style: normal;
+                font-weight: 600;
+                text-align: center;
+            }
+            .popup-2{
+                display: none;
+                position: fixed;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+                padding: 20px;
+                background-color: #f6f6f6;
+                border: 2px solid black;
+                box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+                z-index: 9999;
+                max-width: 330px;
+                height:170px;
+                border-radius: 20px;
+                font-family: 'IBM Plex Sans KR', sans-serif;
+                color: #000;
+                font-size: 25px;
+                font-style: normal;
+                font-weight: 600;
+                text-align: center;
+            }
+            
+            
+            #popupBackground{
+                display: none;
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background-color: rgba(255, 255, 255, 0.5); /* 불투명 색 */
+                backdrop-filter: blur(5px); /* 블러처리 */
+                z-index: 9998; /* 팝업 창 뒤에 위치하도록 설정 */
+                justify-content: center;
+                align-items: center;
+            }
+            .popup-buttons{
+                display:inline-block;
+                width: 400px;
+            }
+            .popup-button-yes{
+                background-color: #ccc;
+                color:#000;
+                border-radius: 15px; 
+                border: 1px solid #CCC;
+                font-size: 20px; 
+                font-weight: 500; 
+                width: 150px; 
+                height: 60px; 
+                cursor: pointer;
+                text-align: center;
+                margin-top:10%;
+                margin-left:-70px;
+            }
+            .popup-button-no{
+                background-color: #CCC;
+                border-radius: 15px; 
+                border: 1px solid #CCC;
+                font-size: 20px; 
+                font-weight: 500; 
+                width: 150px; 
+                height: 60px; 
+                cursor: pointer;
+                text-align: center;
+                margin-left:30px;
+            }
+            .popup-button-yes:hover, #button-sendmoney:hover{
+                color:#FFF;
+                background-color:#0085FF
                 
             }
-            #button1{
-                width: 138px;
-                height: 57px;
-                flex-shrink: 0;
-                flex-shrink: 0;
-                border-radius: 10px;
-                background: #CCC;
-                border-style:none;  
-                font-family: 'IBM Plex Sans KR', sans-serif;
-                font-size: 20px;
-                font-style: normal;
-                font-weight: 600;
-                line-height: normal;          
+            .popup-button-no:hover, #button-cancel:hover{
+                color:#FFF;
+                background-color:#0085FF
+                
             }
-            #button2{
-                width: 138px;
-                height: 57px;
-                flex-shrink: 0;
-                flex-shrink: 0;
-                border-radius: 10px;
-                background: #CCC;
-                border-style:none; 
-                margin-left: 10%;     
+
+            #account_name_display,.account_name_display{
+                color: #0085FF;
                 font-family: 'IBM Plex Sans KR', sans-serif;
-                font-size: 20px;
+                font-size: 25px;
                 font-style: normal;
                 font-weight: 600;
-                line-height: normal;      
+                line-height: normal;
+            }
+            
+            .popup-button-close{
+                cursor: pointer;
+                position:fixed;
+                top:15px;
+                right:15px;
+            }
+            #popupCompleted span{
+                text-align: center;
+            }
+
+            #send_money +span{
+                color: #0085FF;
+                font-family: 'IBM Plex Sans KR', sans-serif;
+                font-size: 17px;
+                font-style: normal;
+                line-height: normal;
+                margin-left: 10px;
+            }
+            .send_money,.send_money-1{
+                color: #0085FF;
+                
             }
             
     </style>
@@ -243,38 +426,75 @@
                 </div>
             </div>
         </div>
-        <div id="function"><span>송금확인</span></div>
-        <div id="checkBox-1"><span id="userName">김진범</span>님께<span id="sendMoney">10,000원</span>을<br><span id="ask">송금하시겠습니까?</span></div>
-        <div id="checkBox-2">
-            <div id="sendMoneyBox"><span>보낼금액</span><span id="sendMoney-2">10,000원</span></div>
-            <div id="sendMoneyBox"><span>휴대전화번호</span><span id="phoneNumber">010-1234-5678</span></div>
-            <div id="sendMoneyBox"><span>보낼금액</span><span id="sendName-2">김진범</span></div>
+        <div id="checksendmoney">
+            <span id="checksendmoneytext1">송금확인</span>
         </div>
-        <div id="bottombox-1">
-            <div id="withdraw">
-                <span>출금계좌</span>
+        <div class="sendmoney-info">
+            <div id="sendmoney">
+                <span class="gray">보낼 금액</span>
+                <span class="blue-1" id="send_money"></span><span>원</span>
             </div>
-            <div id="withdrawName">
-                <span>[바오 은행]</span><br>
-                <span>351 0220 0730 23</span>
+            <div id="moneyaccount">
+                <span class="gray">전화번호</span>
+                <span class="blue-2" id="account_number_display"></span>
+            </div>
+            <div id="receiver">
+                <span class="gray">받는 분</span>
+                <span class="blue-3 account_name_display"></span>
+            </div>
+            
+        </div>
+        <div class="tableform">
+            <div class="row">
+                <div class="box" id="tablesendaccount">출금계좌</div>
+                <div class="box" id="tablebaobank">
+                    <span id="baobanktext">[바오 은행]</span>
+                    <span id="baobanknum">730 1912 1943 23</span>
+                </div>
+            </div>
+            <div class="row">
+                <div class="box" id="sendperson">보내는 사람</div>
+                <div class="box" id="sendsol">이솔비</div>
+            </div>
+            <div class="row">
+                <div class="box" id="receiverperson">받는 사람</div>
+                <div class="box account_name_display" id="sendsol2"></div>
             </div>
         </div>
-        <hr style="width: 90%">
-        <div id="bottombox-2">
-            <div id="sendBox"><span>보내는 사람</span></div>
-            <div id="sendName"><span id="userName-3">김진범</span></div>
+        <div class="cancelAndsend">
+            <button id="button-cancel">
+                <span id="canceltext">
+                    취소
+                </span>
+            </button>
+            <button id="button-sendmoney">
+                <span id="sendmoneytext">
+                    송금
+                </span>
+            </button>
         </div>
-        <hr style="width: 90%">
-        <div id="bottombox-2">
-            <div id="receiveBox"><span>받는 사람</span></div>
-            <div id="receiveBox"><span id="sendName">김진범</span></div>
-        </div>
-        <hr style="width: 90%">
-        <div id="button">
-            <button id="button1">취소</button>
-            <button id="button2">송금</button>
-        </div>
-     
     </div>
+
+    <div id="popupBackground"></div>
+    <div id="popupBasic" class="popup">
+        <span><span id="account_name_display"></span>님께 &nbsp;<span class="send_money"></span><span class=send_money-1>원</span>을 <br>송금하시겠습니까?</span>
+        <div class="popup-buttons">
+            <button class="popup-button-yes" onclick="navigateToSelectPage('basic')">예</button>
+            <button class="popup-button-no" onclick="closePopup('popupBasic')">아니요</button>
+        </div>
+    </div>
+
+    <div id="popupCompleted" class="popup-2">
+        <br>
+        <span><span class="account_name_display"></span>님께<br>송금이 완료되었습니다.</span>
+        <div class="popup-buttons">
+            <svg class="popup-button-close" onclick="closePopup('popupCompleted')" xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 14 14" fill="none">
+                <path d="M13 1L1 13" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M1 1L13 13" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+        </div>
+    </div>
+    
+
 </body>
 </html>

@@ -5,6 +5,67 @@
         <link rel="preconnect" href="https://fonts.googleapis.com%22%3E/">
         <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+KR&display=swap" rel="stylesheet">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+        <script>
+            $(document).ready(function() {
+                $("#moneysend").click(function() {
+                    window.location.href = "../Phone/송금/계좌송금-1.html";
+                });
+            });
+
+            //잔액 숨ㅁㄱ기기
+            $(document).ready(function() {
+                $("#hidebutton").click(function() {
+                    let moneychangeElement = $("#moneychange span");
+                    let currentBalance = "60,000원";
+
+                    if (moneychangeElement.text() === "잔액숨김중") {
+                        moneychangeElement.text(currentBalance);
+                        $("#hidebutton").text("숨김"); 
+                    } else {
+                        moneychangeElement.text("잔액숨김중");
+                        $("#hidebutton").text("표시"); 
+                    }
+                });
+            });
+            //계좌 선택
+            $(document).ready(function() {
+            $("#money1").click(function() {
+                $("#toggleBox").toggle(); 
+                if ($("#toggleBox").is(":visible")) {
+                    $("#fullscreen2").show();
+                } else {
+                    $("#fullscreen2").hide(); 
+                }
+            });
+            //fullscreen 화면 아무곳 클릭하면 토글창 닫힘
+            $("#fullscreen2").click(function() {
+                $("#toggleBox").hide();
+                $("#fullscreen2").hide(); 
+            });
+
+            //x 버튼 클릭해도 토글창 닫힘
+            $("#toggleClose").on("click", function (event) {
+                $("#toggleBox").hide();
+                $("#fullscreen2").hide(); 
+            });
+        });
+            //광고? 이미지 5초마다 변경 (이미지는 대체 필요)
+            $(document).ready(function() {
+                const images = ["../ad/ad-2.jpg", "../ad/ad-3.jpg", "../ad/ad-4.jpg"];
+                let currentIndex = 0;
+
+                function changeImage() {
+                    $("#change").attr("src", images[currentIndex]);
+
+                    currentIndex = (currentIndex + 1) % images.length;
+                }
+
+                setInterval(changeImage, 5000);
+            });
+        
+        </script>
+
         <style>
             body {
                 margin: 0; 
@@ -21,6 +82,7 @@
                 margin:auto;
                 position:relative;
             }
+
             #timebar{
                 display: flex;
                 width: 390px;
@@ -214,6 +276,93 @@
                 flex-shrink: 0;
                 margin-left:20px;
             }
+            #money1:hover{
+                cursor: pointer;
+            }
+            
+            #toggleBox {
+                width: 390px;
+                height: 413px;
+                flex-shrink: 0;
+                border-radius: 39px 38px 10px 0px;
+                border:1px solid black;
+                background: #FFF;
+                display: none;
+                position: absolute;
+                bottom: 0;
+                left: 0;
+                z-index: 200;
+            }
+            #toggleHeader{
+                color: #000;
+                font-family: 'IBM Plex Sans KR', sans-serif;
+                font-size: 18px;
+                font-style: normal;
+                font-weight: 600;
+                line-height: 21px; /* 116.667% */
+                letter-spacing: -0.32px;
+                margin-left: 30px;
+                line-height: 50px;
+            }
+            #toggleClose{
+                margin-left: 240px;
+                cursor: pointer;
+            }
+            #bottombox-2{
+                width: 315px;
+                height: 100px;
+                display:flex;   
+                margin-left: 35px;
+                border-radius: 10px;
+                background-color: white;
+                border: 1px solid #ccc;
+            }
+            #bottombox-2-t{
+                width: 315px;
+                height: 100px;
+                display:flex;   
+                margin-left: 35px;
+                border-radius: 10px;
+                background-color: white;
+                border: 1px solid #ccc;
+                margin-top: 20px;
+            }
+            #myAccount{
+                width: 53px;
+                height: 88px;
+            }
+            #logo-2{
+                margin-top:50%;
+                margin-left:20%;
+            }
+            #myAccount-1, #myAccount-2{
+                width: 230px;
+                height: 100px;
+                flex-shrink: 0;
+                line-height: 88px;
+                color: #686E7A;
+                font-family: 'IBM Plex Sans KR', sans-serif;
+                font-size: 15px;
+                font-style: normal;
+                font-weight: 500;
+                display:flex;
+                flex-direction: column;
+                justify-content: left;
+                margin-left: -70px;
+            }
+            
+            .myAccount-account{
+                color: #4A4D52;
+                margin-left: 65px;
+            }
+            #myAccount-1 span, #myAccount-2 span{
+                height:20px;
+                line-height: 70px;
+            }
+            #selectAccount-1,#selectAccount-2{
+                margin-left: 50px;
+                margin-top:35px;
+            }
             #money2{
                 display:flex;
                 width: 24px;
@@ -279,12 +428,17 @@
                 border: 1px solid #54ADFF;
                 margin-top:20px;
             }
+            #hidebutton:hover{
+                cursor: pointer;
+                background-color: #0085FF;
+                color:#FFF
+            }
             #moneysendlist{
                 width: 165px;
                 height: 47px;
                 flex-shrink: 0;
                 margin-top:120px;
-                margin-left:-330px;
+                margin-left:-317.5px;
                 color: #0085FF;
                 font-family: 'IBM Plex Sans KR', sans-serif;
                 font-size: 16px;
@@ -295,8 +449,14 @@
                 text-align: center;
                 line-height:47px;
             }
+            #moneysendlist:hover{
+                background-color:#0085FF;
+                border-radius: 10px;
+                cursor: pointer;
+                color:#FFF
+            }
             #moneysend{
-                width: 164px;
+                width: 150px;
                 height: 47px;
                 flex-shrink: 0;
                 margin-top:120px;
@@ -310,7 +470,15 @@
                 text-align: center;
                 line-height:47px;
             }
+            #moneysend:hover{
+                background-color:#0085FF;
+                border-radius: 10px;
+                cursor: pointer;
+                color:#FFF
+            }
             #viewAccount{
+                display: inline;
+                margin-left:39%;
                 color: #787D83;
                 text-align: center;
                 font-family: 'IBM Plex Sans KR', sans-serif;
@@ -320,6 +488,9 @@
                 line-height: 21px; /* 161.538% */
                 letter-spacing: -0.32px;
                 margin-top:-5px;
+            }
+            #viewAccount:hover{
+                cursor: pointer;
             }
             hr{
                 margin-bottom: 15px;
@@ -482,6 +653,18 @@
                 margin-left:5px;
                 border: 2px solid rgb(123, 123, 123)
             }
+            #fullscreen2 {
+                width: 390px;
+                height: 844px;
+                opacity: 0.8; 
+                border: 1px solid black;
+                margin: auto;
+                position: absolute; 
+                top: 0; 
+                left: 0;
+                z-index: 100; 
+                display: none; 
+            }
         </style>
     </head>
     <body>
@@ -546,6 +729,54 @@
                 이솔비님 반갑습니다
               </div>
             </div>
+
+            <div id="toggleBox">
+                <span id="toggleHeader">계좌 선택</span>
+                <svg id="toggleClose" xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 14 14" fill="none">
+                    <path d="M13 1L1 13" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M1 1L13 13" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                <button id="bottombox-2-t">
+                    <div id="myAccount">
+                        <svg id="logo-2" xmlns="http://www.w3.org/2000/svg" width="38" height="37" viewBox="0 0 38 37" fill="none">
+                            <ellipse cx="18.954" cy="18.5254" rx="18.4415" ry="18.3301" fill="#D9D9D9"/>
+                          </svg>
+                    </div>
+                    <div id="myAccount-1">
+                            <span>자립예탁금</span>
+                            <span class="myAccount-account">729-1707-0715-23</span>    
+                    </div>
+                    <div id="selectAccount-1" class="svg-container">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="29" height="30" viewBox="0 0 29 30" fill="none">
+                            <rect width="29" height="29.0437" rx="10" fill="#0085FF"/>
+                            <path d="M9.00009 11L14.0001 19" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            <path d="M19.0001 11L14.0001 19" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                          </svg>
+                  </div>
+                </button>
+    
+    
+                <button id="bottombox-2-t">
+                    <div id="myAccount">
+                        <svg id="logo-2" xmlns="http://www.w3.org/2000/svg" width="38" height="37" viewBox="0 0 38 37" fill="none">
+                            <ellipse cx="18.954" cy="18.5254" rx="18.4415" ry="18.3301" fill="#D9D9D9"/>
+                          </svg>
+                    </div>
+                    <div id="myAccount-2">
+                            <span>자립예탁금</span>
+                            <span class="myAccount-account">351-1289-0916-42</span>    
+                    </div>
+                    <div id="selectAccount-2" class="svg-container">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="29" height="30" viewBox="0 0 29 30" fill="none">
+                            <rect width="29" height="29.0437" rx="10" fill="#D6D6D6"/>
+                            <path d="M9.00009 11L14.0001 19" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            <path d="M19.0001 11L14.0001 19" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                          </svg>
+                    </div>
+                    
+                </button>
+            </div>
+            
             <div id="moneybox">
                 <div id="money">
                     <div id="profile">
@@ -559,7 +790,8 @@
 
                 
                     </div>
-                    <div id="moneytext2">
+                    
+                        <div id="moneytext2">
                     </div>
                     <div id="moneymoney1">
                         <div id="money1">
@@ -612,7 +844,7 @@
                     
                 </div>
             </div>
-            <div id="viewAccount">등록 계좌 보기</div>
+            <div id="viewAccount"><span>등록 계좌 보기</span></div>
             <hr style="width: 20%">
             <div id="menu">
                 <div id="buttonheader"> 
@@ -692,7 +924,7 @@
                 </div>
             </div>
             <div id="photobox">
-                <img src="../제목 없는 디자인.jpg">
+                <img id="change" src="../ad/ad-1.jpg">
             </div>
             <div id="bottom">
                 <div id="home">
@@ -729,6 +961,12 @@
                 </div>
 
             </div>
+            
+        </div>
+        <div id="fullscreen2">
+            <svg xmlns="http://www.w3.org/2000/svg" width="391" height="844" viewBox="0 0 391 844" fill="none">
+            <path d="M0.734619 0H390.735V844H0.734619V0Z" fill="#949393" fill-opacity="0.45"/>
+            </svg>
         </div>
     </body>
 </html>

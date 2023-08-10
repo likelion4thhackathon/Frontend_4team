@@ -91,7 +91,6 @@
             flex-direction: row;
             align-items: center;
             justify-content: center;
-            border: 1px solid black;
         }
         .title1{
             color: #005ECC;
@@ -114,10 +113,8 @@
         
         #center {
             background-color: #FFF;
-            border: 2px solid black;
             height: 30vh;
             width: 100vw;
-            border: 1px solid black;
         }
         #title {
             width: 100%;
@@ -137,16 +134,17 @@
             cursor:pointer;
         }
         #button2 {
-            margin:auto;
-            margin-right:20px;
+            margin-left: 40%;
+            border-style:none;
+            background-color:#FFF
         }
         .topBar {
-        position: absolute;
-        top: 15px; 
-        right: 33px; 
-        display: flex;
-        justify-content: flex-end;
-        width: 100%;
+            position: absolute;
+            top: 15px; 
+            right: 33.5px; 
+            display: flex;
+            justify-content: flex-end;
+            width: 100%;
         }
         input[type="radio"] {
             appearance: none;
@@ -162,10 +160,7 @@
             border-color: #9156F0;
             background-color: #9156F0;
         }
-        img{
-            width:150px;
-            height:200px;
-        }
+        
         
     </style>
 </head>
@@ -186,7 +181,11 @@
                 <input type="radio" name="group">
                 <input type="radio" name="group">
             </div>
-            <img id="button2" src="data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='98' height='95' viewBox='0 0 98 95' fill='none'%3E%3Cpath d='M53.083 67.2916L73.4997 47.4999L53.083 27.7083' stroke='%239156F0' stroke-width='10' stroke-linecap='round' stroke-linejoin='round'/%3E%3Cpath d='M24.5 67.2916L44.9167 47.4999L24.5 27.7083' stroke='%239156F0' stroke-width='10' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E" alt="Button2" width="98" height="95">
+            <button id="button2"> <svg xmlns="http://www.w3.org/2000/svg" width="200" height="200" viewBox="0 0 221 221" fill="none">
+                <path d="M119.042 144.667L153.208 110.5L119.042 144.667ZM153.208 110.5L119.042 76.3333L153.208 110.5ZM153.208 110.5H67.7917H153.208ZM213 110.5C213 123.96 210.349 137.289 205.198 149.725C200.047 162.161 192.496 173.46 182.978 182.978C173.46 192.496 162.161 200.047 149.725 205.198C137.289 210.349 123.96 213 110.5 213C97.0395 213 83.7108 210.349 71.2749 205.198C58.8391 200.047 47.5396 192.496 38.0216 182.978C28.5035 173.46 20.9535 162.161 15.8023 149.725C10.6512 137.289 8 123.96 8 110.5C8 83.3153 18.7991 57.244 38.0216 38.0216C57.244 18.7991 83.3153 8 110.5 8C137.685 8 163.756 18.7991 182.978 38.0216C202.201 57.244 213 83.3153 213 110.5Z" fill="#9156F0" fill-opacity="0.19"/>
+                <path d="M119.042 144.667L153.208 110.5M153.208 110.5L119.042 76.3333M153.208 110.5H67.7917M213 110.5C213 123.96 210.349 137.289 205.198 149.725C200.047 162.161 192.496 173.46 182.978 182.978C173.46 192.496 162.161 200.047 149.725 205.198C137.289 210.349 123.96 213 110.5 213C97.0395 213 83.7108 210.349 71.2749 205.198C58.8391 200.047 47.5396 192.496 38.0216 182.978C28.5035 173.46 20.9535 162.161 15.8023 149.725C10.6512 137.289 8 123.96 8 110.5C8 83.3153 18.7991 57.244 38.0216 38.0216C57.244 18.7991 83.3153 8 110.5 8C137.685 8 163.756 18.7991 182.978 38.0216C202.201 57.244 213 83.3153 213 110.5Z" stroke="#9156F0" stroke-width="15" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </button>
             
         </div>
     </div>

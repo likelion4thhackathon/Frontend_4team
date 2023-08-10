@@ -7,7 +7,110 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>계좌송금-2</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+    <script>
+        //휴대전화 송금 버튼 클릭 시
+        $(document).ready(function() {
+        $("#centerbutton-2").click(function() {
+            window.location.href = "휴대전화송금-1.html";
+            });
+        });
+
+        //뒤로가기 버튼
+        $(document).ready(function() {
+        $("#back").click(function() {
+            window.location.href = "../phone.html";
+            });
+        });
+
+        //최근 입금한 계좌 선택시 은행과 계좌번호가 자동으로 입력됨
+        $(document).ready(function() {
+            $("#bottombox-2").click(function() {
+                $("#select1").val("value4");
+                $("#account_number").val("351 0220 0730 23");
+                checkNextButton(); 
+            });
+        });
+
+        // 텍스트가 입력되면 다음 버튼 활성화
+        function checkNextButton() {
+            const accountNumber = $("#account_number").val().trim();
+
+            if (accountNumber.length > 0) {
+                $("#nextbutton button").prop("disabled", false);
+            } else {
+                $("#nextbutton button").prop("disabled", true);
+            }
+        }
+
+        $(document).ready(function() {
+            $("input").keyup(checkNextButton);
+        });
+
+        //계좌번호 형식 체크
+        $(document).ready(function() {
+            $("#nextbutton button").click(function() {
+                const accountNumber = $("#account_number").val().trim();
+                const accountForm = /^[0-9]{3}\s[0-9]{4}\s[0-9]{4}\s[0-9]{2}$/; //계좌번호 형식..을 정해두자
+
+                if (accountNumber.length > 0 && !accountForm.test(accountNumber)) {
+                    alert("계좌번호 형식이 올바르지 않습니다. \n 123-1234-1234-12 형식으로 입력해 주세요. (총 13자리)");
+                } else {
+                    window.location.href = "계좌송금-4.html";
+                }
+            });
+        });
+        //최근입금 - 내 계좌 - 자주쓰는 버튼들 클릭 시 이동
+        $(document).ready(function() {
+            $("#bottombutton-1").click(function() {
+                window.location.href = "계좌송금-1.html";
+            });
+        });
+        $(document).ready(function() {
+            $("#bottombutton-2").click(function() {
+                window.location.href = "계좌송금-2.html";
+            });
+        });
+        $(document).ready(function() {
+            $("#bottombutton-3").click(function() {
+                window.location.href = "계좌송금-3.html";
+            });
+        });
+
+        //홈버튼
+        $(document).ready(function() {
+        $("#icon1").click(function() {
+            window.location.href = "../phone.html";
+            });
+        });
+
+        //계좌번호, 계좌주 로컬변수 저장
+        $(document).ready(function() {
+            $('#nextbutton').on('click', function() {
+            const accountName = $('#account_name').text().trim();
+            const accountNumber = $('#account_number').val().trim();
+            localStorage.setItem('account_name', accountName);
+            localStorage.setItem('account_number', accountNumber);
+
+            window.location.href = '계좌송금-4.html'; 
+            });
+        });
+
+        //계좌선택 토글창
+        $(document).ready(function() {
+            $("#money1").click(function() {
+                $("#toggleBox").toggle(); 
+                
+            });
+            
+
+            //x 버튼 클릭시 토글창 닫힘
+            $("#toggleClose").on("click", function (event) {
+                $("#toggleBox").hide();
+            });
+        });
+    </script>
     <style>
         body {
                 margin: 0; 
@@ -67,6 +170,9 @@
                 flex-shrink: 0;
                
             }
+            #back{
+                cursor: pointer;
+            }
             #header{
                 display: flex;
                 justify-content: center;
@@ -107,6 +213,7 @@
                 margin-left:35%;
                 margin-top:10px;
             }
+            
             #icon2{
                 display: flex;
                 width: 24px;
@@ -116,6 +223,9 @@
                 margin-left:10%;
                 margin-top:10px;
 
+            }
+            #icon1,#icon2,#money1,#centerbutton-1,#centerbutton-2,select,option,#bottombutton-1,#bottombutton-2,#bottombutton-3,#bottombox-2,button{
+                cursor: pointer;
             }
             #moneybox{
                 width: 390px;
@@ -295,8 +405,12 @@
             }
             input{
                 margin-left:10px;
-                height:20px;
+                width:200px;
+                height:30px;
                 border-radius: 5px;
+                font-size: 16px;
+                margin-left: 25px;
+                border-style: none;
             }
             #bottombox-1{
                 width: 340px;
@@ -317,6 +431,8 @@
                 font-style: normal;
                 font-weight: 500;
                 line-height: normal;
+                
+                margin-left: 10px;
             }
             #bottombutton-1:active{
                 color: #0085FF;
@@ -327,13 +443,13 @@
                 width: 83px;
                 height: 44px;
                 flex-shrink: 0;
-                color: #0085FF;
                 font-family: 'IBM Plex Sans KR', sans-serif;
                 font-size: 20px;
                 font-style: normal;
                 font-weight: 500;
                 line-height: normal;
                 margin-left:-7px;
+                color: #0085FF;
                 text-decoration: underline;
                 text-underline-position : under;
             }
@@ -358,25 +474,28 @@
                 text-underline-position : under;
             }
             #bottombox-2{
-                width: 330px;
-                height: 80px;
-                flex-shrink: 0;
-                margin-left:20px;   
+                width: 315px;
+                height: 100px;
                 display:flex;   
-                justify-content: space-evenly;
+                margin-left: 35px;
+                border-radius: 10px;
+                background-color: white;
+                border: 1px solid #ccc;
+            }
+            #bottombox-2:active{
+                background-color: #CCC;
             }
             
             #recent{
                 width: 53px;
                 height: 88px;
-                flex-shrink: 0;
             }
             #logo-2{
-                margin-top:50%;
-                margin-left:15%;
+                margin-top:65%;
+                margin-left:32%;
             }
             #recentAccount{
-                width: 160px;
+                width: 350px;
                 height: 88px;
                 flex-shrink: 0;
                 line-height: 88px;
@@ -387,35 +506,138 @@
                 font-weight: 500;
                 display:flex;
                 flex-direction: column;
+                justify-content: left;
+                margin-left: -90px;
             }
             .recent-account{
                 color: #4A4D52;
-              
+                margin-left: 19.5px;
             }
             #recentAccount span{
                 height:20px;
                 line-height: 70px;
             }
+            
+            #add-button{
+                width: 50px;
+                height: 88px;
+                flex-shrink: 0;
+            }
+            #delete-button{
+                width: 48px;
+                height: 88px;
+                flex-shrink: 0;
+            }
+            #add-button button, #delete-button button{
+                width: 29.955px;
+                height: 29.926px;
+                flex-shrink: 0;
+                margin-top:50%;
+                margin-left:15%;
+            }
+            #nextbutton{
+                margin-top:10%;
+                margin-left:8%;
+            }
+            #nextbutton button{
+                width: 326.868px;
+                height: 56.512px;
+                flex-shrink: 0;
+                border-radius: 10px;
+                background: #CCC;
+            }
+        
+            select::-ms-expand {
+            display: none; /* Microsoft Edge에서 화살표 제거 */
+            }
+
+            select {
+            appearance: none;
+            height:25px;
+            font-size: 16px;
+            }
             #balance{
-                width: 100px;
-                height: 80px;
-                display: flex;
+                text-align: right;
+                margin-left: 50px;
+            }
+
+            #toggleBox {
+                width: 390px;
+                height: 413px;
+                flex-shrink: 0;
+                border-radius: 39px 38px 10px 0px;
+                border:1px solid black;
+                background: #FFF;
+                display: none;
+                position: absolute;
+                bottom: 0;
+                left: 0;
+                z-index: 200;
+            }
+            #toggleHeader{
+                color: #000;
+                font-family: 'IBM Plex Sans KR', sans-serif;
+                font-size: 18px;
+                font-style: normal;
+                font-weight: 600;
+                line-height: 21px; /* 116.667% */
+                letter-spacing: -0.32px;
+                margin-left: 30px;
+                line-height: 50px;
+            }
+            #toggleClose{
+                margin-left: 240px;
+                cursor: pointer;
+            }
+            
+            #bottombox-2-t{
+                width: 315px;
+                height: 100px;
+                display:flex;   
+                margin-left: 35px;
+                border-radius: 10px;
+                background-color: white;
+                border: 1px solid #ccc;
+                margin-top: 20px;
+            }
+            #myAccount{
+                width: 53px;
+                height: 88px;
+            }
+            #logo-2{
+                margin-top:50%;
+                margin-left:20%;
+            }
+            #myAccount-1, #myAccount-2{
+                width: 230px;
+                height: 100px;
+                flex-shrink: 0;
+                line-height: 88px;
+                color: #686E7A;
+                font-family: 'IBM Plex Sans KR', sans-serif;
+                font-size: 15px;
+                font-style: normal;
+                font-weight: 500;
+                display:flex;
                 flex-direction: column;
-                justify-content: flex-end;
-                align-items: flex-end;  
-            }
-            #register{
-                margin-top:3%;
-                margin-left:40%;
-                text-decoration: underline;
-                text-underline-position : under;
-                height:25px;
+                justify-content: left;
+                margin-left: -70px;
             }
             
-            
-            
-            
-            
+            .myAccount-account{
+                color: #4A4D52;
+                margin-left: 65px;
+            }
+            #myAccount-1 span, #myAccount-2 span{
+                height:20px;
+                line-height: 70px;
+            }
+            #selectAccount-1,#selectAccount-2{
+                margin-left: 50px;
+                margin-top:35px;
+            }
+
+       
     </style>
 </head>
 <body>
@@ -447,7 +669,7 @@
         </div>
         <div id="hellobox">
             <div id="header">
-                <svg xmlns="http://www.w3.org/2000/svg" width="34" height="36" viewBox="0 0 34 36" fill="none">
+                <svg id="back" xmlns="http://www.w3.org/2000/svg" width="34" height="36" viewBox="0 0 34 36" fill="none">
                     <path d="M21.25 27L12.75 18L21.25 9" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                   </svg>
                 <span id="function">송금</span>
@@ -468,6 +690,54 @@
                 </div>
             </div>
         </div>
+
+        <div id="toggleBox">
+            <span id="toggleHeader">계좌 선택</span>
+            <svg id="toggleClose" xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 14 14" fill="none">
+                <path d="M13 1L1 13" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M1 1L13 13" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            <button id="bottombox-2-t">
+                <div id="myAccount">
+                    <svg id="logo-2" xmlns="http://www.w3.org/2000/svg" width="38" height="37" viewBox="0 0 38 37" fill="none">
+                        <ellipse cx="18.954" cy="18.5254" rx="18.4415" ry="18.3301" fill="#D9D9D9"/>
+                      </svg>
+                </div>
+                <div id="myAccount-1">
+                        <span>자립예탁금</span>
+                        <span class="myAccount-account">729-1707-0715-23</span>    
+                </div>
+                <div id="selectAccount-1" class="svg-container">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="29" height="30" viewBox="0 0 29 30" fill="none">
+                        <rect width="29" height="29.0437" rx="10" fill="#0085FF"/>
+                        <path d="M9.00009 11L14.0001 19" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M19.0001 11L14.0001 19" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                      </svg>
+              </div>
+            </button>
+
+
+            <button id="bottombox-2-t">
+                <div id="myAccount">
+                    <svg id="logo-2" xmlns="http://www.w3.org/2000/svg" width="38" height="37" viewBox="0 0 38 37" fill="none">
+                        <ellipse cx="18.954" cy="18.5254" rx="18.4415" ry="18.3301" fill="#D9D9D9"/>
+                      </svg>
+                </div>
+                <div id="myAccount-2">
+                        <span>자립예탁금</span>
+                        <span class="myAccount-account">351-1289-0916-42</span>    
+                </div>
+                <div id="selectAccount-2" class="svg-container">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="29" height="30" viewBox="0 0 29 30" fill="none">
+                        <rect width="29" height="29.0437" rx="10" fill="#D6D6D6"/>
+                        <path d="M9.00009 11L14.0001 19" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M19.0001 11L14.0001 19" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                      </svg>
+                </div>
+                
+            </button>
+        </div>
+
         <div id="moneybox">
             <div id="money">
                 <div id="profile">
@@ -512,12 +782,14 @@
             <div id="enterNum">
                 <div id="receive"><span>받는 분</span></div>
                 <div id="receiveAccount">
-                    <select>
-                        <option value="value1">NH 농협</option>
-                        <option value="value2">우리은행</option>
-                        <option value="value3">국민은행</option>
+                    <select id="select1">
+                        <option value="value1">&nbsp;NH 농협&nbsp;</option>
+                        <option value="value2">&nbsp;우리은행&nbsp;</option>
+                        <option value="value3">&nbsp;국민은행&nbsp;</option>
+                        <option value="value4">&nbsp;바오은행&nbsp;</option>
+                        <option value="value5">&nbsp;&nbsp;범 은행&nbsp;</option>
                     </select>
-                    <input type="text" id="account_number" name="account_number" placeholder="계좌번호를 입력하세요" />
+                    <input type="text" id="account_number" name="account_number" placeholder="계좌번호 입력" />
                 </div>
 
             </div>
@@ -527,38 +799,22 @@
             <div id="bottombutton-2"><span>내 계좌</span></div>
             <div id="bottombutton-3"><span>자주쓰는</span></div>
         </div>
-        <div id="bottombox-2">
+        <button id="bottombox-2">
             <div id="recent">
                 <svg id="logo-2" xmlns="http://www.w3.org/2000/svg" width="38" height="37" viewBox="0 0 38 37" fill="none">
                     <ellipse cx="18.954" cy="18.5254" rx="18.4415" ry="18.3301" fill="#D9D9D9"/>
                   </svg>
             </div>
             <div id="recentAccount">
-                    <span>[범 은행] 김진범</span>
-                    <span class="recent-account">730 1947 1948 23</span>    
+                    <span>[바오 은행] <span id="account_name">이솔비</span></span>
+                    <span class="recent-account">351 0220 0730 23</span><span id="balance">잔액&nbsp;&nbsp;<span style="color:#0085FF">60,000원</span>    
+    
             </div>
-            <div id="balance">
-                잔액 얼마얼마
-            </div>
-            
-        </div>
+        </button>
         <hr style="width:80%">
-        <div id="bottombox-2">
-            <div id="recent">
-                <svg id="logo-2" xmlns="http://www.w3.org/2000/svg" width="38" height="37" viewBox="0 0 38 37" fill="none">
-                    <ellipse cx="18.954" cy="18.5254" rx="18.4415" ry="18.3301" fill="#D9D9D9"/>
-                  </svg>
-            </div>
-            <div id="recentAccount">
-                    <span>[범 은행] 김진범</span>
-                    <span class="recent-account">730 1947 1948 23</span>    
-            </div>
-            <div id="balance">
-                잔액 얼마얼마
-            </div>
+        <div id="nextbutton">
+            <button disabled>다음</button>
         </div>
-        <hr style="width:80%">
-        <button id="register">+ 계좌등록</button>
         
     </div>
     

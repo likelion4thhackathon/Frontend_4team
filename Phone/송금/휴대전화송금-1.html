@@ -7,7 +7,62 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>휴대전화송금-1</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            $("#centerbutton-1").click(function() {
+                window.location.href = "계좌송금-1.html";
+            });
+        });
+
+        $(document).ready(function() {
+            $('#nextbutton').on('click', function() {
+                const accountNameP = $('#account_name-p').val().trim();
+                const accountNumP = $('#account_number-p').val().trim();
+                localStorage.setItem('account_name-p', accountNameP);
+                localStorage.setItem('account_number-p', accountNumP);
+
+                const phoneNumber = $("#account_number-p").val().trim();
+                const phoneNumberPattern = /^[0-9]{10,11}$/; 
+
+                if (phoneNumber.length === 0) {
+                    alert("휴대전화번호를 입력해 주세요.");
+                } else if (!phoneNumberPattern.test(phoneNumber)) {
+                    alert("휴대전화번호 형식이 올바르지 않습니다. \n 01012341234 형식으로 입력해 주세요.");
+                } else {
+                    window.location.href = "휴대전화송금-2.html";
+                }
+            });
+        });
+
+        //뒤로가기 버튼
+        $(document).ready(function() {
+            $("#back").click(function() {
+                window.location.href = "../phone.html";
+            });
+        });
+
+        // 텍스트가 입력되면 다음 버튼 활성화
+        function checkNextButton() {
+            const accountNumber = $("#account_number-p").val().trim();
+            const accountName = $("#account_name-p").val().trim();
+
+            if (accountNumber.length > 0 && accountName.length > 0) {
+                $("#nextbutton button").prop("disabled", false);
+            } else {
+                $("#nextbutton button").prop("disabled", true);
+            }
+        }
+
+        $(document).ready(function() {
+            $("input").keyup(checkNextButton);
+        });
+
+
+
+
+    </script>
     <style>
         body {
                 margin: 0; 
@@ -79,6 +134,9 @@
                 margin-right:-120px;
                 margin-left:20px;
                 margin-top:10px;
+            }
+            #back,#icon1,#icon2,#money1,#centerbutton-1,#centerbutton-2,select,option,#bottombutton-1,#bottombutton-2,#bottombutton-3,#bottombox-2,button{
+                cursor: pointer;
             }
             #function{
                 width:50px;
@@ -357,7 +415,7 @@
         </div>
         <div id="hellobox">
             <div id="header">
-                <svg xmlns="http://www.w3.org/2000/svg" width="34" height="36" viewBox="0 0 34 36" fill="none">
+                <svg id="back" xmlns="http://www.w3.org/2000/svg" width="34" height="36" viewBox="0 0 34 36" fill="none">
                     <path d="M21.25 27L12.75 18L21.25 9" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                   </svg>
                 <span id="function">송금</span>
@@ -405,6 +463,7 @@
                         <p>출금가능금액</p>
                         <p>1일 송금 잔여한도</p>
                     </div>
+
                 </div>
                 <div id="moneylimit2">
                     <div id="limitText">
@@ -421,18 +480,18 @@
         <div id="centerbox-2">
             <div id="enterNum">
                 <div id="number"><span>연락처</span></div>
-                <input class="num" type="text" id="account_number" name="account_number" placeholder="휴대전화번호 입력" />
+                <input class="num" type="text" id="account_number-p" name="account_number" placeholder="휴대전화번호 입력" />
             </div>
         </div>
         <div id="centerbox-2">
             <div id="enterNum">
                 <div id="receive"><span>받는 분 이름</span></div>
-                <input class="num" type="text" id="account_number" name="account_number" placeholder="실명 입력 (성+이름)" />
+                <input class="num" type="text" id="account_name-p" name="account_number" placeholder="실명 입력 (성+이름)" />
             </div>
         </div>
 
         <div id="nextbutton">
-            <button>다음</button>
+            <button disabled>다음</button>
         </div>
      
        

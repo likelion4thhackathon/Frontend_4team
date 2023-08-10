@@ -7,18 +7,17 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>휴대전화송금-2</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
     <script>
 
         $(document).ready(function() {
             // 로컬 스토리지에서 계좌번호를 불러와 할당
-            const accountNameP = localStorage.getItem('account_name-p');
-            const accountNumP = localStorage.getItem('account_number-p');
+            const accountName = localStorage.getItem('account_name');
+            const accountNumber = localStorage.getItem('account_number');
 
             // 계좌번호 화면에 출력
-            $('#account_number_display').text(accountNumP).css("margin-left","20px");
-            $('#account_name_display').text(accountNameP);
+            $('#account_number_display').text(accountNumber);
+            $('#account_name_display').text(accountName);
 
 
         });
@@ -50,7 +49,7 @@
         //뒤로가기 버튼
         $(document).ready(function() {
         $("#back").click(function() {
-            window.location.href = "휴대전화송금-1.html";
+            window.location.href = "계좌송금-1.html";
             });
         });
 
@@ -67,7 +66,7 @@
             if (!isValidAmount(accountNumber)) {
                 alert("정확한 금액을 입력해주세요.");
             } else {
-                window.location.href="휴대전화송금-3.html";
+                window.location.href="계좌송금-5.html";
             }
         });
     });
@@ -85,7 +84,7 @@
             const sendMoney = $('.num').val().trim();
             localStorage.setItem('send_money', sendMoney);
 
-            window.location.href = '휴대전화송금-3.html'; 
+            window.location.href = '계좌송금-5.html'; 
             });
         });
 
@@ -559,11 +558,7 @@
         </div>
         <div id="nextbutton">
             <button disabled>다음</button>
-        </div>
-     
-       
-        
-    </div>
-    
+        </div>       
+    </div> 
 </body>
 </html>
