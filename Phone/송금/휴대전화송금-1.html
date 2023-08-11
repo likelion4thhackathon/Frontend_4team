@@ -24,17 +24,18 @@
                 localStorage.setItem('account_number-p', accountNumP);
 
                 const phoneNumber = $("#account_number-p").val().trim();
-                const phoneNumberPattern = /^[0-9]{10,11}$/; 
+                const phoneNumberPattern = /^[0-9]{3}-[0-9]{4}-[0-9]{4}$/;
 
                 if (phoneNumber.length === 0) {
                     alert("휴대전화번호를 입력해 주세요.");
                 } else if (!phoneNumberPattern.test(phoneNumber)) {
-                    alert("휴대전화번호 형식이 올바르지 않습니다. \n 01012341234 형식으로 입력해 주세요.");
+                    alert("휴대전화번호 형식이 올바르지 않습니다. \n 010-1234-1234 형식으로 입력해 주세요.");
                 } else {
                     window.location.href = "휴대전화송금-2.html";
                 }
             });
         });
+
 
         //뒤로가기 버튼
         $(document).ready(function() {
@@ -79,6 +80,28 @@
                 $("#toggleBox-1").hide();
             });
         });
+
+        // 010-1234-1234 형식으로 - 자동 삽입
+        $(document).ready(function() {
+            $("#account_number-p").on("input", function() {
+                let inputValue = $(this).val().trim();
+                
+                inputValue = inputValue.replace(/[^0-9]/g, "");
+
+                if (inputValue.length > 4) {
+                    inputValue = inputValue.slice(0, 3) + "-" + inputValue.slice(3);
+                }
+                
+                if (inputValue.length > 9) {
+                    inputValue = inputValue.slice(0, 8) + "-" + inputValue.slice(8);
+                }
+
+                $(this).val(inputValue);
+
+                checkNextButton();
+            });
+        });
+
 
 
 
@@ -593,7 +616,7 @@
                 </div>
                 <div id="moneytext1">
                     <span class="account">[한도제한]<span> 자립예탁금</span></span>
-                    <span class="account account1">730 - 1912 - 1943 -23</span>            
+                    <span class="account account1">XXXXX-YYYYY</span>            
                 </div>
                 <div id="moneymoney1">
                     <div id="money1">

@@ -72,6 +72,28 @@
             });
         });
 
+        //송금한도 로컬변수에 저장
+        $(document).ready(function() {
+            $('#nextbutton').on('click', function() {
+                const moneyLimit = $('.num').val().trim();
+                localStorage.setItem('money_limit_d', moneyLimit);
+            });
+        });
+
+        $(document).ready(function() {
+
+            $("#nextbutton").click(function() {
+                    $("#popupCompleted").css("display", "block");
+            });
+
+            $(".popup-button-close").click(function() {
+                    $("#popupCompleted").css("display", "none");
+            });
+
+            
+        });
+
+
 
 
     
@@ -348,66 +370,7 @@
                 font-weight: 600;
                 line-height: normal;
             }
-            .tableform {
-                flex-direction: column;
-                width: 300px;
-                height: 240px;
-                margin: auto;
-                line-height: 60px;
-                font-family: 'IBM Plex Sans KR', sans-serif;
-            }
 
-            .row {
-                display: flex;
-                flex-direction: row;
-                justify-content: center;
-                align-items: center;
-            }
-
-            .box-container {
-                display: flex;
-                flex-direction: column;
-                align-items: center;
-            }
-
-            .box {
-                border: 1px solid #828282;
-                text-align: center;
-
-                width: 100px;
-                height: 60px;
-            }
-            #sec, #real, #basic, #mobile,#once, #oneday{
-                background: #edebeb;
-                
-            }
-            .cancelAndsend {
-                display: flex;
-                justify-content: center;
-                align-items: center;
-            }
-
-            #button-cancel, #button-sendmoney {
-                width: 138px;
-                height: 57px;
-                background-color: #ccc;
-                border: none;
-                display: flex;
-                justify-content: center;
-                align-items: center;
-                margin-top: 30px;
-                border-radius: 10px;
-                
-
-            }
-
-            #button-sendmoney {
-                margin-left: 30px;
-            }
-
-            #canceltext, #sendmoneytext {
-                color: #040D1F;
-            }
             #nextbutton{
                 margin-top:7%;
                 margin-left:8%;
@@ -426,6 +389,60 @@
             }
             #back:hover,#icon1:hover{
                 cursor: pointer;
+            }
+
+            table{
+                border-collapse: collapse;
+            }
+            td{
+                border:0.5px solid black;
+                padding: 5px;
+                width: 100px;
+                text-align:center;
+                color: #000;
+                font-family: 'IBM Plex Sans KR', sans-serif;
+                font-size: 16px;
+                font-style: normal;
+                font-weight: 400;
+            }
+            .cell-color{
+                background-color:#e9e9e9 ;
+            }
+
+            .popup-2{
+                display: none;
+                position: fixed;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+                padding: 20px;
+                background-color: #f6f6f6;
+                border: 2px solid black;
+                box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+                z-index: 9999;
+                max-width: 330px;
+                height:170px;
+                border-radius: 20px;
+                font-family: 'IBM Plex Sans KR', sans-serif;
+                color: #000;
+                font-size: 25px;
+                font-style: normal;
+                font-weight: 600;
+                text-align: center;
+                line-height: 55px;
+            }
+            .popup-buttons{
+                display:inline-block;
+                width: 400px;
+            }
+            .popup-button-close{
+                cursor: pointer;
+                position:fixed;
+                top:15px;
+                right:15px;
+            }
+            #popupCompleted span{
+                text-align: center;
             }
     </style>
 </head>
@@ -503,32 +520,45 @@
             </div>
         </div>
         <div id="biggestsendinfo">최대 송금한도 안내</div>
-        <div class="tableform">
-            <div class="row">
-                <div class="box" id="sec">보안매체</div>
-                <div class="box" id="once">1회</div>
-                <div class="box" id="oneday">1일</div>
-            </div>
-            <div class="row">
-                <div class="box" id="basic">기본<br>(간편인증)</div>
-                <div class="box" id="fivemill">5백만원</div>
-                <div class="box" id="fivehundred">5백만원</div>
-            </div>
-            <div class="row">
-                <div class="box" id="mobile">모바일 OTP</div>
-                <div class="box" id="onemill">1천만원</div>
-                <div class="box" id="fivethousand">5천만원</div>
-            </div>
-            <div class="row">
-                <div class="box" id="real">실물 OTP</div>
-                <div class="box" id="tenmill">1억원</div>
-                <div class="box" id="fiftymillion">5억원</div>
-            </div>
-        </div>
+        <table width="310" height="240" align="center">
+            <tr class="cell-color">
+                <td>보안매체</td>
+                <td>1회</td>
+                <td>1일</td>
+            </tr>
+            <tr>
+                <td class="cell-color">기본</td>
+                <td>5백만원</td>
+                <td>5백만원</td>
+            </tr>
+            <tr>
+                <td class="cell-color">모바일 OTP</td>
+                <td>1천만원</td>
+                <td>5천만원</td>
+            </tr>
+            <tr>
+                <td class="cell-color">실물 OTP</td>
+                <td>1억원</td>
+                <td>5억원</td>
+            </tr>
+        </table>
+        
         <div id="nextbutton">
             <button>송금한도 변경</button>
         </div>
         </div>
+
+        <div id="popupCompleted" class="popup-2">
+            <br>
+            <span>송금한도가 변경되었습니다.</span>
+            <div class="popup-buttons">
+                <svg class="popup-button-close" onclick="closePopup('popupCompleted')" xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 14 14" fill="none">
+                    <path d="M13 1L1 13" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M1 1L13 13" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+            </div>
+        </div>
+
     </div>   
 </body>
 </html>

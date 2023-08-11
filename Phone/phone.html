@@ -15,8 +15,8 @@
             });
             // 거래내역 버튼 클릭
             $(document).ready(function() {
-                $("#realbutton2").click(function() {
-                    window.location.href = "../Phone/중단 메뉴/송금한도설정.html";
+                $("#moneysendlist").click(function() {
+                    window.location.href = "../Phone/거래내역 조회/거래내역.html";
                 });
             });
             //송금한도 버튼 클릭
@@ -40,11 +40,47 @@
                 });
             });
 
+            //홈버튼 클릭
+            $(document).ready(function() {
+            $("#home").click(function() {
+                window.location.href = "phone.html";
+                });
+            });
+
+            //마이데이터 클릭
+            $(document).ready(function() {
+            $("#mydata").click(function() {
+                window.location.href = "../Phone/계좌 자산 조회/계좌,자산 조회-1.html";
+                });
+            });
+            
+            //하단 내정보 클릭
+            $(document).ready(function() {
+            $("#myInfo").click(function() {
+                window.location.href = "../Phone/하단 메뉴/내정보.html";
+                });
+            });
+
+            //내정보 클릭
+            $(document).ready(function() {
+            $("#myprofile").click(function() {
+                window.location.href = "../Phone/하단 메뉴/내정보.html";
+                });
+            });
+
+            //설정 클릭
+            $(document).ready(function() {
+            $("#setting").click(function() {
+                window.location.href = "../Phone/하단 메뉴/설정.html";
+                });
+            });
+
+
             //잔액 숨ㅁㄱ기기
             $(document).ready(function() {
                 $("#hidebutton").click(function() {
                     let moneychangeElement = $("#moneychange span");
-                    let currentBalance = "60,000원";
+                    let currentBalance = "1,000,000원";
 
                     if (moneychangeElement.text() === "잔액숨김중") {
                         moneychangeElement.text(currentBalance);
@@ -129,7 +165,7 @@
 
             //광고? 이미지 5초마다 변경 (이미지는 대체 필요)
             $(document).ready(function() {
-                const images = ["../ad/ad-2.jpg", "../ad/ad-3.jpg", "../ad/ad-4.jpg"];
+                const images = ["../ad/같이제로.png", "../ad/같이걸어.png", "../ad/같이마셔.png","../ad/지구지켜.png"];
                 let currentIndex = 0;
 
                 function changeImage() {
@@ -353,7 +389,7 @@
                 flex-shrink: 0;
                 margin-left:20px;
             }
-            #money1:hover,#realbutton1:hover,#realbutton2:hover,#realbutton3:hover,#money2:hover{
+            #money1:hover,#realbutton1:hover,#realbutton2:hover,#realbutton3:hover,#money2:hover,#home:hover,#mydata:hover,#myInfo:hover,#setting:hover,#myprofile:hover{
                 cursor: pointer;
             }
             
@@ -688,8 +724,9 @@
             }
             #photobox{
                 width: 388px;
-                height: 269px;
+                height: 200px;
                 flex-shrink: 0;
+                margin-top: 40px;
             }
             #bottom{
                 width: 390px;
@@ -699,6 +736,7 @@
                 justify-content: space-between;
                 background: #E8F2FB;
                 box-shadow: 0px 4px 4px 0px rgba(194, 194, 205, 0.25) inset;
+                margin-top: 25px;
             }
             #home{
                 width: 75px;
@@ -726,9 +764,10 @@
             }
             img{
                 width:375px;
-                height:260px;
+                height:190px;
                 margin-left:5px;
-                border: 2px solid rgb(123, 123, 123)
+                border: 2px solid rgb(123, 123, 123);
+                
             }
             #fullscreen2 {
                 width: 390px;
@@ -903,7 +942,7 @@
                         </div>
                     </div>
                     <div id="moneychange">
-                        <span>60,000원</span>
+                        <span>1,000,000원</span>
                         
                     </div>
                     <div id="moneyHide">
@@ -1001,7 +1040,7 @@
                 </div>
             </div>
             <div id="photobox">
-                <img id="change" src="../ad/ad-1.jpg">
+                <img id="change" src="../ad/나무심는날.png">
             </div>
             <div id="bottom">
                 <div id="home">
@@ -1036,8 +1075,8 @@
                         </defs>
                       </svg>
                 </div>
-
             </div>
+            
             
         </div>
         <div id="fullscreen2">

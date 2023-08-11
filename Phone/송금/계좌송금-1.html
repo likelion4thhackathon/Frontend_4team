@@ -27,7 +27,7 @@
         $(document).ready(function() {
             $("#bottombox-2").click(function() {
                 $("#select1").val("value5");
-                $("#account_number").val("730 1947 1948 23");
+                $("#account_number").val("32155-12389");
                 checkNextButton(); 
             });
         });
@@ -48,6 +48,7 @@
             $("input").keyup(checkNextButton);
         });
 
+        //계좌번호 형식 확인
         $(document).ready(function() {
             $("#nextbutton button").click(function() {
                 const accountNumber = $("#account_number").val().trim();
@@ -70,6 +71,7 @@
             });
         });
 
+        // 다섯번째 자리에 - 삽입
         $(document).ready(function() {
             $("#account_number").on("input", function() {
 
@@ -77,7 +79,6 @@
 
                 inputValue = inputValue.replace(/[^0-9]/g, "");
                 
-                // 다섯번째 자리에 - 삽입
                 if (inputValue.length > 5) {
                     inputValue = inputValue.slice(0, 5) + "-" + inputValue.slice(5);
                 }
@@ -144,6 +145,23 @@
                 $("#toggleBox").hide();
             });
         });
+
+        $(document).ready(function() {
+            // 로컬 스토리지에서 송금한도 불러와 할당
+            const moneyLimit = localStorage.getItem("money_limit_d");
+            
+            if (moneyLimit !== null) {
+                const parsedMoneyLimit = parseInt(moneyLimit.replace(/,/g, '').replace('원', ''));
+                const formattedMoneyLimit = parsedMoneyLimit === 500 ? '5,000,000원' : (parsedMoneyLimit * 10000).toLocaleString() + '원';
+                
+                // 화면에 출력
+                $('#money_limit_display').text(formattedMoneyLimit);
+            }
+        });
+
+
+
+        //계좌번호
     </script>
     <style>
         body {
@@ -155,7 +173,7 @@
             }
             #fullscreen{
                 width: 390px;
-                height: 870px;
+                height: 844px;
                 background: #FFF;
                 border:1px solid black;
                 margin:auto;
@@ -546,7 +564,6 @@
             }
             .recent-account{
                 color: #4A4D52;
-                margin-left: 32px;
             }
             #recentAccount span{
                 height:20px;
@@ -778,7 +795,7 @@
                 </div>
                 <div id="moneytext1">
                     <span class="account">[한도제한]<span> 자립예탁금</span></span>
-                    <span class="account account1">730 - 1912 - 1943 -23</span>            
+                    <span class="account account1">XXXXX-YYYYY</span>            
                 </div>
                 <div id="moneymoney1">
                     <div id="money1">
@@ -801,7 +818,7 @@
                 <div id="moneylimit2">
                     <div id="limitText">
                         <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;60,000원</p>
-                        <p>5,000,000원</p>
+                        <span id="money_limit_display"></span>
                     </div>
                 </div>
             </div>
@@ -838,7 +855,7 @@
             </div>
             <div id="recentAccount">
                     <span>[범 은행] <span id="account_name">홍길동</span></span>
-                    <span class="recent-account">730 1947 1948 23</span>    
+                    <span class="recent-account">32155-12389</span>    
             </div>
         </button>
         <hr style="width:80%">
