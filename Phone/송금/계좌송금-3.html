@@ -148,7 +148,7 @@
         //자주쓰는 계좌 선택시 은행과 계좌번호가 자동으로 입력됨
         $(document).ready(function() {
             $("#bottombox-2").click(function() {
-                $("#select1").val("value5");
+                $("#select1").val("value3");
                 $("#account_number").val("32113-65423");
                 checkNextButton(); 
             });
@@ -156,8 +156,8 @@
 
         $(document).ready(function() {
             $("#addCount").click(function() {
-                $("#select1").val("value6");
-                $("#account_number").val("73019-47194");
+                $("#select1").val("value3");
+                $("#account_number").val("15232-19231");
                 checkNextButton(); 
             });
         });
@@ -211,6 +211,19 @@
             $("#toggleClose-1").on("click", function (event) {
                 $("#toggleBox-1").hide();
             });
+        });
+        
+        $(document).ready(function() {
+            // 로컬 스토리지에서 송금한도 불러와 할당
+            const moneyLimit = localStorage.getItem("money_limit_d");
+            
+            if (moneyLimit !== null) {
+                const parsedMoneyLimit = parseInt(moneyLimit.replace(/,/g, '').replace('원', ''));
+                const formattedMoneyLimit = parsedMoneyLimit === 500 ? '5,000,000원' : (parsedMoneyLimit * 10000).toLocaleString() + '원';
+                
+                // 화면에 출력
+                $('#money_limit_display').text(formattedMoneyLimit);
+            }
         });
 
      
@@ -354,7 +367,7 @@
                 flex-shrink: 0;
             }
             #logo{
-                margin:15px 16.5px;
+                margin:11px 13.5px;
 
             }
             #moneytext1{
@@ -670,15 +683,21 @@
                 display:flex;
                 flex-direction: column;
                 justify-content: left;
-                margin-left: -28px;
+                margin-left: -25px;
             }
             
-            .recent-account{
+            #recentAccount .recent-account{
                 color: #4A4D52;
+                margin-left: -12px;
             }
+            #account_name{
+                margin-left: 30px;
+            }
+            
             #recentAccount span{
                 height:20px;
                 line-height: 70px;
+                margin-left: 5px;
             }
             
             #add-button{
@@ -854,7 +873,7 @@
             
             .myAccount-account-1{
                 color: #4A4D52;
-                margin-left: 65px;
+                margin-left: 35px;
             }
             #myAccount-1-1 span, #myAccount-2-1 span{
                 height:20px;
@@ -930,13 +949,17 @@
               </svg>
             <button id="bottombox-2-t-1">
                 <div id="myAccount-1">
-                    <svg id="logo-2-1" xmlns="http://www.w3.org/2000/svg" width="38" height="37" viewBox="0 0 38 37" fill="none">
-                        <ellipse cx="18.954" cy="18.5254" rx="18.4415" ry="18.3301" fill="#D9D9D9"/>
+                    <svg id="logo-2-1" xmlns="http://www.w3.org/2000/svg" width="43" height="43" viewBox="0 0 43 43" fill="none">
+                        <circle cx="21.5" cy="21.5" r="21.5" fill="#54ADFF"/>
+                        <ellipse cx="26.8125" cy="17.5723" rx="1.5" ry="2.5" fill="white"/>
+                        <ellipse cx="15.8125" cy="17.5723" rx="1.5" ry="2.5" fill="white"/>
+                        <path fill-rule="evenodd" clip-rule="evenodd" d="M26.3125 25.0723C26.3125 27.8337 24.0739 30.0723 21.3125 30.0723C18.5511 30.0723 16.3125 27.8337 16.3125 25.0723C16.3125 22.3108 18.5511 20.0723 21.3125 20.0723C24.0739 20.0723 26.3125 22.3108 26.3125 25.0723ZM21.4037 23.1991C21.8827 23.1601 22.257 22.8248 22.257 22.4169C22.257 21.9828 21.8331 21.6309 21.3101 21.6309C20.7872 21.6309 20.3633 21.9828 20.3633 22.4169C20.3633 22.827 20.7416 23.1637 21.2242 23.1997L21.1445 26.6333H21.4834L21.4037 23.1991Z" fill="white"/>
+                        <path d="M28.8589 9.78002C29.7466 3.76213 38.5867 9.26735 32.5474 12.4777C39.8195 21.8036 33.9353 32.045 30.0842 36L30.5719 31.0441C19.8488 38.8466 -0.924627 28.0779 10.166 12.4533C5.00205 8.27864 12.8168 4.22594 14.2047 9.52369C19.5062 6.94564 26.0206 8.25419 28.8589 9.78002Z" stroke="white"/>
                       </svg>
                 </div>
                 <div id="myAccount-1-1">
-                        <span>자립예탁금</span>
-                        <span class="myAccount-account-1">729-1707-0715-23</span>    
+                        <span>[바오 은행]</span>
+                        <span class="myAccount-account-1">XXXXX-YYYYY</span>    
                 </div>
                 <div id="selectAccount-1-1" class="svg-container-1">
                     <svg xmlns="http://www.w3.org/2000/svg" width="29" height="30" viewBox="0 0 29 30" fill="none">
@@ -950,13 +973,16 @@
 
             <button id="bottombox-2-t-1">
                 <div id="myAccount-1">
-                    <svg id="logo-2-1" xmlns="http://www.w3.org/2000/svg" width="38" height="37" viewBox="0 0 38 37" fill="none">
-                        <ellipse cx="18.954" cy="18.5254" rx="18.4415" ry="18.3301" fill="#D9D9D9"/>
+                    <svg id="logo-2-1" xmlns="http://www.w3.org/2000/svg" width="43" height="43" viewBox="0 0 43 43" fill="none">
+                        <circle cx="21.5" cy="21.5" r="21.5" fill="#54ADFF"/>
+                        <path d="M32.4178 16.7863C33.0129 18.5308 33.3422 20.4501 33.3422 22.4651C33.3422 30.4925 28.1169 37 21.6711 37C15.2253 37 10 30.4925 10 22.4651C10 15.1585 14.329 9.11111 19.9671 8.08395C20.6557 6.66137 22.1242 3.85416 22.4898 4.00591C22.9467 4.1956 23.1843 7.0445 23.8701 7.23064C24.9839 7.53296 27.5447 8.4162 28.5443 8.74816C29.2265 8.06844 30.7167 6.82044 31.2193 7.26621C31.8952 14.2373 28.0512 23.2819 22.3851 18.5112" stroke="white"/>
+                        <circle cx="22" cy="11" r="1" fill="white"/>
+                        <circle cx="27" cy="12" r="1" fill="white"/>
                       </svg>
                 </div>
                 <div id="myAccount-2-1">
-                        <span>자립예탁금</span>
-                        <span class="myAccount-account-1">351-1289-0916-42</span>    
+                        <span>[냐옹 은행]</span>
+                        <span class="myAccount-account-1">XXXXX-YYYYY</span>    
                 </div>
                 <div id="selectAccount-2-1" class="svg-container-1">
                     <svg xmlns="http://www.w3.org/2000/svg" width="29" height="30" viewBox="0 0 29 30" fill="none">
@@ -973,12 +999,16 @@
         <div id="moneybox">
             <div id="money">
                 <div id="profile">
-                    <svg id="logo" xmlns="http://www.w3.org/2000/svg" width="38" height="37" viewBox="0 0 38 37" fill="none">
-                        <ellipse cx="18.954" cy="18.5254" rx="18.4415" ry="18.3301" fill="#D9D9D9"/>
+                    <svg id="logo" xmlns="http://www.w3.org/2000/svg" width="43" height="43" viewBox="0 0 43 43" fill="none">
+                        <circle cx="21.5" cy="21.5" r="21.5" fill="#54ADFF"/>
+                        <ellipse cx="26.8125" cy="17.5723" rx="1.5" ry="2.5" fill="white"/>
+                        <ellipse cx="15.8125" cy="17.5723" rx="1.5" ry="2.5" fill="white"/>
+                        <path fill-rule="evenodd" clip-rule="evenodd" d="M26.3125 25.0723C26.3125 27.8337 24.0739 30.0723 21.3125 30.0723C18.5511 30.0723 16.3125 27.8337 16.3125 25.0723C16.3125 22.3108 18.5511 20.0723 21.3125 20.0723C24.0739 20.0723 26.3125 22.3108 26.3125 25.0723ZM21.4037 23.1991C21.8827 23.1601 22.257 22.8248 22.257 22.4169C22.257 21.9828 21.8331 21.6309 21.3101 21.6309C20.7872 21.6309 20.3633 21.9828 20.3633 22.4169C20.3633 22.827 20.7416 23.1637 21.2242 23.1997L21.1445 26.6333H21.4834L21.4037 23.1991Z" fill="white"/>
+                        <path d="M28.8589 9.78002C29.7466 3.76213 38.5867 9.26735 32.5474 12.4777C39.8195 21.8036 33.9353 32.045 30.0842 36L30.5719 31.0441C19.8488 38.8466 -0.924627 28.0779 10.166 12.4533C5.00205 8.27864 12.8168 4.22594 14.2047 9.52369C19.5062 6.94564 26.0206 8.25419 28.8589 9.78002Z" stroke="white"/>
                       </svg>
                 </div>
                 <div id="moneytext1">
-                    <span class="account">[한도제한]<span> 자립예탁금</span></span>
+                    <span class="account">[한도제한]<span> 보통예탁금</span></span>
                     <span class="account account1">XXXXX-YYYYY</span>            
                 </div>
                 <div id="moneymoney1">
@@ -1001,8 +1031,8 @@
                 </div>
                 <div id="moneylimit2">
                     <div id="limitText">
-                        <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;60,000원</p>
-                        <p>5,000,000원</p>
+                        <p>&nbsp;1,000,000원</p>
+                        <p id="money_limit_display">5,000,000원</p>
                     </div>
                 </div>
             </div>
@@ -1015,13 +1045,9 @@
                 <div id="receive"><span>받는 분</span></div>
                 <div id="receiveAccount">
                     <select id="select1">
-                        <option value="value1">&nbsp;행복은행&nbsp;</option>
-                        <option value="value2">&nbsp;우리은행&nbsp;</option>
-                        <option value="value3">&nbsp;국민은행&nbsp;</option>
-                        <option value="value4">&nbsp;바오은행&nbsp;</option>
-                        <option value="value5">&nbsp;&nbsp;범 은행&nbsp;</option>
-                        <option value="value6">&nbsp;&nbsp;범 은행&nbsp;</option>
-
+                        <option value="value1">&nbsp;바오은행&nbsp;</option>
+                        <option value="value2">&nbsp;냐옹은행&nbsp;</option>
+                        <option value="value3">&nbsp;뿌우은행&nbsp;</option>
                     </select>
                     <input type="text" id="account_number" name="account_number" placeholder="계좌번호 입력 (12345-12345)" />
                 </div>
@@ -1036,12 +1062,14 @@
         <div id="bottomscroll">
             <button id="bottombox-2">
                 <div id="recent">
-                    <svg id="logo-2" xmlns="http://www.w3.org/2000/svg" width="38" height="37" viewBox="0 0 38 37" fill="none">
-                        <ellipse cx="18.954" cy="18.5254" rx="18.4415" ry="18.3301" fill="#D9D9D9"/>
-                    </svg>
+                    <svg id="logo-2" xmlns="http://www.w3.org/2000/svg" width="43" height="43" viewBox="0 0 43 43" fill="none">
+                        <circle cx="21.5" cy="21.5" r="21.5" fill="#54ADFF"/>
+                        <path d="M22.0028 18.8372V22.1408M29.4248 31.6814C24.4371 30.9874 23.1114 38.3976 29.4248 37.9832C34.641 37.6408 35.8796 27.1131 35.7439 22.1408C35.3782 9.42982 27.8848 5.95597 22.0028 5.18789C10.3923 3.67174 7 11.7118 7 15.6354C7 26.7251 17.0847 28.859 22.0028 27.471V22.1408M22.0028 22.1408C25.0233 26.8139 31.6382 28.9244 40 28.9244" stroke="white"/>
+                        <ellipse cx="27.5" cy="15.5" rx="1.5" ry="2.5" fill="white"/>
+                      </svg>
                 </div>
                 <div id="recentAccount">
-                        <span>[범 은행] <span id="account_name">김진범</span></span>
+                        <span>[뿌우 은행] <span id="account_name">김진범</span></span>
                         <span class="recent-account">32113-65423</span>    
                 </div>
                 <div id="delete" class="svg-container">
@@ -1063,13 +1091,15 @@
 
             <button id="addCount">
                 <div id="recent">
-                    <svg id="logo-2" xmlns="http://www.w3.org/2000/svg" width="38" height="37" viewBox="0 0 38 37" fill="none">
-                        <ellipse cx="18.954" cy="18.5254" rx="18.4415" ry="18.3301" fill="#D9D9D9"/>
+                    <svg id="logo-2" xmlns="http://www.w3.org/2000/svg" width="43" height="43" viewBox="0 0 43 43" fill="none">
+                        <circle cx="21.5" cy="21.5" r="21.5" fill="#54ADFF"/>
+                        <path d="M22.0028 18.8372V22.1408M29.4248 31.6814C24.4371 30.9874 23.1114 38.3976 29.4248 37.9832C34.641 37.6408 35.8796 27.1131 35.7439 22.1408C35.3782 9.42982 27.8848 5.95597 22.0028 5.18789C10.3923 3.67174 7 11.7118 7 15.6354C7 26.7251 17.0847 28.859 22.0028 27.471V22.1408M22.0028 22.1408C25.0233 26.8139 31.6382 28.9244 40 28.9244" stroke="white"/>
+                        <ellipse cx="27.5" cy="15.5" rx="1.5" ry="2.5" fill="white"/>
                       </svg>
                 </div>
                 <div id="recentAccount">
-                        <span>[범 은행] <span>김진범</span></span>
-                        <span class="recent-account">73019-47194</span>    
+                        <span>[뿌우 은행] <span>김진범</span></span>
+                        <span class="recent-account">15232-19231</span>    
                 </div>
                 <div id="delete" class="svg-container">
                     <svg id="replace-b"  xmlns="http://www.w3.org/2000/svg" width="30" height="31" viewBox="0 0 30 31" fill="none">
@@ -1100,13 +1130,15 @@
             <div id="bottomscroll-t">
                 <button id="bottombox-2-t">
                     <div id="recent">
-                        <svg id="logo-2" xmlns="http://www.w3.org/2000/svg" width="38" height="37" viewBox="0 0 38 37" fill="none">
-                            <ellipse cx="18.954" cy="18.5254" rx="18.4415" ry="18.3301" fill="#D9D9D9"/>
-                        </svg>
+                        <svg id="logo-2" xmlns="http://www.w3.org/2000/svg" width="43" height="43" viewBox="0 0 43 43" fill="none">
+                            <circle cx="21.5" cy="21.5" r="21.5" fill="#54ADFF"/>
+                            <path d="M22.0028 18.8372V22.1408M29.4248 31.6814C24.4371 30.9874 23.1114 38.3976 29.4248 37.9832C34.641 37.6408 35.8796 27.1131 35.7439 22.1408C35.3782 9.42982 27.8848 5.95597 22.0028 5.18789C10.3923 3.67174 7 11.7118 7 15.6354C7 26.7251 17.0847 28.859 22.0028 27.471V22.1408M22.0028 22.1408C25.0233 26.8139 31.6382 28.9244 40 28.9244" stroke="white"/>
+                            <ellipse cx="27.5" cy="15.5" rx="1.5" ry="2.5" fill="white"/>
+                          </svg>
                     </div>
                     <div id="recentAccount">
-                            <span>[범 은행] 김진범</span>
-                            <span class="recent-account">321 1924 1548 13</span>    
+                            <span>[뿌우 은행] 김진범</span>
+                            <span class="recent-account">32113-65423</span>    
                     </div>
                     <div id="add" class="svg-container">
                         <svg id="replace-c"xmlns="http://www.w3.org/2000/svg" width="29" height="30" viewBox="0 0 29 30" fill="none">
@@ -1125,13 +1157,15 @@
 
                 <button id="addCount-t" style="margin-bottom: 8px;">
                     <div id="recent">
-                        <svg id="logo-2" xmlns="http://www.w3.org/2000/svg" width="38" height="37" viewBox="0 0 38 37" fill="none">
-                            <ellipse cx="18.954" cy="18.5254" rx="18.4415" ry="18.3301" fill="#D9D9D9"/>
-                        </svg>
+                        <svg id="logo-2" xmlns="http://www.w3.org/2000/svg" width="43" height="43" viewBox="0 0 43 43" fill="none">
+                            <circle cx="21.5" cy="21.5" r="21.5" fill="#54ADFF"/>
+                            <path d="M22.0028 18.8372V22.1408M29.4248 31.6814C24.4371 30.9874 23.1114 38.3976 29.4248 37.9832C34.641 37.6408 35.8796 27.1131 35.7439 22.1408C35.3782 9.42982 27.8848 5.95597 22.0028 5.18789C10.3923 3.67174 7 11.7118 7 15.6354C7 26.7251 17.0847 28.859 22.0028 27.471V22.1408M22.0028 22.1408C25.0233 26.8139 31.6382 28.9244 40 28.9244" stroke="white"/>
+                            <ellipse cx="27.5" cy="15.5" rx="1.5" ry="2.5" fill="white"/>
+                          </svg>
                     </div>
                     <div id="recentAccount">
-                            <span>[범 은행] 김진범</span>
-                            <span class="recent-account">730 1947 1948 23</span>    
+                            <span>[뿌우 은행] 김진범</span>
+                            <span class="recent-account">15232-19231</span>    
                     </div>
                     <div id="add" class="svg-container">
                         <svg id="replace-d"xmlns="http://www.w3.org/2000/svg" width="29" height="30" viewBox="0 0 29 30" fill="none">
