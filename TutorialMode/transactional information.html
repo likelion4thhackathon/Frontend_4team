@@ -8,13 +8,13 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+KR&display=swap" rel="stylesheet">
     <title>거래내역 조회</title>
-    <style media="screen">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+
+    <style>
         body {
             margin: 0px;
-            font-size: 18px;
         }
         #box {
-            display:flex;
             position: relative;
             height: auto;
             margin: auto;
@@ -22,124 +22,82 @@
         }
 
         #left {
-            background: #F7F2FF;
             float: left;
             height: 100vh;
-            width: 40%;
+            width: 50vw;
             position: relative;
-            border: 1px solid black;
+            background-color: #BBD6FF;
         }
-        .title1{
-            color: #005ECC;
-            margin-left:10%;
-            font-family: 'IBM Plex Sans KR', sans-serif;
-            font-size: 45px;
-            font-style: normal;
-            font-weight: 400;
-            line-height: normal;
-        }
-        .title2{
-            color: #000;
-            margin-left:10%;
-            font-family: 'IBM Plex Sans KR', sans-serif;
-            font-size: 30px;
-            font-style: normal;
-            font-weight: 400;
-            line-height: normal;
+        iframe{
+            width:100%;
+            height:100%;
+            border-style:none;
         }
         #right {
             float: left;
             height: 100vh;
-            width: 60%;
+            width: 40vw;
             position: relative; 
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            border: 1px solid black;
         }
-        #center {
-            background-color: #FFF;
-            border: 2px solid black;
-            height: 30vh;
-            width: 100vw;
-            border: 1px solid black;
-        }
-        #title {
-            width: 99%;
-            height: 60%;
-            margin-top: 35%;
-            fill: rgba(227, 229, 248, 0.45);
-        }
-       
-        #logo {
-            width: 420px;
-            height: 280px;
-            flex-shrink: 0;
-            margin-left:10%;
-        }
-        #button1, #button2 {
-            border-radius: 20px;
-            background: #F4EEFF;
-            box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25), 0px 4px 4px 0px rgba(0, 0, 0, 0.25) inset;
-            width: 453px;
-            height: 113px;
-            font-size: 20px;
-            margin: 10px;
-            border: 1px solid black;
-        }
-
-        /* 팝업창 스타일 */
-        .popup {
-            display: none;
-            position: fixed;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            padding: 20px;
-            background-color: #FFF;
-            border: 2px solid black;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
-            z-index: 9999;
-            max-width: 400px;
+        #text{
+            width: 40vw;
+            height: 217px;
+            text-align: center;
+            color: #000;
+            font-family: 'IBM Plex Sans KR', sans-serif;
+            font-size: 36px;
+            font-style: normal;
+            font-weight: 800;
+            line-height: normal;
+            letter-spacing: -0.333px;
             
         }
-        img{
-            width:100px;
-            height:100px;
         
-        }
-        .popup p {
-            font-size: 16px;
-            margin: 10px 0;
-            border: 1px solid black;
-        }
-
-        .popup-close {
-            position: absolute;
-            top: 10px;
-            right: 10px;
-            cursor: pointer;
-            border: 1px solid black;
+        svg{
+            width: 100px;
+            height: 100px;
+            flex-shrink: 0;
+            fill: #AEC4D9;
         }
         
-
         
     </style>
 </head>
 <body>
     <div id="box">
         <div id="left">
-            <div id="title">
-                <h1> 거래내역 조회 모드 </h1>
-                <div id="logo">
-                </div>
-            </div>
+            <iframe id="phoneFrame" src="../Phone/phone.html"></iframe>
         </div>
         <div id="right">
-        
+            <div id="text">
+                <span>노란색 화면 안에 있는 거래내역 버튼을 누르세요. 거래내역을 확인할 수 있습니다</span>
+  
+            </div>
         </div>
     </div>
+    
+
+    <script>
+        $(document).ready(function() {
+            const iframe = $('#phoneFrame');
+
+            iframe.on('load', function() {
+                const iframeDocument = iframe.contents();
+                const targetElement = iframeDocument.find('#money');
+                const iframeDocument2 = iframe.contents();
+                const targetElement2 = iframeDocument.find("#fullscreen");
+            
+                targetElement.css('transform', 'scale(1.5)').css("border","2px solid blue");
+                targetElement2.css('transform', 'scale(1.5)');
+
+            });
+        });
+        
+    </script>
 
 </body>
 </html>
