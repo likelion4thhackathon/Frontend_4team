@@ -42,9 +42,30 @@
             }
         }
 
+        
+
+        //최대 송금 가능 금액
         $(document).ready(function() {
             $("input").keyup(checkNextButton);
+            $('#account_number').on('input', function() {
+            let value = $(this).val().replace(/,/g, '');
+            value = parseInt(value); 
+
+            if (isNaN(value)) {
+                value = '';
+            }
+
+            if (value > 5000000) {
+                value = 5000000;
+            }
+
+                const formattedValue = value === '' ? '' : formatNumberWithCommas(value); // 천 단위 콤마 추가
+                $(this).val(formattedValue);
+                checkNextButton();
+            });
         });
+
+        
 
         //뒤로가기 버튼
         $(document).ready(function() {
@@ -87,6 +108,50 @@
             window.location.href = '계좌송금-5.html'; 
             });
         });
+
+        $(document).ready(function() {
+            // 로컬 스토리지에서 송금한도 불러와 할당
+            const moneyLimit2 = localStorage.getItem("money_limit_d");
+            
+            if (moneyLimit !== null) {
+                const parsedMoneyLimit = parseInt(moneyLimit2.replace(/,/g, '').replace('원', ''));
+                const formattedMoneyLimit = parsedMoneyLimit === 500 ? '5,000,000원' : (parsedMoneyLimit * 10000).toLocaleString() + '원';
+                
+                // 화면에 출력
+                $('.money_limit_display').text(formattedMoneyLimit);
+            }
+        });
+
+
+        $(document).ready(function() {
+        // 로컬 스토리지에서 송금한도 불러와 할당
+        const moneyLimit = localStorage.getItem("money_limit_d");
+        
+        if (moneyLimit !== null) {
+            const parsedMoneyLimit = parseInt(moneyLimit.replace(/,/g, '').replace('원', ''));
+
+            // 화면에 출력
+            $('#money_limit_display').text(moneyLimit);
+
+            // 송금한도에 맞춰 송금 가능 금액 제한
+            $('#account_number').on('input', function() {
+                let value = $(this).val().replace(/,/g, ''); 
+                value = parseInt(value);
+
+                if (isNaN(value)) {
+                    value = '';
+                }
+
+                if (value > parsedMoneyLimit * 10000) {
+                    value = parsedMoneyLimit * 10000;
+                }
+
+                const formattedValue = value === '' ? '' : formatNumberWithCommas(value); // 천 단위 콤마 추가
+                $(this).val(formattedValue);
+                checkNextButton();
+            });
+        }
+    });
 
         
     </script>
@@ -228,7 +293,7 @@
                 flex-shrink: 0;
             }
             #logo{
-                margin:15px 16.5px;
+                margin:11px 13.5px;
 
             }
             #moneytext1{
@@ -345,7 +410,7 @@
             #number span+span{
                 color:#000;
                 font-size:20px;
-                margin-left: 40px;
+                margin-left: 70px;
                 line-height:45px;
             }
             #number span+span+span{
@@ -443,6 +508,7 @@
                 font-weight: 500;
                 line-height: normal;
             }
+            
     </style>
 </head>
 <body>
@@ -498,13 +564,17 @@
         <div id="moneybox">
             <div id="money">
                 <div id="profile">
-                    <svg id="logo" xmlns="http://www.w3.org/2000/svg" width="38" height="37" viewBox="0 0 38 37" fill="none">
-                        <ellipse cx="18.954" cy="18.5254" rx="18.4415" ry="18.3301" fill="#D9D9D9"/>
+                    <svg id="logo" xmlns="http://www.w3.org/2000/svg" width="43" height="43" viewBox="0 0 43 43" fill="none">
+                        <circle cx="21.5" cy="21.5" r="21.5" fill="#54ADFF"/>
+                        <ellipse cx="26.8125" cy="17.5723" rx="1.5" ry="2.5" fill="white"/>
+                        <ellipse cx="15.8125" cy="17.5723" rx="1.5" ry="2.5" fill="white"/>
+                        <path fill-rule="evenodd" clip-rule="evenodd" d="M26.3125 25.0723C26.3125 27.8337 24.0739 30.0723 21.3125 30.0723C18.5511 30.0723 16.3125 27.8337 16.3125 25.0723C16.3125 22.3108 18.5511 20.0723 21.3125 20.0723C24.0739 20.0723 26.3125 22.3108 26.3125 25.0723ZM21.4037 23.1991C21.8827 23.1601 22.257 22.8248 22.257 22.4169C22.257 21.9828 21.8331 21.6309 21.3101 21.6309C20.7872 21.6309 20.3633 21.9828 20.3633 22.4169C20.3633 22.827 20.7416 23.1637 21.2242 23.1997L21.1445 26.6333H21.4834L21.4037 23.1991Z" fill="white"/>
+                        <path d="M28.8589 9.78002C29.7466 3.76213 38.5867 9.26735 32.5474 12.4777C39.8195 21.8036 33.9353 32.045 30.0842 36L30.5719 31.0441C19.8488 38.8466 -0.924627 28.0779 10.166 12.4533C5.00205 8.27864 12.8168 4.22594 14.2047 9.52369C19.5062 6.94564 26.0206 8.25419 28.8589 9.78002Z" stroke="white"/>
                       </svg>
                 </div>
                 <div id="moneytext1">
-                    <span class="account">[한도제한]<span> 자립예탁금</span></span>
-                    <span class="account account1">730 - 1912 - 1943 -23</span>            
+                    <span class="account">[한도제한]<span> 보통예탁금</span></span>
+                    <span class="account account1">XXXXX-YYYYY</span>            
                 </div>
                 <div id="moneymoney1">
                     <div id="money1">
@@ -526,8 +596,8 @@
                 </div>
                 <div id="moneylimit2">
                     <div id="limitText">
-                        <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;60,000원</p>
-                        <p>5,000,000원</p>
+                        <p>&nbsp;1,000,000원</p>
+                        <p class="money_limit_display"></p>
                     </div>
                 </div>
             </div>
@@ -535,9 +605,11 @@
         
         <div id="centerbox-1">
             <div id="enterName">
-                <div id="number"><span>받는 분</span>
+                <div id="number">
+                    <span>받는 분</span>
                     <span id="account_name_display"></span>
-                    <span id="account_number_display"></span></div>
+                    <span id="account_number_display"></span>
+                </div>
             </div>
         </div>
         <div id="centerbox-2">
@@ -558,7 +630,11 @@
         </div>
         <div id="nextbutton">
             <button disabled>다음</button>
-        </div>       
-    </div> 
+        </div>
+     
+       
+        
+    </div>
+    
 </body>
 </html>

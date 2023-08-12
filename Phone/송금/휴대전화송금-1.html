@@ -24,17 +24,18 @@
                 localStorage.setItem('account_number-p', accountNumP);
 
                 const phoneNumber = $("#account_number-p").val().trim();
-                const phoneNumberPattern = /^[0-9]{10,11}$/; 
+                const phoneNumberPattern = /^[0-9]{3}-[0-9]{4}-[0-9]{4}$/;
 
                 if (phoneNumber.length === 0) {
                     alert("휴대전화번호를 입력해 주세요.");
                 } else if (!phoneNumberPattern.test(phoneNumber)) {
-                    alert("휴대전화번호 형식이 올바르지 않습니다. \n 01012341234 형식으로 입력해 주세요.");
+                    alert("휴대전화번호 형식이 올바르지 않습니다. \n 010-1234-1234 형식으로 입력해 주세요.");
                 } else {
                     window.location.href = "휴대전화송금-2.html";
                 }
             });
         });
+
 
         //뒤로가기 버튼
         $(document).ready(function() {
@@ -58,6 +59,49 @@
         $(document).ready(function() {
             $("input").keyup(checkNextButton);
         });
+
+        //홈버튼
+        $(document).ready(function() {
+            $("#icon1").click(function() {
+                window.location.href = "../phone.html";
+                });
+        });
+
+        //계좌선택 토글창
+        $(document).ready(function() {
+            $("#money1").click(function() {
+                $("#toggleBox-1").toggle(); 
+                
+            });
+            
+
+            //x 버튼 클릭시 토글창 닫힘
+            $("#toggleClose-1").on("click", function (event) {
+                $("#toggleBox-1").hide();
+            });
+        });
+
+        // 010-1234-1234 형식으로 - 자동 삽입
+        $(document).ready(function() {
+            $("#account_number-p").on("input", function() {
+                let inputValue = $(this).val().trim();
+                
+                inputValue = inputValue.replace(/[^0-9]/g, "");
+
+                if (inputValue.length > 4) {
+                    inputValue = inputValue.slice(0, 3) + "-" + inputValue.slice(3);
+                }
+                
+                if (inputValue.length > 9) {
+                    inputValue = inputValue.slice(0, 8) + "-" + inputValue.slice(8);
+                }
+
+                $(this).val(inputValue);
+
+                checkNextButton();
+            });
+        });
+
 
 
 
@@ -384,6 +428,83 @@
                 background: #CCC;
                 border-style:none;            
             }
+
+            #toggleBox-1 {
+                width: 390px;
+                height: 413px;
+                flex-shrink: 0;
+                border-radius: 39px 38px 10px 0px;
+                border:1px solid black;
+                background: #FFF;
+                display: none;
+                position: absolute;
+                bottom: 0;
+                left: 0;
+                z-index: 200;
+            }
+            #toggleHeader-1{
+                color: #000;
+                font-family: 'IBM Plex Sans KR', sans-serif;
+                font-size: 18px;
+                font-style: normal;
+                font-weight: 600;
+                line-height: 21px; /* 116.667% */
+                letter-spacing: -0.32px;
+                margin-left: 30px;
+                line-height: 50px;
+            }
+            #toggleClose-1{
+                margin-left: 240px;
+                cursor: pointer;
+            }
+            
+            #bottombox-2-t-1{
+                width: 315px;
+                height: 100px;
+                display:flex;   
+                margin-left: 35px;
+                border-radius: 10px;
+                background-color: white;
+                border: 1px solid #ccc;
+                margin-top: 20px;
+            }
+            #myAccount-1{
+                width: 53px;
+                height: 88px;
+            }
+            #logo-2-1{
+                margin-top:50%;
+                margin-left:20%;
+            }
+            #myAccount-1-1, #myAccount-2-1{
+                width: 230px;
+                height: 100px;
+                flex-shrink: 0;
+                line-height: 88px;
+                color: #686E7A;
+                font-family: 'IBM Plex Sans KR', sans-serif;
+                font-size: 15px;
+                font-style: normal;
+                font-weight: 500;
+                display:flex;
+                flex-direction: column;
+                justify-content: left;
+                margin-left: -70px;
+            }
+            
+            .myAccount-account-1{
+                color: #4A4D52;
+                margin-left: 65px;
+            }
+            #myAccount-1-1 span, #myAccount-2-1 span{
+                height:20px;
+                line-height: 70px;
+            }
+            #selectAccount-1-1,#selectAccount-2-1{
+                margin-left: 50px;
+                margin-top:35px;
+            }
+
     </style>
 </head>
 <body>
@@ -436,6 +557,56 @@
                 </div>
             </div>
         </div>
+
+
+        <div id="toggleBox-1">
+            <span id="toggleHeader-1">계좌 선택</span>
+            <svg id="toggleClose-1" xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 14 14" fill="none">
+                <path d="M13 1L1 13" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M1 1L13 13" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            <button id="bottombox-2-t-1">
+                <div id="myAccount-1">
+                    <svg id="logo-2-1" xmlns="http://www.w3.org/2000/svg" width="38" height="37" viewBox="0 0 38 37" fill="none">
+                        <ellipse cx="18.954" cy="18.5254" rx="18.4415" ry="18.3301" fill="#D9D9D9"/>
+                      </svg>
+                </div>
+                <div id="myAccount-1-1">
+                        <span>자립예탁금</span>
+                        <span class="myAccount-account-1">729-1707-0715-23</span>    
+                </div>
+                <div id="selectAccount-1-1" class="svg-container-1">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="29" height="30" viewBox="0 0 29 30" fill="none">
+                        <rect width="29" height="29.0437" rx="10" fill="#0085FF"/>
+                        <path d="M9.00009 11L14.0001 19" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M19.0001 11L14.0001 19" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                      </svg>
+              </div>
+            </button>
+
+
+            <button id="bottombox-2-t-1">
+                <div id="myAccount-1">
+                    <svg id="logo-2-1" xmlns="http://www.w3.org/2000/svg" width="38" height="37" viewBox="0 0 38 37" fill="none">
+                        <ellipse cx="18.954" cy="18.5254" rx="18.4415" ry="18.3301" fill="#D9D9D9"/>
+                      </svg>
+                </div>
+                <div id="myAccount-2-1">
+                        <span>자립예탁금</span>
+                        <span class="myAccount-account-1">351-1289-0916-42</span>    
+                </div>
+                <div id="selectAccount-2-1" class="svg-container-1">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="29" height="30" viewBox="0 0 29 30" fill="none">
+                        <rect width="29" height="29.0437" rx="10" fill="#D6D6D6"/>
+                        <path d="M9.00009 11L14.0001 19" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M19.0001 11L14.0001 19" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                      </svg>
+                </div>
+                
+            </button>
+        </div>
+
+
         <div id="moneybox">
             <div id="money">
                 <div id="profile">
@@ -445,7 +616,7 @@
                 </div>
                 <div id="moneytext1">
                     <span class="account">[한도제한]<span> 자립예탁금</span></span>
-                    <span class="account account1">730 - 1912 - 1943 -23</span>            
+                    <span class="account account1">XXXXX-YYYYY</span>            
                 </div>
                 <div id="moneymoney1">
                     <div id="money1">
