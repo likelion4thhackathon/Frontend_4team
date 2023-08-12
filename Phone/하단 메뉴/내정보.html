@@ -16,8 +16,13 @@
 
             // 송금한도 화면에 출력
             $('.money_limit_display').text(moneyLimit);
+        });
 
-
+        //뒤로가기 버튼 누르면 phone으로 돌아감
+        $(document).ready(function() {
+        $("#back").click(function() {
+            window.location.href = "../phone.html";
+            });
         });
     </script>
     <style>
@@ -71,7 +76,11 @@
                 flex: 1 0 0;
                 align-self: stretch;
                 margin-left: -80px;
-            } #hellobox{
+            } 
+            #back {
+                cursor: pointer;
+            }
+            #hellobox{
                 display: flex;
                 width: 389px;
                 height: 44px;
@@ -479,7 +488,7 @@
         </div>
         <div id="hellobox">
             <div id="header">
-                <svg xmlns="http://www.w3.org/2000/svg" width="34" height="36" viewBox="0 0 34 36" fill="none">
+                <svg xmlns="http://www.w3.org/2000/svg" id="back" width="34" height="36" viewBox="0 0 34 36" fill="none">
                     <path d="M21.25 27L12.75 18L21.25 9" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                   </svg>
                 <span id="function">내정보</span>

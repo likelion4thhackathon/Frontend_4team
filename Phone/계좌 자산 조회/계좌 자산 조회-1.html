@@ -22,6 +22,21 @@
                 $(".moneybox2").toggle(); 
             });
         });
+
+        //송금버튼 누르면 계좌송금으로 이동
+        $(document).ready(function() {
+                $(".moneybutton").click(function() {
+                    window.location.href = "../송금/계좌송금-1.html";
+                });
+            });
+        //뒤로가기 버튼 누르면 phone으로 돌아감
+        $(document).ready(function() {
+        $("#back").click(function() {
+            window.location.href = "../phone.html";
+            });
+        });
+        
+
     </script>
     <style>
         body {
@@ -74,7 +89,12 @@
                 flex: 1 0 0;
                 align-self: stretch;
                 margin-left: -80px;
-            } #hellobox{
+            
+            } 
+            #back {
+                cursor: pointer;
+            }
+            #hellobox{
                 display: flex;
                 width: 389px;
                 height: 44px;
@@ -234,9 +254,10 @@
                 margin-right: 50px;
             }
             .account1 {
+                margin-right: 70px;
                 color: #686E7A;
                 font-family: 'IBM Plex Sans KR', sans-serif;
-                font-size: 15px;
+                font-size: 13px;
                 font-style: normal;
                 font-weight: 500;
                 line-height: normal;
@@ -307,15 +328,64 @@
                 margin-right: 50px;
             }
             .account3 {
+                margin-right: 70px;
                 color: #686E7A;
                 font-family: 'IBM Plex Sans KR', sans-serif;
-                font-size: 15px;
+                font-size: 13px;
                 font-style: normal;
                 font-weight: 500;
                 line-height: normal;
             }
             #moneyinfotext2 {
                 margin-left: -130px;
+            }
+            .moneybutton {
+                margin-top: -45px;
+                margin-left: 230px;
+                width: 50px;
+                height: 21px;
+                flex-shrink: 0;
+                background-color: #f2f2f2;
+                border-radius: 10px;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                cursor: pointer;
+            }
+            .moneybutton-text {
+                color: #000;
+                text-align: center;
+                font-family: 'IBM Plex Sans KR', sans-serif;
+                font-size: 12px;
+                font-style: normal;
+                font-weight: 500;
+                line-height: 21px;
+                letter-spacing: -0.32px;
+            }
+            .moneyamount1 {
+                display: flex;
+                align-items: center;
+                color: #0085FF;
+                font-family: 'IBM Plex Sans KR', sans-serif;
+                font-size: 17px;
+                font-style: normal;
+                font-weight: 500;
+                line-height: normal;
+                margin-top: 20px;
+                margin-left: 205px;
+            }
+            
+            .moneyamount2 {
+                display: flex;
+                align-items: center;
+                color: #0085FF;
+                font-family: 'IBM Plex Sans KR', sans-serif;
+                font-size: 17px;
+                font-style: normal;
+                font-weight: 500;
+                line-height: normal;
+                margin-top: 25px;
+                margin-left: 205px;
             }
             .container3 {
             
@@ -328,7 +398,6 @@
                 margin-top: 24px;
                 width: 351px;
                 height: 62px;
-
                 font-size: 18px;
                 font-weight: 500;      
             }
@@ -346,7 +415,6 @@
             margin-top: 24px;
             width: 351px;
             height: 62px;
-
             font-size: 18px;
             font-weight: 500;      
         }
@@ -397,7 +465,7 @@
         </div>
         <div id="hellobox">
             <div id="header">
-                <svg xmlns="http://www.w3.org/2000/svg" width="34" height="36" viewBox="0 0 34 36" fill="none">
+                <svg xmlns="http://www.w3.org/2000/svg" id="back" width="34" height="36" viewBox="0 0 34 36" fill="none">
                     <path d="M21.25 27L12.75 18L21.25 9" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                   </svg>
                 <span id="function">계좌/자산</span>
@@ -442,7 +510,13 @@
                 </div>
                 <div id="moneytext1">
                     <span class="account" id="moneyinfotext">자립예탁금</span>
-                    <span class="account account1">[바오 은행] 351 0220 0730 23</span>            
+                    <span class="account account1">[바오 은행] 351 0220 0730 23</span>
+                    <div class="moneybutton">
+                        <span class="moneybutton-text">송금</span>
+                    </div>
+                    <div class="moneyamount1">
+                        14,700원
+                    </div>
                 </div>
             </div>
         </div>
@@ -460,7 +534,13 @@
                 </div>
                 <div id="moneytext2">
                     <span class="account2" id="moneyinfotext2">적금적금</span>
-                    <span class="account2 account3">[바오 은행] 351 0220 0730 23</span>            
+                    <span class="account2 account3">[바오 은행] 351 0220 0730 23</span>
+                    <div class="moneybutton">
+                        <span class="moneybutton-text">송금</span>
+                    </div>
+                    <div class="moneyamount2">
+                        60,000원
+                    </div>
                 </div>
             </div>
         </div>
