@@ -33,13 +33,19 @@
 
             // 라디오 버튼에 클릭 이벤트 리스너 추가
             $('input[type="radio"]').on('click', function() {
-                var selectedOption = $(this).index('input[type="radio"]');
+                let selectedOption = $(this).index('input[type="radio"]');
                 navigateToPage(selectedOption);
             });
         }
 
         createButton();
     });
+
+        $(document).ready(function() {
+            $("#button1").click(function() {
+                window.location.href = "index2.html";
+            });
+        });
     
         // 팝업창 열기
         function openPopup(popupId) {
@@ -61,6 +67,49 @@
                 window.location.href = 'select(tutorial).html';
             }
         }
+
+        $(document).ready(function() {
+            $(".account").on("input", function() {
+                var inputVal = $(this).val();
+                inputVal = inputVal.replace(/[^0-9\-]/g, '');
+                
+                if (inputVal.length > 11) {
+                inputVal = inputVal.substring(0, 11);
+                }
+
+                if (inputVal.length >= 6) {
+                inputVal = inputVal.slice(0, 5) + "-" + inputVal.slice(5); 
+                }
+
+                if (inputVal.length > 6 && inputVal.charAt(6) === '-') {
+                inputVal = inputVal.slice(0, 6) + inputVal.slice(7); 
+                }
+
+                $(this).val(inputVal);
+            });
+        });
+
+        $(document).ready(function() {
+            var initialValue = 5000000;
+            var formattedInitialValue = initialValue.toLocaleString();
+            
+            // 초기값 (잔액) 100만원으로
+            $(".mymoney").val(formattedInitialValue);
+            
+            // 컴마표시
+            $(".mymoney").on("input", function() {
+                var inputValue = $(this).val();
+                var numericValue = inputValue.replace(/[^0-9]/g, ""); // 숫자만 남기기
+                
+                if (numericValue === "") {
+                numericValue = 0; // 값이 없을 경우 0으로 초기화
+                }
+                
+                var formattedValue = parseInt(numericValue).toLocaleString();
+                
+                $(this).val(formattedValue);
+            });
+        });
     </script>
     <style media="screen">
         body {
@@ -137,7 +186,7 @@
             border-radius: 20px;
             background: #F4EEFF;
             box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25), 0px 4px 4px 0px rgba(0, 0, 0, 0.25) inset;
-            width: 626px;
+            width: 580px;
             height: 113px;
             font-size: 20px;
             margin-top: 550px;
@@ -155,12 +204,12 @@
 
         }
         .topBar {
-        position: absolute;
-        top: 10px; 
-        right: 10px; 
-        display: flex;
-        justify-content: flex-end;
-        width: 100%;
+            position: absolute;
+            top: 10px; 
+            right: 10px; 
+            display: flex;
+            justify-content: flex-end;
+            width: 100%;
         }
         
         input[type="radio"] {
@@ -177,7 +226,7 @@
             border-color: #9156F0;
             background-color: #9156F0;
         }
-        #id1, #id2, #id3, #id4 {
+        #id1,#id2, #id3, #id4 {
             margin-top: 50px; /* 50px 아래로 이동 */
             width: 802px;
             height: 110px;
@@ -186,15 +235,18 @@
             align-items: center;
         
         }
-        
-        
-        #id1,#id2,#id3 {
-            margin-left: 190px;
+        #id4{
+            margin-left: -170px;
         }
-        
+        #id3{
+           margin-left:-65px; 
+        }
+        #input::placeholder{
+            font-size: 26px;
+        }
         #idtext {
             text-align: center;
-            font-family: Inter;
+            font-family: 'IBM Plex Sans KR', sans-serif;
             font-size: 36px;
             font-style: normal;
             font-weight: 800;
@@ -202,7 +254,7 @@
         }
 
         #input-container {
-            width: 453px;
+            width: 400px;
             height: 72px;
             border-radius: 10px;
             border: 3px solid rgba(204, 204, 204, 0.80);
@@ -216,11 +268,13 @@
             flex: 1;
             border: none;
             padding: 0 10px;
-            font-family: Inter;
-            font-size: 18px;
+            font-family: 'IBM Plex Sans KR', sans-serif;
+            font-size: 30px;
             font-style: normal;
             font-weight: 500;
             line-height: normal;
+            width:100px;
+            text-align: center;
         }
         
         #button1 {
@@ -228,13 +282,15 @@
             background-color: transparent;
             border: none;
             cursor: pointer;
-            font-family: Inter;
+            font-family: 'IBM Plex Sans KR', sans-serif;
             font-size: 18px;
             font-style: normal;
             font-weight: 600;
             padding: 10px 15px;
             background: #F7F2FF;
         }
+
+        
         
 
         
@@ -257,27 +313,27 @@
                 <input type="radio" name="group">
             </div>
             <div id="id1">
-                <span id="idtext">아이디</span>
-                <div id="input-container">
-                    <input id="input" type="text">
-                </div>
-            </div>
-            <div id="id2">
                 <span id="idtext">이름</span>
                 <div id="input-container">
                     <input id="input" type="text">
                 </div>
             </div>
-            <div id="id3">
+            <div id="id2">
                 <span id="idtext">나이</span>
                 <div id="input-container">
                     <input id="input" type="text">
                 </div>
             </div>
+            <div id="id3">
+                <span id="idtext">계좌번호</span>
+                <div id="input-container">
+                    <input class="account" id="input" type="text" placeholder="12345-12345 형식으로 입력">
+                </div>
+            </div>
             <div id="id4">
                 <span id="idtext">주거래계좌 금액</span>
                 <div id="input-container">
-                    <input id="input" type="text">
+                    <input id="input" class="mymoney" type="text">
                 </div>
             </div>
             <button id="button1"><span class="mode">다음</span></button>

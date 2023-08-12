@@ -29,9 +29,16 @@
                     window.location.href = "../송금/계좌송금-1.html";
                 });
             });
+
         //뒤로가기 버튼 누르면 phone으로 돌아감
         $(document).ready(function() {
         $("#back").click(function() {
+            window.location.href = "../phone.html";
+            });
+        });
+        //홈버튼
+        $(document).ready(function() {
+        $("#icon1").click(function() {
             window.location.href = "../phone.html";
             });
         });
@@ -91,7 +98,7 @@
                 margin-left: -80px;
             
             } 
-            #back {
+            #back,#icon1,.custom-button,.custom2-button {
                 cursor: pointer;
             }
             #hellobox{
@@ -115,7 +122,7 @@
                 margin-top:10px;
             }
             #function{
-                width:70px;
+                width:100px;
                 color: #000;
                 text-align: center;
                 font-family: 'IBM Plex Sans KR', sans-serif;
@@ -205,7 +212,7 @@
                 width: 351px;
                 height: 62px;
                 font-size: 18px;
-                font-weight: 500;      
+                font-weight: 500;
             }
             #depAndWid {
                 margin-right: 250px;
@@ -251,13 +258,14 @@
                 letter-spacing: -0.32px;
                 display: block;
                 text-align: center;
-                margin-right: 50px;
+                margin-right: 40px;
+                margin-top:4px;
             }
             .account1 {
-                margin-right: 70px;
+                margin-left: -40px;
                 color: #686E7A;
                 font-family: 'IBM Plex Sans KR', sans-serif;
-                font-size: 13px;
+                font-size: 14px;
                 font-style: normal;
                 font-weight: 500;
                 line-height: normal;
@@ -267,7 +275,6 @@
             }
 
             .container2 {
-            
                 width: 390px;
                 height: 90px;
             }
@@ -325,13 +332,14 @@
                 letter-spacing: -0.32px;
                 display: block;
                 text-align: center;
-                margin-right: 50px;
+                margin-right: 40px;
+                margin-top:4px;
             }
             .account3 {
-                margin-right: 70px;
+                margin-left: -30px;
                 color: #686E7A;
                 font-family: 'IBM Plex Sans KR', sans-serif;
-                font-size: 13px;
+                font-size: 15px;
                 font-style: normal;
                 font-weight: 500;
                 line-height: normal;
@@ -372,7 +380,7 @@
                 font-weight: 500;
                 line-height: normal;
                 margin-top: 20px;
-                margin-left: 205px;
+                margin-left: 190px;
             }
             
             .moneyamount2 {
@@ -385,7 +393,7 @@
                 font-weight: 500;
                 line-height: normal;
                 margin-top: 25px;
-                margin-left: 205px;
+                margin-left: 190px;
             }
             .container3 {
             
@@ -492,7 +500,7 @@
             </div>
             <div class="money">
                 <span id="totalmoney">총 자산</span>
-                <span id="num">425,700원</span>
+                <span id="num">2,000,000원</span>
             </div>
         </div>
           
@@ -504,18 +512,22 @@
         <div class="moneybox">
             <div id="moneybank">
                 <div id="profile">
-                    <svg id="logo" xmlns="http://www.w3.org/2000/svg" width="38" height="37" viewBox="0 0 38 37" fill="none">
-                        <ellipse cx="18.954" cy="18.5254" rx="18.4415" ry="18.3301" fill="#D9D9D9"/>
+                    <svg id="logo" xmlns="http://www.w3.org/2000/svg" width="43" height="43" viewBox="0 0 43 43" fill="none">
+                        <circle cx="21.5" cy="21.5" r="21.5" fill="#54ADFF"/>
+                        <ellipse cx="26.8125" cy="17.5723" rx="1.5" ry="2.5" fill="white"/>
+                        <ellipse cx="15.8125" cy="17.5723" rx="1.5" ry="2.5" fill="white"/>
+                        <path fill-rule="evenodd" clip-rule="evenodd" d="M26.3125 25.0723C26.3125 27.8337 24.0739 30.0723 21.3125 30.0723C18.5511 30.0723 16.3125 27.8337 16.3125 25.0723C16.3125 22.3108 18.5511 20.0723 21.3125 20.0723C24.0739 20.0723 26.3125 22.3108 26.3125 25.0723ZM21.4037 23.1991C21.8827 23.1601 22.257 22.8248 22.257 22.4169C22.257 21.9828 21.8331 21.6309 21.3101 21.6309C20.7872 21.6309 20.3633 21.9828 20.3633 22.4169C20.3633 22.827 20.7416 23.1637 21.2242 23.1997L21.1445 26.6333H21.4834L21.4037 23.1991Z" fill="white"/>
+                        <path d="M28.8589 9.78002C29.7466 3.76213 38.5867 9.26735 32.5474 12.4777C39.8195 21.8036 33.9353 32.045 30.0842 36L30.5719 31.0441C19.8488 38.8466 -0.924627 28.0779 10.166 12.4533C5.00205 8.27864 12.8168 4.22594 14.2047 9.52369C19.5062 6.94564 26.0206 8.25419 28.8589 9.78002Z" stroke="white"/>
                       </svg>
                 </div>
                 <div id="moneytext1">
-                    <span class="account" id="moneyinfotext">자립예탁금</span>
-                    <span class="account account1">[바오 은행] 351 0220 0730 23</span>
+                    <span class="account" id="moneyinfotext">보통예탁금</span>
+                    <span class="account account1">[바오 은행] XXXXX-YYYYY</span>
                     <div class="moneybutton">
                         <span class="moneybutton-text">송금</span>
                     </div>
                     <div class="moneyamount1">
-                        14,700원
+                        1,000,000원
                     </div>
                 </div>
             </div>
@@ -528,18 +540,21 @@
         <div class="moneybox2">
             <div id="moneybank2">
                 <div id="profile2">
-                    <svg id="logo2" xmlns="http://www.w3.org/2000/svg" width="38" height="37" viewBox="0 0 38 37" fill="none">
-                        <ellipse cx="18.954" cy="18.5254" rx="18.4415" ry="18.3301" fill="#D9D9D9"/>
+                    <svg id="logo2" xmlns="http://www.w3.org/2000/svg" width="43" height="43" viewBox="0 0 43 43" fill="none">
+                        <circle cx="21.5" cy="21.5" r="21.5" fill="#54ADFF"/>
+                        <path d="M32.4178 16.7863C33.0129 18.5308 33.3422 20.4501 33.3422 22.4651C33.3422 30.4925 28.1169 37 21.6711 37C15.2253 37 10 30.4925 10 22.4651C10 15.1585 14.329 9.11111 19.9671 8.08395C20.6557 6.66137 22.1242 3.85416 22.4898 4.00591C22.9467 4.1956 23.1843 7.0445 23.8701 7.23064C24.9839 7.53296 27.5447 8.4162 28.5443 8.74816C29.2265 8.06844 30.7167 6.82044 31.2193 7.26621C31.8952 14.2373 28.0512 23.2819 22.3851 18.5112" stroke="white"/>
+                        <circle cx="22" cy="11" r="1" fill="white"/>
+                        <circle cx="27" cy="12" r="1" fill="white"/>
                       </svg>
                 </div>
                 <div id="moneytext2">
-                    <span class="account2" id="moneyinfotext2">적금적금</span>
-                    <span class="account2 account3">[바오 은행] 351 0220 0730 23</span>
+                    <span class="account2" id="moneyinfotext2">정기예금</span>
+                    <span class="account2 account3">[냐옹 은행] XXXXX-YYYYY</span>
                     <div class="moneybutton">
                         <span class="moneybutton-text">송금</span>
                     </div>
                     <div class="moneyamount2">
-                        60,000원
+                        1,000,000원
                     </div>
                 </div>
             </div>
