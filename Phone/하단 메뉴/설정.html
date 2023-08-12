@@ -11,6 +11,51 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
     <script>
 
+        //홈버튼 클릭(하단)
+            $(document).ready(function() {
+            $("#home").click(function() {
+                window.location.href = "../phone.html";
+                });
+            });
+
+            //마이데이터 클릭
+            $(document).ready(function() {
+            $("#mydata").click(function() {
+                window.location.href = "../계좌 자산 조회/계좌,자산 조회-1.html";
+                });
+            });
+            
+            //하단 내정보 클릭
+            $(document).ready(function() {
+            $("#myInfo").click(function() {
+                window.location.href = "내정보.html";
+                });
+            });
+
+        
+
+            //설정 클릭
+            $(document).ready(function() {
+            $("#setting").click(function() {
+                window.location.href = "설정.html";
+                });
+            });
+
+            //홈버튼
+            $(document).ready(function() {
+            $("#icon1").click(function() {
+                window.location.href = "../phone.html";
+                });
+            });
+
+            //뒤로가기버튼
+            $(document).ready(function() {
+            $("#back").click(function() {
+                window.location.href = "../phone.html";
+                });
+            });
+
+
     </script>
     <style>
         body {
@@ -93,6 +138,10 @@
                 font-weight: 800;
                 letter-spacing: -0.32px;
                 margin-left: 5px;
+            }
+
+            #back,#icon1,#home,#mydata,#myInfo,#setting{
+                cursor: pointer;
             }
             #icon{
                 display:flex;
@@ -389,7 +438,7 @@
         </div>
         <div id="hellobox">
             <div id="header">
-                <svg xmlns="http://www.w3.org/2000/svg" width="34" height="36" viewBox="0 0 34 36" fill="none">
+                <svg id="back" xmlns="http://www.w3.org/2000/svg" width="34" height="36" viewBox="0 0 34 36" fill="none">
                     <path d="M21.25 27L12.75 18L21.25 9" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                   </svg>
                 <span id="function">설정</span>

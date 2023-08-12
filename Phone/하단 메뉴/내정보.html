@@ -16,9 +16,53 @@
 
             // 송금한도 화면에 출력
             $('.money_limit_display').text(moneyLimit);
-
-
         });
+
+        //뒤로가기 버튼 누르면 phone으로 돌아감
+        $(document).ready(function() {
+        $("#back").click(function() {
+            window.location.href = "../phone.html";
+            });
+        });
+
+        //홈버튼 클릭
+        $(document).ready(function() {
+            $("#icon1").click(function() {
+                window.location.href = "../phone.html";
+                });
+        });
+
+
+        //홈버튼 클릭
+        $(document).ready(function() {
+            $("#home").click(function() {
+                window.location.href = "../phone.html";
+                });
+            });
+
+            //마이데이터 클릭
+            $(document).ready(function() {
+            $("#mydata").click(function() {
+                window.location.href = "../계좌 자산 조회/계좌,자산 조회-1.html";
+                });
+            });
+            
+            //하단 내정보 클릭
+            $(document).ready(function() {
+            $("#myInfo").click(function() {
+                window.location.href = "내정보.html";
+                });
+            });
+
+        
+
+            //설정 클릭
+            $(document).ready(function() {
+            $("#setting").click(function() {
+                window.location.href = "설정.html";
+                });
+            });
+
     </script>
     <style>
         body {
@@ -71,7 +115,11 @@
                 flex: 1 0 0;
                 align-self: stretch;
                 margin-left: -80px;
-            } #hellobox{
+            } 
+            #back,#icon1,#home,#mydata,#myInfo,#setting{
+                cursor: pointer;
+            }
+            #hellobox{
                 display: flex;
                 width: 389px;
                 height: 44px;
@@ -479,7 +527,7 @@
         </div>
         <div id="hellobox">
             <div id="header">
-                <svg xmlns="http://www.w3.org/2000/svg" width="34" height="36" viewBox="0 0 34 36" fill="none">
+                <svg xmlns="http://www.w3.org/2000/svg" id="back" width="34" height="36" viewBox="0 0 34 36" fill="none">
                     <path d="M21.25 27L12.75 18L21.25 9" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                   </svg>
                 <span id="function">내정보</span>
@@ -547,7 +595,7 @@
                           </svg>
                     </div>
                     <div id="moneytext1">
-                        <span class="account" id="moneyinfotext">자립예탁금</span>
+                        <span class="account" id="moneyinfotext">보통예탁금</span>
                         <span class="account account1">[바오 은행] XXXXX-YYYYY</span>            
                     </div>
                 </div>
@@ -560,8 +608,8 @@
                           </svg>
                     </div>
                     <div id="moneytext1">
-                        <span class="account" id="moneyinfotext">자립예탁금</span>
-                        <span class="account account1">[바오 은행] XXXXX-YYYYY</span>            
+                        <span class="account" id="moneyinfotext">정기예금</span>
+                        <span class="account account1">[냐옹 은행] XXXXX-YYYYY</span>            
                     </div>
                 </div>
             </div>
