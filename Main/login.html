@@ -90,11 +90,6 @@
         });
 
         $(document).ready(function() {
-            var initialValue = 5000000;
-            var formattedInitialValue = initialValue.toLocaleString();
-            
-            // 초기값 (잔액) 100만원으로
-            $(".mymoney").val(formattedInitialValue);
             
             // 컴마표시
             $(".mymoney").on("input", function() {
@@ -289,8 +284,6 @@
             padding: 10px 15px;
             background: #F7F2FF;
         }
-
-        
         
 
         
@@ -333,7 +326,7 @@
             <div id="id4">
                 <span id="idtext">주거래계좌 금액</span>
                 <div id="input-container">
-                    <input id="input" class="mymoney" type="text">
+                    <input id="input" class="mymoney" type="text" placeholder="한도는 500만원 미만으로 입력">
                 </div>
             </div>
             <button id="button1"><span class="mode">다음</span></button>
