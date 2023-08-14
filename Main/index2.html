@@ -27,7 +27,7 @@
                 } else if (selectedOption === 1) {
                     window.location.href = 'index2.html';
                 } else if (selectedOption === 2) {
-                    window.location.href = 'select(basic).html';
+                    window.location.href = 'select(tutorial).html';
                 }
             }
 
@@ -56,7 +56,7 @@
         // 페이지 이동
         function navigateToSelectPage(mode) {
             if (mode === 'basic') {
-                window.location.href = 'select(basic).html';
+                window.location.href = '../Phone/phone.html';
             } else if (mode === 'tutorial') {
                 window.location.href = 'select(tutorial).html';
             }
@@ -324,7 +324,7 @@
     <p>해당 모드로 접속하시게 된다면<br>모바일 뱅킹에 익숙하지 않은 사용자를 위해<br>송금, 계좌/자산 조회, 거래내역 조회<br>방법을 알려줍니다.</p>
     <div class="popup-buttons">
         <button class="popup-button-yes" onclick="navigateToSelectPage('tutorial')">계속하기</button>
-        <button class="popup-button-no" onclick="closePopup('popupTutorial')">초기화면</button>
+        <button class="popup-button-no" onclick="closePopup('popupTutorial')">닫기</button>
     </div>
 </div>
 
@@ -334,7 +334,7 @@
     <p>일반적인 모바일 뱅킹이 가능한 모드입니다</p>
     <div class="popup-buttons">
         <button class="popup-button-yes" onclick="navigateToSelectPage('basic')">계속하기</button>
-        <button class="popup-button-no" onclick="closePopup('popupBasic')">초기화면</button>
+        <button class="popup-button-no" onclick="closePopup('popupBasic')">닫기</button>
     </div>
 </div>
 

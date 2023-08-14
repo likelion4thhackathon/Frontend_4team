@@ -55,6 +55,13 @@
                 });
             });
 
+            //송금한도 설정 클릭
+            $(document).ready(function() {
+            $("#setsendlimit").click(function() {
+                window.location.href = "../중단 메뉴/송금한도설정.html";
+                });
+            });
+
 
     </script>
     <style>
@@ -178,7 +185,10 @@
                 margin-left: 13px;
                 margin-top: 25px;
                 line-height: 65px;
-                
+                cursor:pointer;
+            }
+            #setsendlimit:active{
+                background-color: #ccc;
             }
             #setsendlimittext {
                 color: #000;
@@ -533,7 +543,7 @@
     
         </div>
     
-    </div>xw
+    </div>
 
     
 </body>

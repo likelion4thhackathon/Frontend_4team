@@ -10,7 +10,7 @@
     <title>송금 모드</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
 
-    <style media="screen">
+    <style>
         body {
             margin: 0px;
         }
@@ -44,11 +44,10 @@
             justify-content: center;
         }
         #text{
-            width: 1238px;
+            width: 40vw;
             height: 217px;
             text-align: center;
             color: #000;
-            text-align: center;
             font-family: 'IBM Plex Sans KR', sans-serif;
             font-size: 36px;
             font-style: normal;
@@ -77,30 +76,24 @@
             <div id="text">
                 <span>송금을 하기 위해서 왼쪽 화면의 송금 버튼을 클릭하세요.
                     계좌송금과 휴대전화 송금이 가능합니다.</span>
-                
-                
-                
+  
             </div>
         </div>
     </div>
     
 
     <script>
-        $(document).ready(function() {
-            const iframe = $('#phoneFrame');
 
-            iframe.on('load', function() {
-                const iframeDocument = iframe.contents();
-                const targetElement = iframeDocument.find('#money');
-                const iframeDocument2 = iframe.contents();
-                const targetElement2 = iframeDocument.find("#fullscreen");
-            
-                targetElement.css('transform', 'scale(1.5)').css("border","2px solid blue");
-                targetElement2.css('transform', 'scale(1.5)');
+$(document).ready(function() {
+    
+    $("#phoneFrame").on("load", function() {
+            $(this).contents().find("#money").css("transform", "scale(1.5)").css('border','1px solid black');
+            $(this).contents().find("#enterNum").css("transform", "scale(1.4)").css("background-color","#fff");
+            $(this).contents().find(".enterNum-tuto").css("transform", "scale(1.4)").css("background-color","#fff");
+            $(this).contents().find("#fullscreen2").css("opacity", "0").css("background-color","#fff");
 
-            });
-        });
-        
+    });
+});
     </script>
 
 </body>

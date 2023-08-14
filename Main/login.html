@@ -27,7 +27,7 @@
                 } else if (selectedOption === 1) {
                     window.location.href = 'index2.html';
                 } else if (selectedOption === 2) {
-                    window.location.href = 'select(basic).html';
+                    window.location.href = 'select(tutorial).html';
                 }
             }
 
@@ -90,11 +90,7 @@
         });
 
         $(document).ready(function() {
-            var initialValue = 5000000;
-            var formattedInitialValue = initialValue.toLocaleString();
             
-            // 초기값 (잔액) 100만원으로
-            $(".mymoney").val(formattedInitialValue);
             
             // 컴마표시
             $(".mymoney").on("input", function() {
@@ -333,7 +329,7 @@
             <div id="id4">
                 <span id="idtext">주거래계좌 금액</span>
                 <div id="input-container">
-                    <input id="input" class="mymoney" type="text">
+                    <input id="input" class="mymoney" type="text" placeholder="5,000,000">
                 </div>
             </div>
             <button id="button1"><span class="mode">다음</span></button>

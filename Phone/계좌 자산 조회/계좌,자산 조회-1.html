@@ -42,6 +42,21 @@
             window.location.href = "../phone.html";
             });
         });
+
+        //계좌 잔액
+        $(document).ready(function() {
+            const balance = parseFloat(localStorage.getItem('balance'));
+            const balanceFormat = balance.toLocaleString('en-US');
+            $('#balance').text(balanceFormat+"원");
+        });
+
+        //총 잔액
+        $(document).ready(function() {
+            const balance = parseFloat(localStorage.getItem('balance'))+1000000;
+            const balanceFormat = balance.toLocaleString('en-US');
+            $('#totalbalance').text(balanceFormat+"원");
+        });
+
         
 
     </script>
@@ -176,11 +191,10 @@
                 line-height: 90px;
             }
             .money{
-                width: 185px;
+                width: 200px;
                 height: 115px;
                 flex-shrink: 0;
-                margin-left: 80px;
-                margin-top: 65px;
+                margin-top: 85px;
                 font-family: 'IBM Plex Sans KR', sans-serif;
                 font-size: 18px;
                 font-style: normal;
@@ -500,7 +514,7 @@
             </div>
             <div class="money">
                 <span id="totalmoney">총 자산</span>
-                <span id="num">2,000,000원</span>
+                <span id="totalbalance"></span>
             </div>
         </div>
           
@@ -526,8 +540,7 @@
                     <div class="moneybutton">
                         <span class="moneybutton-text">송금</span>
                     </div>
-                    <div class="moneyamount1">
-                        1,000,000원
+                    <div class="moneyamount1" id="balance">
                     </div>
                 </div>
             </div>

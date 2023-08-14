@@ -199,19 +199,7 @@
             });
         });
 
-        //계좌선택 토글창
-        $(document).ready(function() {
-            $("#money1").click(function() {
-                $("#toggleBox-1").toggle(); 
-                
-            });
-            
-
-            //x 버튼 클릭시 토글창 닫힘
-            $("#toggleClose-1").on("click", function (event) {
-                $("#toggleBox-1").hide();
-            });
-        });
+        
         
         $(document).ready(function() {
             // 로컬 스토리지에서 송금한도 불러와 할당
@@ -225,6 +213,14 @@
                 $('#money_limit_display').text(formattedMoneyLimit);
             }
         });
+
+        //계좌 잔액
+        $(document).ready(function() {
+            const balance = parseFloat(localStorage.getItem('balance'));
+            const balanceFormat = balance.toLocaleString('en-US');
+            $('#balance').text(balanceFormat+"원");
+        });
+
 
      
       
@@ -342,7 +338,7 @@
                 margin-top:10px;
 
             }
-            #icon1,#icon2,#money1,#centerbutton-1,#centerbutton-2,select,option,#bottombutton-1,#bottombutton-2,#bottombutton-3,#bottombox-2,button,#addRecentAccount{
+            #icon1,#money1,#centerbutton-1,#centerbutton-2,select,option,#bottombutton-1,#bottombutton-2,#bottombutton-3,#bottombox-2,button,#addRecentAccount{
                 cursor: pointer;
             }
             #moneybox{
@@ -352,7 +348,7 @@
                 box-shadow: 0 4px 4px rgba(0, 0, 0, 0.2);
 
             }
-            #money{
+            #money-ok{
                 display:flex;
                 width: 320.277px;
                 height: 60px;
@@ -398,19 +394,7 @@
                 margin-left:20px;
                 width:200px;
             }
-            #moneymoney1{
-                width: 46px;
-                height: 27px;
-                flex-shrink: 0;
-                margin-top:28px;
-            }
-            #money1{
-                display:flex;
-                width: 24px;
-                height: 24px;
-                flex-shrink: 0;
-                margin-left:60px;
-            }
+            
             #moneyLimit{
                 display:flex;
             }
@@ -997,7 +981,7 @@
 
 
         <div id="moneybox">
-            <div id="money">
+            <div id="money-ok">
                 <div id="profile">
                     <svg id="logo" xmlns="http://www.w3.org/2000/svg" width="43" height="43" viewBox="0 0 43 43" fill="none">
                         <circle cx="21.5" cy="21.5" r="21.5" fill="#54ADFF"/>
@@ -1008,17 +992,10 @@
                       </svg>
                 </div>
                 <div id="moneytext1">
-                    <span class="account">[한도제한]<span> 보통예탁금</span></span>
+                    <span class="account">[바오 은행]<span> 보통예탁금</span></span>
                     <span class="account account1">XXXXX-YYYYY</span>            
                 </div>
-                <div id="moneymoney1">
-                    <div id="money1">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="29" height="28" viewBox="0 0 29 28" fill="none">
-                            <path d="M21.6924 10.8694L14.6351 17.3071L7.69299 10.7454" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                          </svg>
-                    </div>
-                    
-                </div>
+                
             </div>
             <hr style="width: 80%">
             <div id="moneyLimit">
@@ -1031,8 +1008,8 @@
                 </div>
                 <div id="moneylimit2">
                     <div id="limitText">
-                        <p>&nbsp;1,000,000원</p>
-                        <p id="money_limit_display">5,000,000원</p>
+                        <p id="balance">&nbsp;</p>
+                        <p id="money_limit_display"></p>
                     </div>
                 </div>
             </div>

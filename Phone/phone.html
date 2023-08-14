@@ -76,6 +76,7 @@
             });
 
 
+
             //잔액 숨ㅁㄱ기기
             $(document).ready(function() {
                 $("#hidebutton").click(function() {
@@ -176,6 +177,42 @@
 
                 setInterval(changeImage, 5000);
             });
+
+
+            window.addEventListener('DOMContentLoaded', (event) => {
+                const moneyBox = document.getElementById('moneysend');
+                let scaleActive = true;
+
+                moneyBox.addEventListener('click', () => {
+                    if (scaleActive) {
+                        moneyBox.style.transform = 'scale(1)';
+                        scaleActive = false;
+                    }
+                });
+            });
+
+            $(document).ready(function() {
+                const sendMoney2 = parseFloat(localStorage.getItem('send_money2')) || 0;
+
+                let balance = parseFloat(localStorage.getItem('balance')) || 1000000;
+
+                balance -= sendMoney2 * 1000; 
+
+                if (isNaN(balance) || balance <= 0) {
+                    balance = 1000000;
+                }
+
+                const formattedBalance = balance.toLocaleString('en-US');
+                $('#moneychange').text(formattedBalance + "원");
+
+                localStorage.removeItem('send_money2');
+                localStorage.setItem('balance', balance); 
+            });
+
+
+
+
+
         
         </script>
 
@@ -265,38 +302,53 @@
                 margin-left: 5px;
             }
             
-            #icon{
-                display:flex;
-                width: 125px;
-                height: 38px;
-                flex-shrink: 0;
-                margin-left:67%;
-                
-            }
-            #icon1{
+            .icon-container {
                 display: flex;
-                width: 24px;
-                height: 24px;
-                flex-shrink: 0;
-                margin-top:14px;
-                margin-left:14%;
+                align-items: center;
+                margin-right: 10px;
+                cursor: pointer;
+                position: relative;
             }
-            #icon2{
-                display: flex;
-                width: 24px;
-                height: 24px;
-                flex-shrink: 0;
-                margin-top:14px;
-                margin-left:10%;
+
+            /* 아이콘 이름 스타일 */
+            .icon-name {
+                width: 100px;
+                height: 40px;
+                display: none;
+                position: absolute;
+                background-color: rgba(0, 0, 0, 0.8);
+                color: white;
+                padding: 5px;
+                border-radius: 5px;
+                z-index: 1;
+                bottom: -30px;
+                left: 50%;
+                transform: translateX(-50%);
             }
-            #icon3{
-                display: flex;
+
+            /* 마우스 호버 시 아이콘 이름 표시 */
+            .icon-container:hover .icon-name {
+                display: block;
+            }
+
+            /* 아이콘 스타일 */
+            #icon1 svg,
+            #icon2 svg,
+            #icon3 svg {
                 width: 24px;
-                height: 24px;
-                flex-shrink: 0;
-                margin-top:14px;
-                margin-left:10%;
-                
+                height: 25px;
+            }
+
+            /* #icon 스타일 */
+            #icon {
+                display: flex;
+                align-items: center;
+                margin-left: 67%;
+            }
+
+            /* 아이콘들 간 간격 스타일 */
+            .icon-container:not(:last-child) {
+                margin-right: 10px;
             }
             #hello{
                 width: 389px;
@@ -475,8 +527,11 @@
                 line-height: 70px;
             }
             #selectAccount-1,#selectAccount-2{
-                margin-left: 50px;
+                margin-left: 30px;
                 margin-top:35px;
+            }
+            #selectAccount-2{
+                margin-left:0px;
             }
             #money2{
                 display:flex;
@@ -553,7 +608,7 @@
                 height: 47px;
                 flex-shrink: 0;
                 margin-top:120px;
-                margin-left:-327.5px;
+                margin-left:-328.5px;
                 color: #0085FF;
                 font-family: 'IBM Plex Sans KR', sans-serif;
                 font-size: 16px;
@@ -793,6 +848,9 @@
                 line-height: 21px; /* 131.25% */
                 letter-spacing: -0.32px;
             }
+            .span-container span{
+                font-size: 16px;
+            }
         </style>
     </head>
     <body>
@@ -831,24 +889,27 @@
                     <span id="mytext">내 정보</span>
                 </div>
                 <div id="icon">
-                    <div id="icon1">
+                    <div id="icon1" class="icon-container">
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="25" viewBox="0 0 24 25" fill="none">
                             <path d="M11.001 19.5332C15.4193 19.5332 19.001 15.9515 19.001 11.5332C19.001 7.11492 15.4193 3.5332 11.001 3.5332C6.5827 3.5332 3.00098 7.11492 3.00098 11.5332C3.00098 15.9515 6.5827 19.5332 11.001 19.5332Z" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                             <path d="M21.001 21.5336L16.651 17.1836" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                         </svg>
+                        <div class="icon-name">검색기능입니다.</div>
                     </div>
-                    <div id="icon2">
+                    <div id="icon2" class="icon-container">
                         <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 25 25" fill="none">
                             <path d="M18.0991 8.53223C18.0991 6.94093 17.467 5.4148 16.3418 4.28959C15.2165 3.16437 13.6904 2.53223 12.0991 2.53223C10.5078 2.53223 8.9817 3.16437 7.85648 4.28959C6.73126 5.4148 6.09912 6.94093 6.09912 8.53223C6.09912 15.5322 3.09912 17.5322 3.09912 17.5322H21.0991C21.0991 17.5322 18.0991 15.5322 18.0991 8.53223Z" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                             <path d="M13.8291 21.5322C13.6533 21.8353 13.401 22.0869 13.0974 22.2618C12.7937 22.4366 12.4495 22.5287 12.0991 22.5287C11.7488 22.5287 11.4045 22.4366 11.1009 22.2618C10.7973 22.0869 10.545 21.8353 10.3691 21.5322" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                         </svg>
+                        <div class="icon-name">알림확인기능입니다.</div>
                     </div>
-                    <div id="icon3">
+                    <div id="icon3" class="icon-container">
                         <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 25 25" fill="none">
                             <path d="M3.55908 12.5322H21.5591" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                             <path d="M3.55908 6.53223H21.5591" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                             <path d="M3.55908 18.5322H21.5591" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                         </svg>
+                        <div class="icon-name">메뉴 바 입니다.</div>
                     </div>
                 </div>
             </div>
@@ -901,12 +962,8 @@
                             <span>[냐옹 은행]</span>
                             <span class="myAccount-account">XXXXX-YYYYY</span>    
                     </div>
-                    <div id="selectAccount-2" class="svg-container">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="29" height="30" viewBox="0 0 29 30" fill="none">
-                            <rect width="29" height="29.0437" rx="10" fill="#D6D6D6"/>
-                            <path d="M9.00009 11L14.0001 19" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                            <path d="M19.0001 11L14.0001 19" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                          </svg>
+                    <div id="selectAccount-2" class="span-container">
+                        <span>정기예금</span>
                     </div>
                     
                 </button>
@@ -1063,7 +1120,7 @@
                 </div>
             </div>
             <div id="photobox">
-                <img id="change" src="../ad/나무심는날.png">
+                <img id="change" src="../ad/나무심는날.png">
             </div>
             <div id="bottom">
                 <div id="home">

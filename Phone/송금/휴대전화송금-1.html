@@ -67,19 +67,7 @@
                 });
         });
 
-        //계좌선택 토글창
-        $(document).ready(function() {
-            $("#money1").click(function() {
-                $("#toggleBox-1").toggle(); 
-                
-            });
-            
 
-            //x 버튼 클릭시 토글창 닫힘
-            $("#toggleClose-1").on("click", function (event) {
-                $("#toggleBox-1").hide();
-            });
-        });
 
         // 010-1234-1234 형식으로 - 자동 삽입
         $(document).ready(function() {
@@ -102,6 +90,18 @@
             });
         });
 
+        $(document).ready(function() {
+            // 로컬 스토리지에서 송금한도 불러와 할당
+            const moneyLimit = localStorage.getItem("money_limit_d");
+            
+            if (moneyLimit !== null) {
+                const parsedMoneyLimit = parseInt(moneyLimit.replace(/,/g, '').replace('원', ''));
+                const formattedMoneyLimit = parsedMoneyLimit === 500 ? '5,000,000원' : (parsedMoneyLimit * 10000).toLocaleString() + '원';
+                
+                // 화면에 출력
+                $('#money_limit_display').text(formattedMoneyLimit);
+            }
+        });
 
 
 
@@ -179,7 +179,7 @@
                 margin-left:20px;
                 margin-top:10px;
             }
-            #back,#icon1,#icon2,#money1,#centerbutton-1,#centerbutton-2,select,option,#bottombutton-1,#bottombutton-2,#bottombutton-3,#bottombox-2,button{
+            #back,#icon1,#money1,#centerbutton-1,#centerbutton-2,select,option,#bottombutton-1,#bottombutton-2,#bottombutton-3,#bottombox-2,button{
                 cursor: pointer;
             }
             #function{
@@ -226,7 +226,7 @@
                 box-shadow: 0 4px 4px rgba(0, 0, 0, 0.2);
 
             }
-            #money{
+            #money-ok{
                 display:flex;
                 width: 320.277px;
                 height: 60px;
@@ -241,8 +241,7 @@
                 flex-shrink: 0;
             }
             #logo{
-                margin:15px 16.5px;
-
+                margin:11px 13.5px;
             }
             #moneytext1{
                 width: 180px;
@@ -272,19 +271,7 @@
                 margin-left:20px;
                 width:200px;
             }
-            #moneymoney1{
-                width: 46px;
-                height: 27px;
-                flex-shrink: 0;
-                margin-top:28px;
-            }
-            #money1{
-                display:flex;
-                width: 24px;
-                height: 24px;
-                flex-shrink: 0;
-                margin-left:60px;
-            }
+            
             #moneyLimit{
                 display:flex;
             }
@@ -559,73 +546,22 @@
         </div>
 
 
-        <div id="toggleBox-1">
-            <span id="toggleHeader-1">계좌 선택</span>
-            <svg id="toggleClose-1" xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 14 14" fill="none">
-                <path d="M13 1L1 13" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                <path d="M1 1L13 13" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-              </svg>
-            <button id="bottombox-2-t-1">
-                <div id="myAccount-1">
-                    <svg id="logo-2-1" xmlns="http://www.w3.org/2000/svg" width="38" height="37" viewBox="0 0 38 37" fill="none">
-                        <ellipse cx="18.954" cy="18.5254" rx="18.4415" ry="18.3301" fill="#D9D9D9"/>
-                      </svg>
-                </div>
-                <div id="myAccount-1-1">
-                        <span>자립예탁금</span>
-                        <span class="myAccount-account-1">729-1707-0715-23</span>    
-                </div>
-                <div id="selectAccount-1-1" class="svg-container-1">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="29" height="30" viewBox="0 0 29 30" fill="none">
-                        <rect width="29" height="29.0437" rx="10" fill="#0085FF"/>
-                        <path d="M9.00009 11L14.0001 19" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                        <path d="M19.0001 11L14.0001 19" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                      </svg>
-              </div>
-            </button>
-
-
-            <button id="bottombox-2-t-1">
-                <div id="myAccount-1">
-                    <svg id="logo-2-1" xmlns="http://www.w3.org/2000/svg" width="38" height="37" viewBox="0 0 38 37" fill="none">
-                        <ellipse cx="18.954" cy="18.5254" rx="18.4415" ry="18.3301" fill="#D9D9D9"/>
-                      </svg>
-                </div>
-                <div id="myAccount-2-1">
-                        <span>자립예탁금</span>
-                        <span class="myAccount-account-1">351-1289-0916-42</span>    
-                </div>
-                <div id="selectAccount-2-1" class="svg-container-1">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="29" height="30" viewBox="0 0 29 30" fill="none">
-                        <rect width="29" height="29.0437" rx="10" fill="#D6D6D6"/>
-                        <path d="M9.00009 11L14.0001 19" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                        <path d="M19.0001 11L14.0001 19" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                      </svg>
-                </div>
-                
-            </button>
-        </div>
-
-
         <div id="moneybox">
-            <div id="money">
+            <div id="money-ok">
                 <div id="profile">
-                    <svg id="logo" xmlns="http://www.w3.org/2000/svg" width="38" height="37" viewBox="0 0 38 37" fill="none">
-                        <ellipse cx="18.954" cy="18.5254" rx="18.4415" ry="18.3301" fill="#D9D9D9"/>
+                    <svg id="logo" xmlns="http://www.w3.org/2000/svg" width="43" height="43" viewBox="0 0 43 43" fill="none">
+                        <circle cx="21.5" cy="21.5" r="21.5" fill="#54ADFF"/>
+                        <ellipse cx="26.8125" cy="17.5723" rx="1.5" ry="2.5" fill="white"/>
+                        <ellipse cx="15.8125" cy="17.5723" rx="1.5" ry="2.5" fill="white"/>
+                        <path fill-rule="evenodd" clip-rule="evenodd" d="M26.3125 25.0723C26.3125 27.8337 24.0739 30.0723 21.3125 30.0723C18.5511 30.0723 16.3125 27.8337 16.3125 25.0723C16.3125 22.3108 18.5511 20.0723 21.3125 20.0723C24.0739 20.0723 26.3125 22.3108 26.3125 25.0723ZM21.4037 23.1991C21.8827 23.1601 22.257 22.8248 22.257 22.4169C22.257 21.9828 21.8331 21.6309 21.3101 21.6309C20.7872 21.6309 20.3633 21.9828 20.3633 22.4169C20.3633 22.827 20.7416 23.1637 21.2242 23.1997L21.1445 26.6333H21.4834L21.4037 23.1991Z" fill="white"/>
+                        <path d="M28.8589 9.78002C29.7466 3.76213 38.5867 9.26735 32.5474 12.4777C39.8195 21.8036 33.9353 32.045 30.0842 36L30.5719 31.0441C19.8488 38.8466 -0.924627 28.0779 10.166 12.4533C5.00205 8.27864 12.8168 4.22594 14.2047 9.52369C19.5062 6.94564 26.0206 8.25419 28.8589 9.78002Z" stroke="white"/>
                       </svg>
                 </div>
                 <div id="moneytext1">
-                    <span class="account">[한도제한]<span> 자립예탁금</span></span>
+                    <span class="account">[바오 은행]<span> 보통예탁금</span></span>
                     <span class="account account1">XXXXX-YYYYY</span>            
                 </div>
-                <div id="moneymoney1">
-                    <div id="money1">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="29" height="28" viewBox="0 0 29 28" fill="none">
-                            <path d="M21.6924 10.8694L14.6351 17.3071L7.69299 10.7454" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                          </svg>
-                    </div>
-                    
-                </div>
+                
             </div>
             <hr style="width: 80%">
             <div id="moneyLimit">
@@ -638,8 +574,8 @@
                 </div>
                 <div id="moneylimit2">
                     <div id="limitText">
-                        <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;60,000원</p>
-                        <p>5,000,000원</p>
+                        <p>&nbsp;1,000,000원</p>
+                        <span id="money_limit_display"></span>
                     </div>
                 </div>
             </div>
@@ -649,13 +585,13 @@
             <div id="centerbutton-2">휴대전화 송금</div>
         </div>
         <div id="centerbox-2">
-            <div id="enterNum">
+            <div id="enterNum" class="enterNum-tuto">
                 <div id="number"><span>연락처</span></div>
                 <input class="num" type="text" id="account_number-p" name="account_number" placeholder="휴대전화번호 입력" />
             </div>
         </div>
         <div id="centerbox-2">
-            <div id="enterNum">
+            <div id="enterNum" class="enterNum-tuto">
                 <div id="receive"><span>받는 분 이름</span></div>
                 <input class="num" type="text" id="account_name-p" name="account_number" placeholder="실명 입력 (성+이름)" />
             </div>
