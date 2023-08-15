@@ -1,6 +1,5 @@
 <!DOCTYPE html> 
 <html>
-
     <head>
         <link rel="preconnect" href="https://fonts.googleapis.com%22%3E/">
         <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin>
@@ -175,7 +174,7 @@
             });
 
             $(document).ready(function() {
-                const sendMoney2 = parseFloat(localStorage.getItem('send_money2')) || 0;
+                const sendMoney2 = parseFloat(localStorage.getItem('send_money')) || 0;
                 let balance = parseFloat(localStorage.getItem('balance')) || 1000000;
 
                 balance -= sendMoney2 * 1000; 
@@ -217,10 +216,10 @@
                 height: 100vh;
             }
             #phone{
-                position: absolute; /* 변경된 부분 */
-                top: 5; /* 변경된 부분 */
-                left: 5; /* 변경된 부분 */
-                z-index: 1; /* 변경된 부분 */   
+                position: absolute; 
+                top: 5; 
+                left: 5;
+                z-index: 1;   
                 margin-left: -25px;
                 margin-top: -5px;
                 width: 420px;
@@ -904,7 +903,6 @@
     <body>
         <div id="phone">
             <img style="width:435px;  height:883px" src="../IPhone/iPhone 14 Pro/Deep Purple.jpg">
-        </div>
         </div>
         <div id="fullscreen">
             <div id="timebar">
