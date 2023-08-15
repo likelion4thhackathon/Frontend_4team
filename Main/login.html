@@ -41,11 +41,7 @@
         createButton();
     });
 
-        $(document).ready(function() {
-            $("#button1").click(function() {
-                window.location.href = "index2.html";
-            });
-        });
+        
     
         // 팝업창 열기
         function openPopup(popupId) {
@@ -70,7 +66,7 @@
 
         $(document).ready(function() {
             $(".account").on("input", function() {
-                var inputVal = $(this).val();
+                let inputVal = $(this).val();
                 inputVal = inputVal.replace(/[^0-9\-]/g, '');
                 
                 if (inputVal.length > 11) {
@@ -94,18 +90,71 @@
             
             // 컴마표시
             $(".mymoney").on("input", function() {
-                var inputValue = $(this).val();
-                var numericValue = inputValue.replace(/[^0-9]/g, ""); // 숫자만 남기기
+                let inputValue = $(this).val();
+                let numericValue = inputValue.replace(/[^0-9]/g, ""); // 숫자만 남기기
                 
                 if (numericValue === "") {
                 numericValue = 0; // 값이 없을 경우 0으로 초기화
                 }
                 
-                var formattedValue = parseInt(numericValue).toLocaleString();
+                let formattedValue = parseInt(numericValue).toLocaleString();
                 
                 $(this).val(formattedValue);
             });
         });
+
+        $(document).ready(function() {
+                $("#userForm").submit(function(event) {
+                    event.preventDefault();
+                    
+                    let username = $("#username").val();
+                    let age = $("#age").val();
+                    let accountNumber = $("#accountNumber").val();
+                    let accountBalance = $("#accountBalance").val().replace(/,/g, "");
+
+                    $.ajax({
+                        url: "/api/save_user_data", // 백엔드 API URL
+                        type: "POST",
+                        data: {
+                            username: username,
+                            age: age,
+                            accountNumber: accountNumber,
+                            accountBalance: accountBalance
+                        },
+                        success: function(response) {
+                            // 서버 응답에 대한 처리
+                            console.log(response);
+                            window.location.href = 'index2.html'
+                        },
+                        error: function(error) {
+                            console.error("Error:", error);
+                        }
+                    });
+                });
+            });
+
+            $(document).ready(function() {
+                $("#button1").click(function(event) {
+                    event.preventDefault();
+                    
+                    let allFieldsFilled = true;
+                    $(".require").each(function() {
+                        if ($(this).val().trim() === "") {
+                            allFieldsFilled = false;
+                            return false; 
+                        }
+                    });
+                    
+                    if (allFieldsFilled) {
+                        window.location.href = "index2.html";
+                    } else {
+                        alert("필수 항목을 모두 입력해주세요.");
+                    }
+                });
+            });
+
+
+            
     </script>
     <style media="screen">
         body {
@@ -121,7 +170,7 @@
         }
 
         #left {
-            background: #F7F2FF;
+            background: #DAE8EB;
             float: left;
             height: 100vh;
             width: 30%;
@@ -180,8 +229,8 @@
         }
         #button1{
             border-radius: 20px;
-            background: #F4EEFF;
-            box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25), 0px 4px 4px 0px rgba(0, 0, 0, 0.25) inset;
+            background: #DAE8EB;
+            box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.5), 0px 4px 4px 0px rgba(0, 0, 0, 0.25) inset;
             width: 580px;
             height: 113px;
             font-size: 20px;
@@ -213,14 +262,14 @@
             width: 20px;
             height: 20px;
             border-radius: 50%;
-            border: 2px solid #9156F0;
+            border: 2px solid #DAE8EB;
             margin-right: 10px;
             background-color: transparent;
             cursor: pointer;
             }
         input[type="radio"]:checked {
-            border-color: #9156F0;
-            background-color: #9156F0;
+            border-color: #86c5d3;
+            background: #86c5d3;   
         }
         #id1,#id2, #id3, #id4 {
             margin-top: 50px; /* 50px 아래로 이동 */
@@ -232,12 +281,12 @@
         
         }
         #id4{
-            margin-left: -170px;
+            margin-left: -90px;
         }
         #id3{
-           margin-left:-65px; 
+           margin-left:-35px; 
         }
-        #input::placeholder{
+        #username::placeholder,#age::placeholder,#accountNumber::placeholder,#accountBalance::placeholder{
             font-size: 26px;
         }
         #idtext {
@@ -260,7 +309,7 @@
             margin-left: 10px;
         }
 
-        #input {
+        #username,#age,#accountNumber,#accountBalance {
             flex: 1;
             border: none;
             padding: 0 10px;
@@ -274,7 +323,8 @@
         }
         
         #button1 {
-            margin-top: 80px;
+            margin-top: 100px;
+            margin-left: 80px;
             background-color: transparent;
             border: none;
             cursor: pointer;
@@ -283,7 +333,10 @@
             font-style: normal;
             font-weight: 600;
             padding: 10px 15px;
-            background: #F7F2FF;
+            background: #DAE8EB;        
+        }
+        #button1:active{
+            background: #ccc;
         }
 
         
@@ -308,32 +361,33 @@
                 <input type="radio" name="group">
                 <input type="radio" name="group">
             </div>
-            <div id="id1">
-                <span id="idtext">이름</span>
-                <div id="input-container">
-                    <input id="input" type="text">
+            <form id="userForm">
+                <div id="id1">
+                    <span id="idtext">이름</span>
+                    <div id="input-container">
+                        <input class="require" id="username" type="text" required>
+                    </div>
                 </div>
-            </div>
-            <div id="id2">
-                <span id="idtext">나이</span>
-                <div id="input-container">
-                    <input id="input" type="text">
+                <div id="id2">
+                    <span id="idtext">나이</span>
+                    <div id="input-container">
+                        <input class="require" id="age" type="text" required>
+                    </div>
                 </div>
-            </div>
-            <div id="id3">
-                <span id="idtext">계좌번호</span>
-                <div id="input-container">
-                    <input class="account" id="input" type="text" placeholder="12345-12345 형식으로 입력">
+                <div id="id3">
+                    <span id="idtext">계좌번호</span>
+                    <div id="input-container">
+                        <input class="account require" id="accountNumber" type="text" placeholder="12345-12345 형식으로 입력" required>
+                    </div>
                 </div>
-            </div>
-            <div id="id4">
-                <span id="idtext">주거래계좌 금액</span>
-                <div id="input-container">
-                    <input id="input" class="mymoney" type="text" placeholder="5,000,000">
+                <div id="id4">
+                    <span id="idtext">주거래계좌 금액</span>
+                    <div id="input-container">
+                        <input id="accountBalance" class="mymoney require" type="text" placeholder="5,000,000" required>
+                    </div>
                 </div>
-            </div>
-            <button id="button1"><span class="mode">다음</span></button>
-            
+                <button id="button1" ><span class="mode">다음</span></button>
+            </form>
         </div>
     </div>
 

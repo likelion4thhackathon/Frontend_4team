@@ -117,6 +117,37 @@
             }
         });
 
+
+        //보낼 금액 로컬변수 저장
+        $(document).ready(function() {
+            $('#nextbutton').on('click', function() {
+            const sendMoney = $('.num').val().trim();
+            const sendMoney2 = parseFloat($('.num').val().trim());
+
+            localStorage.setItem('send_money', sendMoney);
+            localStorage.setItem('send_money2', sendMoney2);
+
+            window.location.href = '휴대전화송금-3.html'; 
+            });
+        });
+        
+        //계좌 잔액
+        $(document).ready(function() {
+            const balance = parseFloat(localStorage.getItem('balance'));
+            const balanceFormat = balance.toLocaleString('en-US');
+            $('#balance').text(balanceFormat + "원");
+
+            $('.num').on('input', function() {
+                const inputValue = parseFloat($(this).val().replace(/,/g, ''));
+
+                if (!isNaN(inputValue)) {
+                    if (inputValue > balance) {
+                        $(this).val(balanceFormat); 
+                    } 
+                } 
+            });
+        });
+
         
     </script>
     <title>계좌송금-4</title>
@@ -683,7 +714,7 @@
                 </div>
                 <div id="moneylimit2">
                     <div id="limitText">
-                        <p>&nbsp;1,000,000원</p>
+                        <p id="balance">&nbsp;</p>
                         <span id="money_limit_display"></span>
                     </div>
                 </div>

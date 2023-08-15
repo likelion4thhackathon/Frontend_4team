@@ -103,6 +103,13 @@
             }
         });
 
+        //계좌 잔액
+        $(document).ready(function() {
+            const balance = parseFloat(localStorage.getItem('balance'));
+            const balanceFormat = balance.toLocaleString('en-US');
+            $('#balance').text(balanceFormat+"원");
+        });
+
 
 
 
@@ -574,7 +581,7 @@
                 </div>
                 <div id="moneylimit2">
                     <div id="limitText">
-                        <p>&nbsp;1,000,000원</p>
+                        <p id="balance">&nbsp;</p>
                         <span id="money_limit_display"></span>
                     </div>
                 </div>
