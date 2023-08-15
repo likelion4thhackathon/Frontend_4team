@@ -8,6 +8,22 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+    <script>
+        
+        //뒤로가기 버튼
+        $(document).ready(function() {
+        $("#back").click(function() {
+            window.location.href = "../phone.html";
+            });
+        });
+        //홈 버튼
+        $(document).ready(function() {
+        $("#icon1").click(function() {
+            window.location.href = "../phone.html";
+            });
+        });
+    </script>
     <style>
             body {
                 margin: 0; 
@@ -287,6 +303,9 @@
                 width: 100%;
                 margin-top: 10px;
             }
+            #back,#icon1{
+                cursor: pointer;
+            }
     </style>
 </head>
 <body>
@@ -318,7 +337,7 @@
         </div>
         <div id="hellobox">
             <div id="header">
-                <svg xmlns="http://www.w3.org/2000/svg" width="34" height="36" viewBox="0 0 34 36" fill="none">
+                <svg id="back" xmlns="http://www.w3.org/2000/svg" width="34" height="36" viewBox="0 0 34 36" fill="none">
                     <path d="M21.25 27L12.75 18L21.25 9" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                   </svg>
                 <span id="function">거래내역</span>
@@ -347,16 +366,10 @@
                       </svg>
                 </div>
                 <div id="moneytext1">
-                    <span class="account">[한도제한]<span> 자립예탁금</span></span>
-                    <span class="account account1">730 - 1912 - 1943 -23</span>            
+                    <span class="account">[바오 은행]<span> 보통예탁금</span></span>
+                    <span class="account account1">XXXXX-YYYYY</span>            
                 </div>
-                <div id="moneymoney1">
-                    <div id="money1">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="29" height="28" viewBox="0 0 29 28" fill="none">
-                            <path d="M21.6924 10.8694L14.6351 17.3071L7.69299 10.7454" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                          </svg>
-                    </div>
-                </div>
+                
             </div>
             <hr style="width: 80%">
             <div id="moneyLimit">
@@ -367,7 +380,7 @@
                 </div>
                 <div id="moneylimit2">
                     <div id="limitText">
-                        <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;60,000원</p>
+                        <p>1,000,000원</p>
                     </div>
                 </div>
             </div>

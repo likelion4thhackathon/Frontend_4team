@@ -286,7 +286,7 @@
                 color: white;
                 padding: 5px;
                 border-radius: 5px;
-                bottom: -30px;
+                bottom: -70px;
                 left: 50%;
                 transform: translateX(-50%);
             }
@@ -417,7 +417,6 @@
                 height: 413px;
                 flex-shrink: 0;
                 border-radius: 39px 38px 10px 0px;
-                border:1px solid black;
                 background: #FFF;
                 display: none;
                 position: absolute;
@@ -431,7 +430,7 @@
                 font-size: 18px;
                 font-style: normal;
                 font-weight: 600;
-                line-height: 21px; /* 116.667% */
+                line-height: 21px; 
                 letter-spacing: -0.32px;
                 margin-left: 30px;
                 line-height: 50px;
@@ -503,15 +502,43 @@
                 margin-left:30px;
                 margin-top: 5px;
             }
-            #money3{
-                display:flex;
+            #moneymoney3 {
+                width: 37px;
+                height: 27px;
+                flex-shrink: 0;
+                margin-top: 28px;
+                cursor: pointer;
+                position: relative; /* 추가 */
+            }
+
+            #money3 {
+                display: flex;
                 width: 14px;
                 height: 15px;
                 flex-shrink: 0;
                 margin-left: 15px;
-                margin-top:5px;
-
+                margin-top: 5px;
             }
+
+            .money3-name {
+                width: 90px;
+                height: 50px; 
+                font-family: 'IBM Plex Sans KR', sans-serif;
+                display: none;
+                background-color: rgba(62, 154, 245, 0.8);
+                color: white;
+                padding: 5px;
+                border-radius: 5px;
+                position: absolute; 
+                bottom: -65px; 
+                transform: translateX(-50%);
+                white-space: nowrap; 
+            }
+
+            #moneymoney3:hover .money3-name {
+                display: block;
+            }
+
             #moneymoney2{
                 width: 46px;
                 height: 27px;
@@ -523,6 +550,7 @@
                 height: 27px;
                 flex-shrink: 0;
                 margin-top:28px;
+                cursor: pointer;
             }
             #moneychange{
                 width: 200px;
@@ -549,16 +577,19 @@
                 line-height:16px;
                 color:#0085FF;
                 font-family: 'IBM Plex Sans KR', sans-serif;
-                font-size: 10px;
+                font-size: 18px;
                 text-align: center;
             }
             #hidebutton{
-                width: 34.939px;
-                height: 16px;
+                padding-top: 5px;
+                width: 55px;
+                height: 25px;
                 flex-shrink: 0;
                 border-radius: 20px;
+                font-weight: 5000;
                 border: 1px solid #54ADFF;
-                margin-top:20px;
+                margin-top:15px;
+                vertical-align: top;
             }
             #hidebutton:hover{
                 cursor: pointer;
@@ -757,29 +788,14 @@
                 box-shadow: 0px 4px 4px 0px rgba(194, 194, 205, 0.25) inset;
                 margin-top: 26px;
             }
-            #home{
-                width: 75px;
-                height: 91px;
-                flex-shrink: 0;
-            }
-            #mydata{
-                width: 75px;
-                height: 91px;
-                flex-shrink: 0;
-            }
-            #myInfo{
-                width: 75px;
-                height: 91px;
-                flex-shrink: 0;
-            }
-            #setting{
+            #home,#mydata,#myInfo,#setting{
                 width: 75px;
                 height: 91px;
                 flex-shrink: 0;
             }
             .bottomicon{
                 margin-left:25%;
-                margin-top:45%;
+                margin-top:30%;
             }
             img{
                 width:375px;
@@ -809,6 +825,10 @@
                 font-weight: 500;
                 line-height: 21px; /* 131.25% */
                 letter-spacing: -0.32px;
+            }
+            #change {
+                border-style: none;
+                filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
             }
         </style>
     </head>
@@ -983,13 +1003,14 @@
                                 <path d="M7.96584 13.3555C8.28801 13.3555 8.54917 13.0756 8.54917 12.7305C8.54917 12.3853 8.28801 12.1055 7.96584 12.1055C7.64367 12.1055 7.38251 12.3853 7.38251 12.7305C7.38251 13.0756 7.64367 13.3555 7.96584 13.3555Z" stroke="#0085FF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                               </svg>
                         </div>
+                        <div class="money3-name">아직 준비중인<br>기능입니다</div>
                     </div>
                     <div id="moneychange">
                         <span>1,000,000원</span>
                         
                     </div>
                     <div id="moneyHide">
-                        <div id="hidebutton">숨김</div>
+                        <div id="hidebutton"><span id="hidebutontext">숨김</span></div>
 
                     </div>
                     <div id="moneysendlist">
@@ -998,7 +1019,6 @@
                     </div>
                     <div id="moneysend"> 
                         <span>송금</span>
-
                     </div>
                     
                 </div>
