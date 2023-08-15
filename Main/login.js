@@ -52,74 +52,58 @@ $(document).ready(function() {
         }
     }
 
-    $(document).ready(function() {
-        $(".account").on("input", function() {
-            let inputVal = $(this).val();
-            inputVal = inputVal.replace(/[^0-9\-]/g, '');
-            
-            if (inputVal.length > 11) {
-            inputVal = inputVal.substring(0, 11);
-            }
 
-            if (inputVal.length >= 6) {
-            inputVal = inputVal.slice(0, 5) + "-" + inputVal.slice(5); 
-            }
 
-            if (inputVal.length > 6 && inputVal.charAt(6) === '-') {
-            inputVal = inputVal.slice(0, 6) + inputVal.slice(7); 
-            }
-
-            $(this).val(inputVal);
-        });
-    });
-
-    $(document).ready(function() {
-        
-        
-        // 컴마표시
-        $(".mymoney").on("input", function() {
-            let inputValue = $(this).val();
-            let numericValue = inputValue.replace(/[^0-9]/g, ""); // 숫자만 남기기
-            
-            if (numericValue === "") {
-            numericValue = 0; // 값이 없을 경우 0으로 초기화
-            }
-            
-            let formattedValue = parseInt(numericValue).toLocaleString();
-            
-            $(this).val(formattedValue);
-        });
-    });
-
-    $(document).ready(function() {
-            $("#userForm").submit(function(event) {
-                event.preventDefault();
+        $(document).ready(function() {
+            $(".mymoney").on("input", function() {
+                let inputValue = $(this).val();
+                let numericValue = inputValue;
                 
-                let username = $("#username").val();
-                let age = $("#age").val();
-                let accountNumber = $("#accountNumber").val();
-                let accountBalance = $("#accountBalance").val().replace(/,/g, "");
-
-                $.ajax({
-                    url: "http://127.0.0.1:8000/api/posts/?format=api", // 백엔드 API 주소
-                    type: "GET",
-                    data: {
-                        username: username,
-                        age: age,
-                        accountNumber: accountNumber,
-                        accountBalance: accountBalance
-                    },
-                    success: function(response) {
-                        // 서버 응답에 대한 처리
-                        console.log(response);
-                        window.location.href = 'index2.html'
-                    },
-                    error: function(error) {
-                        console.error("Error:", error);
-                    }
-                });
+                if (numericValue === "") {
+                    numericValue = ""; // 값이 없을 경우 0으로 초기화
+                }
+                
+                // 백만원 단위 초과 입력 방지
+                if (parseInt(numericValue) > 5000000) {
+                    numericValue = "5000000";
+                }
+                
+                $(this).val(numericValue);
             });
         });
+    
+
+        $(document).ready(function() {
+            $("#accountNumber").on("input", function() {
+                let inputVal = $(this).val();
+                inputVal = inputVal.replace(/[^0-9]/g, ''); // 숫자만 남기기
+                
+                if (inputVal.length > 10) {
+                    inputVal = inputVal.substring(0, 10);
+                }
+        
+                $(this).val(inputVal);
+            });
+        });
+
+        $(document).ready(function() {
+            $("#age").on("input", function() {
+                let inputVal = $(this).val();
+                
+                // 숫자 이외의 입력은 제거
+                inputVal = inputVal.replace(/[^0-9]/g, '');
+        
+                // 최대 3자리까지만 유지
+                if (inputVal.length > 3) {
+                    inputVal = inputVal.substring(0, 3);
+                }
+        
+                $(this).val(inputVal);
+            });
+        });
+        
+        
+    
 
         $(document).ready(function() {
             $("#button1").click(function(event) {
@@ -141,4 +125,32 @@ $(document).ready(function() {
             });
         });
 
-        
+        $(document).ready(function() {
+                $("#userForm").submit(function(event) {
+                    event.preventDefault();
+
+                    let username = $("#username").val();
+                    let age = $("#age").val();
+                    let accountNumber = $("#accountNumber").val();
+                    let accountBalance = $("#accountBalance").val();
+
+                    $.ajax({
+                        url: "http://127.0.0.1:8000/api/posts/", // 백엔드 API 주소
+                        type: "POST",
+                        data: {
+                            username: username,
+                            age: age,
+                            accountNumber: accountNumber,
+                            accountBalance: accountBalance
+                        },
+                        success: function(response) {
+                            // 서버 응답에 대한 처리
+                            console.log(response);
+                            window.location.href = 'index2.html'
+                        },
+                        error: function(error) {
+                            console.error("Error:", error);
+                        }
+                    });
+                });
+            });
