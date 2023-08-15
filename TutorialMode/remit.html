@@ -24,9 +24,8 @@
         #left {
             float: left;
             height: 100vh;
-            width: 50vw;
+            width: 59vw;
             position: relative;
-            background-color: #BBD6FF;
         }
         iframe{
             width:100%;
@@ -83,21 +82,17 @@
     
 
     <script>
-        $(document).ready(function() {
-            const iframe = $('#phoneFrame');
 
-            iframe.on('load', function() {
-                const iframeDocument = iframe.contents();
-                const targetElement = iframeDocument.find('#money');
-                const iframeDocument2 = iframe.contents();
-                const targetElement2 = iframeDocument.find("#fullscreen");
-            
-                targetElement.css('transform', 'scale(1.5)').css("border","2px solid blue");
-                targetElement2.css('transform', 'scale(1.5)');
+$(document).ready(function() {
+    
+    $("#phoneFrame").on("load", function() {
+            $(this).contents().find("#money").css("transform", "scale(1.5)").css('border','1px solid black');
+            $(this).contents().find("#enterNum").css("transform", "scale(1.4)").css("background-color","#fff");
+            $(this).contents().find(".enterNum-tuto").css("transform", "scale(1.4)").css("background-color","#fff");
+            $(this).contents().find("#fullscreen2").css("opacity", "0").css("background-color","#fff");
 
-            });
-        });
-        
+    });
+});
     </script>
 
 </body>

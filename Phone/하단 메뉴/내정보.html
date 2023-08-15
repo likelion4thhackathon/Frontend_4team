@@ -72,13 +72,26 @@
                 align-items: center;
                 height: 100vh;
             }
+            #phone{
+                position: absolute; 
+                top: 5; 
+                left: 5;
+                z-index: 1;   
+                margin-left: -17px;
+                margin-top: -5px;
+                width: 420px;
+                height: 880px;                
+            }
+            
             #fullscreen{
                 width: 390px;
                 height: 844px;
                 background: #FFF;
-                border:1px solid black;
+                border:1px solid #ccc;
                 margin:auto;
                 position:relative;
+                z-index: 2;
+                border-radius: 55px;
             }
             #timebar{
                 display: flex;
@@ -438,6 +451,9 @@
             #moneyinfotext {
                 margin-left: -100px;
             }
+            #moneyinfotext2 {
+                margin-left: -120px;
+            }
             .myinfo-info,.myinfo-info2,.myinfo-info3 {
                 margin-bottom: 20px;
             }
@@ -458,13 +474,16 @@
                 background: #E8F2FB;
                 box-shadow: 0px 4px 4px 0px rgba(194, 194, 205, 0.25) inset;
                 margin-top: -59px;  
+                border-bottom-left-radius: 55px;
+                border-bottom-right-radius: 55px;
             }
 
             #home,#mydata,#myInfo,#setting{
-                width: 75px;
-                height: 91px;
-                flex-shrink: 0;
-            }
+                 width: 75px;
+                 height: 91px;
+                 flex-shrink: 0;
+             }
+
             .bottomicon{
                 margin-left:25%;
                 margin-top:30%;
@@ -479,13 +498,49 @@
                 line-height: 21px; /* 131.25% */
                 letter-spacing: -0.32px;
             }
-        
+            #camera{
+            position:fixed;
+            width:120px;
+            }
     </style>
 </head>
 <body>
-    
+    <div id="phone">
+        <img style="width:435px;  height:883px" src="../../IPhone/iPhone 14 Pro/Deep Purple.jpg">
+    </div>
     <div id="fullscreen">   
         <div id="timebar">
+            <svg id="camera" xmlns="http://www.w3.org/2000/svg" width="270" height="74" viewBox="0 0 270 74" fill="none">
+                <rect width="270" height="73.8912" rx="35.067" fill="#0A0A0A"/>
+                <ellipse cx="232.466" cy="36.9456" rx="37.5341" ry="36.9456" fill="#0A0A0A"/>
+                <g opacity="0.7">
+                <path d="M232.528 58.3548C244.018 58.3548 253.329 49.0126 253.329 37.4925C253.329 25.9725 244.018 16.6302 232.528 16.6302C221.038 16.6302 211.727 25.9725 211.727 37.4925C211.727 49.0126 221.038 58.3548 232.528 58.3548Z" fill="url(#paint0_radial_1257_1597)"/>
+                <path d="M232.528 58.3548C244.018 58.3548 253.329 49.0126 253.329 37.4925C253.329 25.9725 244.018 16.6302 232.528 16.6302C221.038 16.6302 211.727 25.9725 211.727 37.4925C211.727 49.0126 221.038 58.3548 232.528 58.3548Z" fill="url(#paint1_angular_1257_1597)"/>
+                <path d="M232.528 58.3548C244.018 58.3548 253.329 49.0126 253.329 37.4925C253.329 25.9725 244.018 16.6302 232.528 16.6302C221.038 16.6302 211.727 25.9725 211.727 37.4925C211.727 49.0126 221.038 58.3548 232.528 58.3548Z" fill="url(#paint2_angular_1257_1597)"/>
+                <path d="M232.528 58.3548C244.018 58.3548 253.329 49.0126 253.329 37.4925C253.329 25.9725 244.018 16.6302 232.528 16.6302C221.038 16.6302 211.727 25.9725 211.727 37.4925C211.727 49.0126 221.038 58.3548 232.528 58.3548Z" stroke="#080F21" stroke-width="1.32163"/>
+                </g>
+                <line opacity="0.7" x1="232.504" y1="17.291" x2="232.504" y2="57.694" stroke="black" stroke-width="3.30408"/>
+                <defs>
+                <radialGradient id="paint0_radial_1257_1597" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(232.528 37.4925) rotate(90) scale(20.2015 20.1403)">
+                <stop offset="0.213542"/>
+                <stop offset="0.270833" stop-color="#081A32"/>
+                <stop offset="0.395833" stop-color="#1F3A58"/>
+                <stop offset="0.515625" stop-color="#375F90"/>
+                <stop offset="0.713542" stop-color="#274871"/>
+                <stop offset="0.916667" stop-color="#0D1528"/>
+                </radialGradient>
+                <radialGradient id="paint1_angular_1257_1597" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(232.528 37.4925) rotate(90) scale(20.2015 20.1403)">
+                <stop offset="0.411458" stop-opacity="0"/>
+                <stop offset="0.510417"/>
+                <stop offset="0.817708" stop-opacity="0"/>
+                </radialGradient>
+                <radialGradient id="paint2_angular_1257_1597" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(232.528 37.4925) rotate(90) scale(20.2015 20.1403)">
+                <stop/>
+                <stop offset="0.166667" stop-opacity="0"/>
+                <stop offset="0.885417" stop-opacity="0"/>
+                </radialGradient>
+                </defs>
+                </svg>
             <div id="time">9:41</div>
             <div id="status">
                 <div id="signal">
@@ -575,8 +630,12 @@
             <div class="moneybox">
                 <div id="moneybank">
                     <div id="profile">
-                        <svg id="logo" xmlns="http://www.w3.org/2000/svg" width="38" height="37" viewBox="0 0 38 37" fill="none">
-                            <ellipse cx="18.954" cy="18.5254" rx="18.4415" ry="18.3301" fill="#D9D9D9"/>
+                        <svg id="logo" xmlns="http://www.w3.org/2000/svg" width="43" height="43" viewBox="0 0 43 43" fill="none">
+                            <circle cx="21.5" cy="21.5" r="21.5" fill="#54ADFF"/>
+                            <ellipse cx="26.8125" cy="17.5723" rx="1.5" ry="2.5" fill="white"/>
+                            <ellipse cx="15.8125" cy="17.5723" rx="1.5" ry="2.5" fill="white"/>
+                            <path fill-rule="evenodd" clip-rule="evenodd" d="M26.3125 25.0723C26.3125 27.8337 24.0739 30.0723 21.3125 30.0723C18.5511 30.0723 16.3125 27.8337 16.3125 25.0723C16.3125 22.3108 18.5511 20.0723 21.3125 20.0723C24.0739 20.0723 26.3125 22.3108 26.3125 25.0723ZM21.4037 23.1991C21.8827 23.1601 22.257 22.8248 22.257 22.4169C22.257 21.9828 21.8331 21.6309 21.3101 21.6309C20.7872 21.6309 20.3633 21.9828 20.3633 22.4169C20.3633 22.827 20.7416 23.1637 21.2242 23.1997L21.1445 26.6333H21.4834L21.4037 23.1991Z" fill="white"/>
+                            <path d="M28.8589 9.78002C29.7466 3.76213 38.5867 9.26735 32.5474 12.4777C39.8195 21.8036 33.9353 32.045 30.0842 36L30.5719 31.0441C19.8488 38.8466 -0.924627 28.0779 10.166 12.4533C5.00205 8.27864 12.8168 4.22594 14.2047 9.52369C19.5062 6.94564 26.0206 8.25419 28.8589 9.78002Z" stroke="white"/>
                           </svg>
                     </div>
                     <div id="moneytext1">
@@ -588,12 +647,15 @@
             <div class="moneybox2">
                 <div id="moneybank">
                     <div id="profile">
-                        <svg id="logo" xmlns="http://www.w3.org/2000/svg" width="38" height="37" viewBox="0 0 38 37" fill="none">
-                            <ellipse cx="18.954" cy="18.5254" rx="18.4415" ry="18.3301" fill="#D9D9D9"/>
+                        <svg id="logo" xmlns="http://www.w3.org/2000/svg" width="43" height="43" viewBox="0 0 43 43" fill="none">
+                            <circle cx="21.5" cy="21.5" r="21.5" fill="#54ADFF"/>
+                            <path d="M32.4178 16.7863C33.0129 18.5308 33.3422 20.4501 33.3422 22.4651C33.3422 30.4925 28.1169 37 21.6711 37C15.2253 37 10 30.4925 10 22.4651C10 15.1585 14.329 9.11111 19.9671 8.08395C20.6557 6.66137 22.1242 3.85416 22.4898 4.00591C22.9467 4.1956 23.1843 7.0445 23.8701 7.23064C24.9839 7.53296 27.5447 8.4162 28.5443 8.74816C29.2265 8.06844 30.7167 6.82044 31.2193 7.26621C31.8952 14.2373 28.0512 23.2819 22.3851 18.5112" stroke="white"/>
+                            <circle cx="22" cy="11" r="1" fill="white"/>
+                            <circle cx="27" cy="12" r="1" fill="white"/>
                           </svg>
                     </div>
                     <div id="moneytext1">
-                        <span class="account" id="moneyinfotext">정기예금</span>
+                        <span class="account" id="moneyinfotext2">정기예금</span>
                         <span class="account account1">[냐옹 은행] XXXXX-YYYYY</span>            
                     </div>
                 </div>

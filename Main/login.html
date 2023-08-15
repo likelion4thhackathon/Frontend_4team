@@ -9,103 +9,8 @@
     <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+KR&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@500&family=Roboto:wght@100&display=swap" rel="stylesheet">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
-    <script>
-        $(document).ready(function() {
-        // topBar 스타일 및 라디오 버튼 이벤트 처리
-        function createButton() {
-            $('.topBar').css({
-                display: 'flex',
-                justifyContent: 'flex-end',
-                marginRight: '10%',
-                marginTop: '2%',
-            });
-
-            // 클릭한 라디오 버튼에 따라 페이지 이동 처리
-            function navigateToPage(selectedOption) {
-                if (selectedOption === 0) {
-                    window.location.href = 'login.html';
-                } else if (selectedOption === 1) {
-                    window.location.href = 'index2.html';
-                } else if (selectedOption === 2) {
-                    window.location.href = 'select(basic).html';
-                }
-            }
-
-            // 라디오 버튼에 클릭 이벤트 리스너 추가
-            $('input[type="radio"]').on('click', function() {
-                let selectedOption = $(this).index('input[type="radio"]');
-                navigateToPage(selectedOption);
-            });
-        }
-
-        createButton();
-    });
-
-        $(document).ready(function() {
-            $("#button1").click(function() {
-                window.location.href = "index2.html";
-            });
-        });
-    
-        // 팝업창 열기
-        function openPopup(popupId) {
-                $("#" + popupId).fadeIn();
-                $("#popupBackground").fadeIn();
-            }
-
-        // 팝업창 닫기
-        function closePopup(popupId) {
-            $("#" + popupId).fadeOut();
-            $("#popupBackground").fadeOut();
-        }
-
-        // 페이지 이동
-        function navigateToSelectPage(mode) {
-            if (mode === 'basic') {
-                window.location.href = 'select(basic).html';
-            } else if (mode === 'tutorial') {
-                window.location.href = 'select(tutorial).html';
-            }
-        }
-
-        $(document).ready(function() {
-            $(".account").on("input", function() {
-                var inputVal = $(this).val();
-                inputVal = inputVal.replace(/[^0-9\-]/g, '');
-                
-                if (inputVal.length > 11) {
-                inputVal = inputVal.substring(0, 11);
-                }
-
-                if (inputVal.length >= 6) {
-                inputVal = inputVal.slice(0, 5) + "-" + inputVal.slice(5); 
-                }
-
-                if (inputVal.length > 6 && inputVal.charAt(6) === '-') {
-                inputVal = inputVal.slice(0, 6) + inputVal.slice(7); 
-                }
-
-                $(this).val(inputVal);
-            });
-        });
-
-        $(document).ready(function() {
-            
-            // 컴마표시
-            $(".mymoney").on("input", function() {
-                var inputValue = $(this).val();
-                var numericValue = inputValue.replace(/[^0-9]/g, ""); // 숫자만 남기기
-                
-                if (numericValue === "") {
-                numericValue = 0; // 값이 없을 경우 0으로 초기화
-                }
-                
-                var formattedValue = parseInt(numericValue).toLocaleString();
-                
-                $(this).val(formattedValue);
-            });
-        });
-    </script>
+    <script src="login.js"></script>
+  
     <style media="screen">
         body {
             margin: 0px;
@@ -120,7 +25,7 @@
         }
 
         #left {
-            background: #F7F2FF;
+            background: #DAE8EB;
             float: left;
             height: 100vh;
             width: 30%;
@@ -179,8 +84,8 @@
         }
         #button1{
             border-radius: 20px;
-            background: #F4EEFF;
-            box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25), 0px 4px 4px 0px rgba(0, 0, 0, 0.25) inset;
+            background: #DAE8EB;
+            box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.5), 0px 4px 4px 0px rgba(0, 0, 0, 0.25) inset;
             width: 580px;
             height: 113px;
             font-size: 20px;
@@ -212,14 +117,14 @@
             width: 20px;
             height: 20px;
             border-radius: 50%;
-            border: 2px solid #9156F0;
+            border: 2px solid #DAE8EB;
             margin-right: 10px;
             background-color: transparent;
             cursor: pointer;
             }
         input[type="radio"]:checked {
-            border-color: #9156F0;
-            background-color: #9156F0;
+            border-color: #86c5d3;
+            background: #86c5d3;   
         }
         #id1,#id2, #id3, #id4 {
             margin-top: 50px; /* 50px 아래로 이동 */
@@ -231,12 +136,12 @@
         
         }
         #id4{
-            margin-left: -170px;
+            margin-left: -90px;
         }
         #id3{
-           margin-left:-65px; 
+           margin-left:-35px; 
         }
-        #input::placeholder{
+        #username::placeholder,#age::placeholder,#accountNumber::placeholder,#accountBalance::placeholder{
             font-size: 26px;
         }
         #idtext {
@@ -259,7 +164,7 @@
             margin-left: 10px;
         }
 
-        #input {
+        #username,#age,#accountNumber,#accountBalance {
             flex: 1;
             border: none;
             padding: 0 10px;
@@ -273,7 +178,8 @@
         }
         
         #button1 {
-            margin-top: 80px;
+            margin-top: 100px;
+            margin-left: 80px;
             background-color: transparent;
             border: none;
             cursor: pointer;
@@ -282,8 +188,13 @@
             font-style: normal;
             font-weight: 600;
             padding: 10px 15px;
-            background: #F7F2FF;
+            background: #DAE8EB;        
         }
+        #button1:active{
+            background: #ccc;
+        }
+
+        
         
 
         
@@ -305,32 +216,33 @@
                 <input type="radio" name="group">
                 <input type="radio" name="group">
             </div>
-            <div id="id1">
-                <span id="idtext">이름</span>
-                <div id="input-container">
-                    <input id="input" type="text">
+            <form id="userForm">
+                <div id="id1">
+                    <span id="idtext">이름</span>
+                    <div id="input-container">
+                        <input class="require" id="username" type="text" required>
+                    </div>
                 </div>
-            </div>
-            <div id="id2">
-                <span id="idtext">나이</span>
-                <div id="input-container">
-                    <input id="input" type="text">
+                <div id="id2">
+                    <span id="idtext">나이</span>
+                    <div id="input-container">
+                        <input class="require" id="age" type="number" required>
+                    </div>
                 </div>
-            </div>
-            <div id="id3">
-                <span id="idtext">계좌번호</span>
-                <div id="input-container">
-                    <input class="account" id="input" type="text" placeholder="12345-12345 형식으로 입력">
+                <div id="id3">
+                    <span id="idtext">계좌번호</span>
+                    <div id="input-container">
+                        <input class="account require" id="accountNumber" type="number" placeholder="12345-12345 형식으로 입력" required>
+                    </div>
                 </div>
-            </div>
-            <div id="id4">
-                <span id="idtext">주거래계좌 금액</span>
-                <div id="input-container">
-                    <input id="input" class="mymoney" type="text" placeholder="한도는 500만원 미만으로 입력">
+                <div id="id4">
+                    <span id="idtext">주거래계좌 금액</span>
+                    <div id="input-container">
+                        <input id="accountBalance" class="mymoney require" type="number" placeholder="5,000,000" required>
+                    </div>
                 </div>
-            </div>
-            <button id="button1"><span class="mode">다음</span></button>
-            
+                <button id="button1" ><span class="mode">다음</span></button>
+            </form>
         </div>
     </div>
 

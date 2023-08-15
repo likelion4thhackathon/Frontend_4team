@@ -24,14 +24,7 @@
             });
         });
 
-        //최근 입금한 계좌 선택시 은행과 계좌번호가 자동으로 입력됨
-        $(document).ready(function() {
-            $("#bottombox-2").click(function() {
-                $("#select1").val("value2");
-                $("#account_number").val("XXXXX-YYYYY");
-                checkNextButton(); 
-            });
-        });
+        
 
         // 텍스트가 입력되면 다음 버튼 활성화
         function checkNextButton() {
@@ -126,19 +119,7 @@
             });
         });
 
-        //계좌선택 토글창
-        $(document).ready(function() {
-            $("#money1").click(function() {
-                $("#toggleBox").toggle(); 
-                
-            });
-            
-
-            //x 버튼 클릭시 토글창 닫힘
-            $("#toggleClose").on("click", function (event) {
-                $("#toggleBox").hide();
-            });
-        });
+       
         
         $(document).ready(function() {
             // 로컬 스토리지에서 송금한도 불러와 할당
@@ -152,6 +133,14 @@
                 $('#money_limit_display').text(formattedMoneyLimit);
             }
         });
+
+        //계좌 잔액
+        $(document).ready(function() {
+            const balance = parseFloat(localStorage.getItem('balance'));
+            const balanceFormat = balance.toLocaleString('en-US');
+            $('#balance').text(balanceFormat+"원");
+        });
+
     </script>
     <style>
         body {
@@ -161,13 +150,26 @@
                 align-items: center;
                 height: 100vh;
             }
+            #phone{
+                position: absolute; 
+                top: 5; 
+                left: 5;
+                z-index: 1;   
+                margin-left: -18px;
+                margin-top: -5px;
+                width: 420px;
+                height: 880px;                
+            }
+            
             #fullscreen{
                 width: 390px;
                 height: 844px;
                 background: #FFF;
-                border:1px solid black;
+                border:1px solid #ccc;
                 margin:auto;
                 position:relative;
+                z-index: 2;
+                border-radius: 55px;
             }
             #timebar{
                 display: flex;
@@ -266,8 +268,11 @@
                 margin-top:10px;
 
             }
-            #icon1,#icon2,#money1,#centerbutton-1,#centerbutton-2,select,option,#bottombutton-1,#bottombutton-2,#bottombutton-3,#bottombox-2,button{
+            #icon1,#money1,#centerbutton-1,#centerbutton-2,select,option,#bottombutton-1,#bottombutton-2,#bottombutton-3,button{
                 cursor: pointer;
+            }
+            #bottombox-2{
+                cursor:not-allowed;
             }
             #moneybox{
                 width: 390px;
@@ -276,7 +281,7 @@
                 box-shadow: 0 4px 4px rgba(0, 0, 0, 0.2);
 
             }
-            #money{
+            #money-ok{
                 display:flex;
                 width: 320.277px;
                 height: 60px;
@@ -322,19 +327,7 @@
                 margin-left:20px;
                 width:200px;
             }
-            #moneymoney1{
-                width: 46px;
-                height: 27px;
-                flex-shrink: 0;
-                margin-top:28px;
-            }
-            #money1{
-                display:flex;
-                width: 24px;
-                height: 24px;
-                flex-shrink: 0;
-                margin-left:60px;
-            }
+            
             #moneyLimit{
                 display:flex;
             }
@@ -524,9 +517,7 @@
                 background-color: white;
                 border: 1px solid #ccc;
             }
-            #bottombox-2:active{
-                background-color: #CCC;
-            }
+            
             
             #recent{
                 width: 53px;
@@ -550,6 +541,7 @@
                 flex-direction: column;
                 justify-content: left;
                 margin-left: -90px;
+                margin-top: -10px;
             }
             .recent-account{
                 color: #4A4D52;
@@ -598,7 +590,7 @@
             height:25px;
             font-size: 16px;
             }
-            #balance{
+            #balance2{
                 text-align: right;
                 margin-left: 50px;
             }
@@ -678,13 +670,56 @@
                 margin-left: 50px;
                 margin-top:35px;
             }
+            #balance{
+                width:150px;
+                margin-right: -40px;
+            }
+            #camera{
+            position:fixed;
+            width:120px;
+            }
 
+           
        
     </style>
 </head>
 <body>
+    <div id="phone">
+        <img style="width:435px;  height:883px" src="../../IPhone/iPhone 14 Pro/Deep Purple.jpg">
+    </div>
     <div id="fullscreen">
         <div id="timebar">
+            <svg id="camera" xmlns="http://www.w3.org/2000/svg" width="270" height="74" viewBox="0 0 270 74" fill="none">
+                <rect width="270" height="73.8912" rx="35.067" fill="#0A0A0A"/>
+                <ellipse cx="232.466" cy="36.9456" rx="37.5341" ry="36.9456" fill="#0A0A0A"/>
+                <g opacity="0.7">
+                <path d="M232.528 58.3548C244.018 58.3548 253.329 49.0126 253.329 37.4925C253.329 25.9725 244.018 16.6302 232.528 16.6302C221.038 16.6302 211.727 25.9725 211.727 37.4925C211.727 49.0126 221.038 58.3548 232.528 58.3548Z" fill="url(#paint0_radial_1257_1597)"/>
+                <path d="M232.528 58.3548C244.018 58.3548 253.329 49.0126 253.329 37.4925C253.329 25.9725 244.018 16.6302 232.528 16.6302C221.038 16.6302 211.727 25.9725 211.727 37.4925C211.727 49.0126 221.038 58.3548 232.528 58.3548Z" fill="url(#paint1_angular_1257_1597)"/>
+                <path d="M232.528 58.3548C244.018 58.3548 253.329 49.0126 253.329 37.4925C253.329 25.9725 244.018 16.6302 232.528 16.6302C221.038 16.6302 211.727 25.9725 211.727 37.4925C211.727 49.0126 221.038 58.3548 232.528 58.3548Z" fill="url(#paint2_angular_1257_1597)"/>
+                <path d="M232.528 58.3548C244.018 58.3548 253.329 49.0126 253.329 37.4925C253.329 25.9725 244.018 16.6302 232.528 16.6302C221.038 16.6302 211.727 25.9725 211.727 37.4925C211.727 49.0126 221.038 58.3548 232.528 58.3548Z" stroke="#080F21" stroke-width="1.32163"/>
+                </g>
+                <line opacity="0.7" x1="232.504" y1="17.291" x2="232.504" y2="57.694" stroke="black" stroke-width="3.30408"/>
+                <defs>
+                <radialGradient id="paint0_radial_1257_1597" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(232.528 37.4925) rotate(90) scale(20.2015 20.1403)">
+                <stop offset="0.213542"/>
+                <stop offset="0.270833" stop-color="#081A32"/>
+                <stop offset="0.395833" stop-color="#1F3A58"/>
+                <stop offset="0.515625" stop-color="#375F90"/>
+                <stop offset="0.713542" stop-color="#274871"/>
+                <stop offset="0.916667" stop-color="#0D1528"/>
+                </radialGradient>
+                <radialGradient id="paint1_angular_1257_1597" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(232.528 37.4925) rotate(90) scale(20.2015 20.1403)">
+                <stop offset="0.411458" stop-opacity="0"/>
+                <stop offset="0.510417"/>
+                <stop offset="0.817708" stop-opacity="0"/>
+                </radialGradient>
+                <radialGradient id="paint2_angular_1257_1597" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(232.528 37.4925) rotate(90) scale(20.2015 20.1403)">
+                <stop/>
+                <stop offset="0.166667" stop-opacity="0"/>
+                <stop offset="0.885417" stop-opacity="0"/>
+                </radialGradient>
+                </defs>
+                </svg>
             <div id="time">9:41</div>
             <div id="status">
                 <div id="signal">
@@ -788,7 +823,7 @@
         </div>
 
         <div id="moneybox">
-            <div id="money">
+            <div id="money-ok">
                 <div id="profile">
                     <svg id="logo" xmlns="http://www.w3.org/2000/svg" width="43" height="43" viewBox="0 0 43 43" fill="none">
                         <circle cx="21.5" cy="21.5" r="21.5" fill="#54ADFF"/>
@@ -799,17 +834,10 @@
                       </svg>
                 </div>
                 <div id="moneytext1">
-                    <span class="account">[한도제한]<span> 보통예탁금</span></span>
+                    <span class="account">[바오 은행]<span> 보통예탁금</span></span>
                     <span class="account account1">XXXXX-YYYYY</span>            
                 </div>
-                <div id="moneymoney1">
-                    <div id="money1">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="29" height="28" viewBox="0 0 29 28" fill="none">
-                            <path d="M21.6924 10.8694L14.6351 17.3071L7.69299 10.7454" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                          </svg>
-                    </div>
-                    
-                </div>
+                
             </div>
             <hr style="width: 80%">
             <div id="moneyLimit">
@@ -822,7 +850,7 @@
                 </div>
                 <div id="moneylimit2">
                     <div id="limitText">
-                        <p>&nbsp;1,000,000원</p>
+                        <p id="balance">&nbsp;</p>
                         <p id="money_limit_display"></p>
                     </div>
                 </div>
@@ -860,8 +888,8 @@
                   </svg>
             </div>
             <div id="recentAccount">
-                    <span>[냐옹 은행] <span id="account_name">이솔비</span></span>
-                    <span class="recent-account">XXXXX-YYYYY</span><span id="balance">잔액&nbsp;&nbsp;<span style="color:#0085FF">1,000,000원</span>    
+                    <span>[냐옹 은행] <span id="account_name">이솔비</span></span><span style="margin-left: 25px;">(정기예금-입출금 불가)</span>
+                    <span class="recent-account">XXXXX-YYYYY</span><span id="balance2">잔액&nbsp;&nbsp;<span style="color:#0085FF">1,000,000원</span>    
     
             </div>
         </button>
