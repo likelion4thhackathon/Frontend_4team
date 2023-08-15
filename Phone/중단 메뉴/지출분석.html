@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="preconnect" href="https://fonts.googleapis.com%22%3E/">
+    <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+KR&display=swap" rel="stylesheet">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>지출분석</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+    <script>
+        //홈버튼
+        $(document).ready(function() {
+        $("#icon1").click(function() {
+            window.location.href = "../phone.html";
+            });
+        });
+
+        //뒤로가기 버튼
+        $(document).ready(function() {
+        $("#back").click(function() {
+            window.location.href = "../phone.html";
+            });
+        });
+
+
+        
+
+
+    </script>
+
+    <style>
+            body {
+                margin: 0; 
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                height: 100vh;
+            }
+            #phone{
+                position: absolute; 
+                top: 5; 
+                left: 5;
+                z-index: 1;   
+                margin-left: -17px;
+                margin-top: -5px;
+                width: 420px;
+                height: 880px;                
+            }
+            
+            #fullscreen{
+                width: 390px;
+                height: 844px;
+                background: #FFF;
+                border:1px solid #ccc;
+                margin:auto;
+                position:relative;
+                z-index: 2;
+                border-radius: 55px;
+            }
+            #timebar{
+                display: flex;
+                width: 390px;
+                height: 59px;
+                justify-content: center;
+                align-items: flex-end;
+                flex-shrink: 0;
+                
+            }
+            #time{
+                display: flex;
+                width: 54px;
+                height: 20px;
+                flex-shrink: 0;
+                color: #000;
+                text-align: center;
+                margin-right:60%;
+                margin-bottom:20px;
+                font-family: 'SF Pro Text', Helvetica, Arial;
+                font-size: 16px;
+                font-style: normal;
+                font-weight: 500;
+                line-height: 21px; /* 131.25% */
+                letter-spacing: -0.32px;
+                margin-left:40px;
+                    
+            }
+            #status{
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                gap: 8px;
+                flex: 1 0 0;
+                align-self: stretch;
+                margin-left: -80px;
+            }
+            #hellobox{
+                    display: flex;
+                    width: 389px;
+                    height: 44px;
+                    flex-shrink: 0;
+            }
+            #header{
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                width: 180px;
+                height: 25px;
+                flex-shrink: 0;
+                border-radius: 15px;
+                background: #FFF;
+                margin-right:-120px;
+                margin-left:20px;
+                margin-top:10px;
+            }
+            #function{
+                width:130px;
+                color: #4E5459;
+                text-align: center;
+                font-family: 'IBM Plex Sans KR', sans-serif;
+                font-size: 16px;
+                font-style: normal;
+                font-weight: 800;
+                letter-spacing: -0.32px;
+                margin-left: 5px;
+            }
+            #icon{
+                display:flex;
+                width: 125px;
+                height: 38px;
+                flex-shrink: 0;
+                margin-left:46.25%;
+            }
+            #icon1{
+                display: flex;
+                width: 24px;
+                height: 24px;
+                flex-shrink: 0;
+                margin-top:14px;
+                margin-left:35%;
+                margin-top:10px;
+            }
+            #icon2{
+                display: flex;
+                width: 24px;
+                height: 24px;
+                flex-shrink: 0;
+                margin-top:14px;
+                margin-left:10.5%;
+                margin-top:10px;
+            }
+            #statisticBox {
+                display: flex;
+                width: 390px;
+                height: 67px;
+                flex-shrink: 0;
+            }
+            #statisticText {
+
+                margin-top: 45px;
+                text-align: center;
+                font-family: 'IBM Plex Sans KR', sans-serif;
+                font-size: 16px;
+                font-weight: 700;
+                line-height: 21px; /* 131.25% */
+                letter-spacing: -0.32px;
+                margin-left: 180px;  
+            }
+            #imagebox {
+                width: 334px;
+                height: 250px;
+                flex-shrink: 0;
+                text-align: center;
+            }
+            #imagecircle {
+                display: flex;
+                margin-left: 70px;
+                align-items: center;
+                width: 334px;
+                height: 250px;
+                flex-shrink: 0;
+            }
+            .svg1 {
+                margin-left: 20px;
+                margin-right: 20px;
+            }
+            #percent1, #percent2, #percent3, #percent4, #percent5 {
+                width: 202px;
+                height: 43px;
+                margin: 20px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+            #percent5{
+                margin-left: 12px;
+            }
+
+            .graynum1, .graynum2, .graynum3, .graynum4{
+                color: #ccc;
+                margin-left: 20px;
+                font-family: 'IBM Plex Sans KR', sans-serif;
+
+            }
+
+            .graynum5 {
+                 color: #ccc;
+                 margin-left: 20px;
+                 font-family: 'IBM Plex Sans KR', sans-serif;
+            }
+   
+
+            #hobbytext, #fashiontext, #healthtext, #commutext, #transfertext {
+                color: black;
+                font-family: 'IBM Plex Sans KR', sans-serif;
+            }
+
+            #back:hover,#icon1:hover{
+                cursor: pointer;
+            }
+            #camera{
+            position:fixed;
+            width:120px;
+            }
+      
+
+    </style>
+</head>
+<body>
+    <div id="phone">
+        <img style="width:435px;  height:883px" src="../../IPhone/iPhone 14 Pro/Deep Purple.jpg">
+    </div>
+    <div id="fullscreen">
+        <div id="timebar">
+            <svg id="camera" xmlns="http://www.w3.org/2000/svg" width="270" height="74" viewBox="0 0 270 74" fill="none">
+                <rect width="270" height="73.8912" rx="35.067" fill="#0A0A0A"/>
+                <ellipse cx="232.466" cy="36.9456" rx="37.5341" ry="36.9456" fill="#0A0A0A"/>
+                <g opacity="0.7">
+                <path d="M232.528 58.3548C244.018 58.3548 253.329 49.0126 253.329 37.4925C253.329 25.9725 244.018 16.6302 232.528 16.6302C221.038 16.6302 211.727 25.9725 211.727 37.4925C211.727 49.0126 221.038 58.3548 232.528 58.3548Z" fill="url(#paint0_radial_1257_1597)"/>
+                <path d="M232.528 58.3548C244.018 58.3548 253.329 49.0126 253.329 37.4925C253.329 25.9725 244.018 16.6302 232.528 16.6302C221.038 16.6302 211.727 25.9725 211.727 37.4925C211.727 49.0126 221.038 58.3548 232.528 58.3548Z" fill="url(#paint1_angular_1257_1597)"/>
+                <path d="M232.528 58.3548C244.018 58.3548 253.329 49.0126 253.329 37.4925C253.329 25.9725 244.018 16.6302 232.528 16.6302C221.038 16.6302 211.727 25.9725 211.727 37.4925C211.727 49.0126 221.038 58.3548 232.528 58.3548Z" fill="url(#paint2_angular_1257_1597)"/>
+                <path d="M232.528 58.3548C244.018 58.3548 253.329 49.0126 253.329 37.4925C253.329 25.9725 244.018 16.6302 232.528 16.6302C221.038 16.6302 211.727 25.9725 211.727 37.4925C211.727 49.0126 221.038 58.3548 232.528 58.3548Z" stroke="#080F21" stroke-width="1.32163"/>
+                </g>
+                <line opacity="0.7" x1="232.504" y1="17.291" x2="232.504" y2="57.694" stroke="black" stroke-width="3.30408"/>
+                <defs>
+                <radialGradient id="paint0_radial_1257_1597" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(232.528 37.4925) rotate(90) scale(20.2015 20.1403)">
+                <stop offset="0.213542"/>
+                <stop offset="0.270833" stop-color="#081A32"/>
+                <stop offset="0.395833" stop-color="#1F3A58"/>
+                <stop offset="0.515625" stop-color="#375F90"/>
+                <stop offset="0.713542" stop-color="#274871"/>
+                <stop offset="0.916667" stop-color="#0D1528"/>
+                </radialGradient>
+                <radialGradient id="paint1_angular_1257_1597" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(232.528 37.4925) rotate(90) scale(20.2015 20.1403)">
+                <stop offset="0.411458" stop-opacity="0"/>
+                <stop offset="0.510417"/>
+                <stop offset="0.817708" stop-opacity="0"/>
+                </radialGradient>
+                <radialGradient id="paint2_angular_1257_1597" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(232.528 37.4925) rotate(90) scale(20.2015 20.1403)">
+                <stop/>
+                <stop offset="0.166667" stop-opacity="0"/>
+                <stop offset="0.885417" stop-opacity="0"/>
+                </radialGradient>
+                </defs>
+                </svg>
+            <div id="time">9:41</div>
+            <div id="status">
+                <div id="signal">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="13" viewBox="0 0 18 13" fill="none">
+                        <path d="M10.0011 3.68262C10.0011 3.13033 10.4488 2.68262 11.0011 2.68262H12.0011C12.5534 2.68262 13.0011 3.13033 13.0011 3.68262V11.6826C13.0011 12.2349 12.5534 12.6826 12.0011 12.6826H11.0011C10.4488 12.6826 10.0011 12.2349 10.0011 11.6826V3.68262Z" fill="black"/>
+                        <path d="M15.0011 1.68262C15.0011 1.13033 15.4488 0.682617 16.0011 0.682617H17.0011C17.5534 0.682617 18.0011 1.13033 18.0011 1.68262V11.6826C18.0011 12.2349 17.5534 12.6826 17.0011 12.6826H16.0011C15.4488 12.6826 15.0011 12.2349 15.0011 11.6826V1.68262Z" fill="black"/>
+                        <path d="M5.0011 7.18262C5.0011 6.63033 5.44881 6.18262 6.0011 6.18262H7.0011C7.55338 6.18262 8.0011 6.63033 8.0011 7.18262V11.6826C8.0011 12.2349 7.55338 12.6826 7.0011 12.6826H6.0011C5.44881 12.6826 5.0011 12.2349 5.0011 11.6826V7.18262Z" fill="black"/>
+                        <path d="M0.00109863 9.68262C0.00109863 9.13033 0.448814 8.68262 1.0011 8.68262H2.0011C2.55338 8.68262 3.0011 9.13033 3.0011 9.68262V11.6826C3.0011 12.2349 2.55338 12.6826 2.0011 12.6826H1.0011C0.448814 12.6826 0.00109863 12.2349 0.00109863 11.6826V9.68262Z" fill="black"/>
+                      </svg>
+                </div>
+                <div id="wifi">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="17" height="13" viewBox="0 0 17 13" fill="none">
+                        <path fill-rule="evenodd" clip-rule="evenodd" d="M8.50156 3.27014C10.9681 3.27025 13.3404 4.23767 15.128 5.97244C15.2626 6.10637 15.4777 6.10468 15.6103 5.96865L16.8971 4.64307C16.9642 4.57407 17.0016 4.48062 17.0011 4.38338C17.0005 4.28614 16.962 4.19314 16.8941 4.12495C12.2022 -0.464829 4.80018 -0.464829 0.108262 4.12495C0.040296 4.19309 0.00173311 4.28607 0.00110639 4.3833C0.000479673 4.48054 0.0378408 4.57402 0.104922 4.64307L1.39206 5.96865C1.52455 6.10488 1.73988 6.10657 1.87441 5.97244C3.66225 4.23755 6.03477 3.27014 8.50156 3.27014ZM8.53701 7.27199C9.89222 7.27191 11.1991 7.78608 12.2036 8.7146C12.3395 8.84638 12.5535 8.84352 12.686 8.70817L13.9713 7.38258C14.039 7.31305 14.0765 7.21873 14.0755 7.12071C14.0746 7.0227 14.0351 6.92917 13.9661 6.86106C10.907 3.95647 6.16962 3.95647 3.11055 6.86106C3.04145 6.92917 3.00202 7.02274 3.00111 7.12079C3.00021 7.21884 3.03789 7.31315 3.10572 7.38258L4.39064 8.70817C4.52308 8.84352 4.73712 8.84638 4.87299 8.7146C5.87688 7.78669 7.18269 7.27256 8.53701 7.27199ZM11.1507 9.85933C11.1526 9.95762 11.1148 10.0524 11.046 10.1212L8.82275 12.4115C8.75758 12.4788 8.66872 12.5167 8.57601 12.5167C8.48329 12.5167 8.39444 12.4788 8.32927 12.4115L6.10562 10.1212C6.03693 10.0523 5.99914 9.95754 6.00118 9.85925C6.00321 9.76096 6.0449 9.66788 6.11638 9.602C7.53625 8.37616 9.61577 8.37616 11.0356 9.602C11.1071 9.66794 11.1487 9.76104 11.1507 9.85933Z" fill="black"/>
+                      </svg>
+                </div>
+                <div id="battery">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="28" height="14" viewBox="0 0 28 14" fill="none">
+                        <path opacity="0.35" d="M0.528642 4.68262C0.528642 2.76483 2.08331 1.21016 4.0011 1.21016H21.0011C22.9189 1.21016 24.4736 2.76483 24.4736 4.68262V9.68262C24.4736 11.6004 22.9189 13.1551 21.0011 13.1551H4.0011C2.08331 13.1551 0.528642 11.6004 0.528642 9.68262V4.68262Z" stroke="#311717" stroke-width="1.05509"/>
+                        <path opacity="0.4" d="M26.0011 5.68262V9.90296C26.8502 9.54552 27.4023 8.71402 27.4023 7.79279C27.4023 6.87156 26.8502 6.04006 26.0011 5.68262Z" fill="#311717"/>
+                        <path d="M2.0011 4.68262C2.0011 3.57805 2.89653 2.68262 4.0011 2.68262H21.0011C22.1057 2.68262 23.0011 3.57805 23.0011 4.68262V9.68262C23.0011 10.7872 22.1057 11.6826 21.0011 11.6826H4.0011C2.89653 11.6826 2.0011 10.7872 2.0011 9.68262V4.68262Z" fill="#311717"/>
+                      </svg>
+                </div>
+            </div>
+        </div>
+        <div id="hellobox">
+            <div id="header">
+                <svg id="back" xmlns="http://www.w3.org/2000/svg" width="34" height="36" viewBox="0 0 34 36" fill="none">
+                    <path d="M21.25 27L12.75 18L21.25 9" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                <span id="function">계좌/자산</span>
+            </div>
+            <div id="icon">
+                <div id="icon1">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="25" height="24" viewBox="0 0 25 24" fill="none">
+                        <path d="M15.1894 21.7471C15.7198 21.7471 20.0885 21.6837 20.4635 21.3107C20.8386 20.9376 21.0493 20.4316 21.0493 19.904V8.96266L12.0493 2L3.04932 8.96266V19.904C3.04932 20.4316 3.26003 20.9376 3.6351 21.3107C4.01018 21.6837 8.01161 21.7003 8.54204 21.7003" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M9.41754 21.7471L9.50032 14.7434L15.0591 14.7432V21.7471" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                      </svg>
+                </div>
+                <div id="icon2">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 25 25" fill="none">
+                        <path d="M3.55908 12.5322H21.5591" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M3.55908 6.53223H21.5591" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M3.55908 18.5322H21.5591" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </div>
+            </div>
+        </div>
+        <div id="statisticBox">
+            <span id="statisticText">통계</span>
+        </div>
+        <div id="imagebox">
+            <div id="imagecircle">
+                <svg xmlns="http://www.w3.org/2000/svg" width="260" height="260" viewBox="0 0 260 260" fill="none">
+                    <path d="M91.955 45.8698C82.6123 50.2816 74.0799 56.2366 66.7166 63.4846L100.811 98.1219C104.282 94.7053 108.304 91.8981 112.708 89.8183L91.955 45.8698Z" fill="#FF7878"/>
+                    <path d="M67.7334 62.3477C49.7909 78.8618 39.1435 101.827 38.1335 126.192L86.694 128.205C87.1701 116.719 92.1894 105.893 100.647 98.1087L67.7334 62.3477Z" fill="#6CFFB9"/>
+                    <path d="M49.2176 173.911C41.269 159.288 37.4386 142.782 38.135 126.153L86.6097 128.183C86.2808 136.037 88.0899 143.834 91.8443 150.741L49.2176 173.911Z" fill="#FAFF0E"/>
+                    <path d="M222.542 130C222.542 117.848 220.149 105.814 215.498 94.586C210.847 83.3582 204.031 73.1564 195.437 64.563C186.844 55.9697 176.642 49.1531 165.414 44.5024C154.187 39.8517 142.153 37.458 130 37.458L130 86.3758C135.729 86.3758 141.402 87.5042 146.694 89.6966C151.987 91.8889 156.796 95.1023 160.847 99.1532C164.898 103.204 168.111 108.013 170.304 113.306C172.496 118.599 173.625 124.272 173.625 130H222.542Z" fill="#FF91D9"/>
+                    <path d="M130 37.458C116.32 37.458 102.81 40.491 90.4426 46.3385L111.353 90.5621C117.183 87.8056 123.551 86.3758 130 86.3758L130 37.458Z" fill="#FF7878"/>
+                    <path d="M222.542 130C222.542 150.808 215.529 171.01 202.636 187.342C189.742 203.674 171.721 215.185 151.481 220.015C131.241 224.845 109.963 222.713 91.0843 213.962C72.2051 205.212 57.8707 190.431 48.4745 171.864L91.0763 149.699C95.5056 158.451 102.755 165.455 111.655 169.58C120.555 173.705 130.585 174.71 140.126 172.433C149.667 170.156 158.163 164.73 164.241 157.031C170.319 149.332 173.624 139.809 173.624 130H222.542Z" fill="#60B2FF"/>
+                    <path d="M122.797 135.159C121.983 135.159 121.263 135.019 120.638 134.739C120.017 134.458 119.53 134.072 119.178 133.58C118.825 133.087 118.651 132.527 118.655 131.898C118.651 131.405 118.752 130.953 118.956 130.54C119.164 130.123 119.447 129.777 119.803 129.5C120.159 129.22 120.557 129.042 120.996 128.966V128.898C120.416 128.758 119.952 128.447 119.604 127.966C119.255 127.485 119.083 126.932 119.087 126.307C119.083 125.712 119.24 125.182 119.558 124.716C119.88 124.246 120.322 123.877 120.882 123.608C121.443 123.339 122.081 123.205 122.797 123.205C123.505 123.205 124.138 123.341 124.695 123.614C125.255 123.883 125.697 124.252 126.019 124.722C126.341 125.187 126.504 125.716 126.507 126.307C126.504 126.932 126.325 127.485 125.973 127.966C125.621 128.447 125.163 128.758 124.598 128.898V128.966C125.034 129.042 125.426 129.22 125.774 129.5C126.127 129.777 126.407 130.123 126.615 130.54C126.827 130.953 126.935 131.405 126.939 131.898C126.935 132.527 126.757 133.087 126.405 133.58C126.053 134.072 125.564 134.458 124.939 134.739C124.318 135.019 123.604 135.159 122.797 135.159ZM122.797 133.722C123.278 133.722 123.695 133.642 124.047 133.483C124.399 133.32 124.672 133.095 124.865 132.807C125.058 132.515 125.157 132.174 125.161 131.784C125.157 131.379 125.051 131.021 124.843 130.71C124.638 130.4 124.36 130.155 124.007 129.977C123.655 129.799 123.252 129.71 122.797 129.71C122.339 129.71 121.932 129.799 121.575 129.977C121.219 130.155 120.939 130.4 120.735 130.71C120.53 131.021 120.43 131.379 120.433 131.784C120.43 132.174 120.522 132.515 120.712 132.807C120.905 133.095 121.18 133.32 121.536 133.483C121.892 133.642 122.312 133.722 122.797 133.722ZM122.797 128.307C123.183 128.307 123.526 128.229 123.825 128.074C124.125 127.919 124.36 127.703 124.53 127.426C124.704 127.15 124.793 126.826 124.797 126.455C124.793 126.091 124.706 125.773 124.536 125.5C124.369 125.227 124.136 125.017 123.837 124.869C123.538 124.718 123.191 124.642 122.797 124.642C122.396 124.642 122.043 124.718 121.74 124.869C121.441 125.017 121.208 125.227 121.041 125.5C120.875 125.773 120.793 126.091 120.797 126.455C120.793 126.826 120.877 127.15 121.047 127.426C121.218 127.703 121.452 127.919 121.752 128.074C122.055 128.229 122.403 128.307 122.797 128.307ZM132.207 127.768H133.535V130.344H132.207V127.768ZM138.847 121.784H140.175V130.296H138.847V121.784ZM128.447 128.216L128.287 127.224C131.071 127.224 134.607 127.208 137.695 126.856L137.775 127.72C134.607 128.184 131.151 128.216 128.447 128.216ZM130.479 130.824H140.175V133.832H131.807V135.464H130.511V132.952H138.863V131.784H130.479V130.824ZM130.511 135.128H140.655V136.088H130.511V135.128ZM135.967 128.664H139.263V129.528H135.967V128.664ZM132.959 122.056C135.103 122.056 136.511 122.888 136.511 124.232C136.511 125.576 135.103 126.408 132.959 126.408C130.799 126.408 129.391 125.576 129.391 124.232C129.391 122.888 130.799 122.056 132.959 122.056ZM132.959 122.984C131.535 122.984 130.623 123.464 130.623 124.232C130.623 125 131.535 125.48 132.959 125.48C134.351 125.48 135.263 125 135.263 124.232C135.263 123.464 134.351 122.984 132.959 122.984Z" fill="black"/>
+                    <path d="M174 130C174 154.311 154.514 174 130.5 174C106.486 174 87 154.311 87 130C87 105.689 106.486 86 130.5 86C154.514 86 174 105.689 174 130Z" stroke="#0085FF" stroke-width="2"/>
+                    <circle cx="130" cy="130" r="92" stroke="#0085FF" stroke-width="2"/>
+                    </svg>
+            </div>
+        </div>
+        <div id="percent1">
+            <svg xmlns="http://www.w3.org/2000/svg" class="svg1" width="15" height="15" viewBox="0 0 15 15" fill="none">
+                <circle opacity="0.8" cx="7.5" cy="7.5" r="7.5" fill="#60B2FF"/>
+            </svg>
+            <span id="hobbytext">여가생활</span>
+            <span class="graynum1">45%</span>
+        </div>
+        <div id="percent2">
+            <svg xmlns="http://www.w3.org/2000/svg" class="svg1" width="15" height="15" viewBox="0 0 15 15" fill="none">
+                <circle opacity="0.8" cx="7.5" cy="7.5" r="7.5" fill="#FF90D9"/>
+            </svg>
+            <span id="fashiontext">패션/쇼핑</span>
+            <span class="graynum2">25%</span>
+        </div>
+        <div id="percent3">
+            <svg xmlns="http://www.w3.org/2000/svg" class="svg1" width="15" height="15" viewBox="0 0 15 15" fill="none">
+                <circle opacity="0.8" cx="7.5" cy="7.5" r="7.5" fill="#6CFFB9"/>
+            </svg>
+            <span id="healthtext">의료/건강</span>
+            <span class="graynum3">12%</span>
+        </div>
+        <div id="percent4">
+            <svg xmlns="http://www.w3.org/2000/svg" class="svg1" width="15" height="15" viewBox="0 0 15 15" fill="none">
+                <circle opacity="0.8" cx="7.5" cy="7.5" r="7.5" fill="#FF7878"/>
+            </svg>
+            <span id="commutext">교육/학습</span>
+            <span class="graynum4">12%</span>
+        </div>
+        <div id="percent5">
+            <svg xmlns="http://www.w3.org/2000/svg" class="svg1" width="15" height="15" viewBox="0 0 15 15" fill="none">
+                <circle opacity="0.8" cx="7.5" cy="7.5" r="7.5" fill="#FAFF0E"/>
+            </svg>
+            <span id="transfertext">&nbsp;&nbsp;&nbsp;교통비</span>
+            <span class="graynum5">6%</span>
+        </div>
+    </div>
+</body>
+</html>

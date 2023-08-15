@@ -1,0 +1,904 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="preconnect" href="https://fonts.googleapis.com%22%3E/">
+    <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+KR&display=swap" rel="stylesheet">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>계좌송금-2</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+    <script>
+        //휴대전화 송금 버튼 클릭 시
+        $(document).ready(function() {
+        $("#centerbutton-2").click(function() {
+            window.location.href = "휴대전화송금-1.html";
+            });
+        });
+
+        //뒤로가기 버튼
+        $(document).ready(function() {
+        $("#back").click(function() {
+            window.location.href = "../phone.html";
+            });
+        });
+
+        
+
+        // 텍스트가 입력되면 다음 버튼 활성화
+        function checkNextButton() {
+            const accountNumber = $("#account_number").val().trim();
+
+            if (accountNumber.length > 0) {
+                $("#nextbutton button").prop("disabled", false);
+            } else {
+                $("#nextbutton button").prop("disabled", true);
+            }
+        }
+
+        $(document).ready(function() {
+            $("input").keyup(checkNextButton);
+        });
+
+        //계좌번호 형식 확인
+        $(document).ready(function() {
+            $("#nextbutton button").click(function() {
+                const accountNumber = $("#account_number").val().trim();
+                const accountFormat = /^[0-9]{5}-[0-9]{5}$/;
+
+                if (accountNumber.length > 0 && !accountFormat.test(accountNumber)) {
+                    alert("계좌번호 형식이 올바르지 않습니다. 12345-12345 형식으로 입력해 주세요");
+                    event.stopPropagation();
+                } else if (accountNumber.length === 0) {
+                    alert("계좌번호를 입력해 주세요");
+                } else {
+                    if (accountNumber.length > 0) {
+                        localStorage.setItem('account_number', accountNumber);
+                    }
+                    
+                    if (accountFormat.test(accountNumber)) {
+                        window.location.href = "계좌송금-4.html";
+                    }
+                }
+            });
+        });
+
+        // 다섯번째 자리에 - 삽입
+        $(document).ready(function() {
+            $("#account_number").on("input", function() {
+
+                let inputValue = $(this).val().trim();
+
+                inputValue = inputValue.replace(/[^0-9]/g, "");
+                
+                if (inputValue.length > 5) {
+                    inputValue = inputValue.slice(0, 5) + "-" + inputValue.slice(5);
+                }
+
+                $(this).val(inputValue);
+                
+                checkNextButton();
+            });
+
+        });
+
+        //최근입금 - 내 계좌 - 자주쓰는 버튼들 클릭 시 이동
+        $(document).ready(function() {
+            $("#bottombutton-1").click(function() {
+                window.location.href = "계좌송금-1.html";
+            });
+        });
+        $(document).ready(function() {
+            $("#bottombutton-2").click(function() {
+                window.location.href = "계좌송금-2.html";
+            });
+        });
+        $(document).ready(function() {
+            $("#bottombutton-3").click(function() {
+                window.location.href = "계좌송금-3.html";
+            });
+        });
+
+        //홈버튼
+        $(document).ready(function() {
+        $("#icon1").click(function() {
+            window.location.href = "../phone.html";
+            });
+        });
+
+        //계좌번호, 계좌주 로컬변수 저장
+        $(document).ready(function() {
+            $('#nextbutton').on('click', function() {
+            const accountName = $('#account_name').text().trim();
+            const accountNumber = $('#account_number').val().trim();
+            localStorage.setItem('account_name', accountName);
+            localStorage.setItem('account_number', accountNumber);
+
+            window.location.href = '계좌송금-4.html'; 
+            });
+        });
+
+       
+        
+        $(document).ready(function() {
+            // 로컬 스토리지에서 송금한도 불러와 할당
+            const moneyLimit = localStorage.getItem("money_limit_d");
+            
+            if (moneyLimit !== null) {
+                const parsedMoneyLimit = parseInt(moneyLimit.replace(/,/g, '').replace('원', ''));
+                const formattedMoneyLimit = parsedMoneyLimit === 500 ? '5,000,000원' : (parsedMoneyLimit * 10000).toLocaleString() + '원';
+                
+                // 화면에 출력
+                $('#money_limit_display').text(formattedMoneyLimit);
+            }
+        });
+
+        //계좌 잔액
+        $(document).ready(function() {
+            const balance = parseFloat(localStorage.getItem('balance'));
+            const balanceFormat = balance.toLocaleString('en-US');
+            $('#balance').text(balanceFormat+"원");
+        });
+
+    </script>
+    <style>
+        body {
+                margin: 0; 
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                height: 100vh;
+            }
+            #phone{
+                position: absolute; 
+                top: 5; 
+                left: 5;
+                z-index: 1;   
+                margin-left: -18px;
+                margin-top: -5px;
+                width: 420px;
+                height: 880px;                
+            }
+            
+            #fullscreen{
+                width: 390px;
+                height: 844px;
+                background: #FFF;
+                border:1px solid #ccc;
+                margin:auto;
+                position:relative;
+                z-index: 2;
+                border-radius: 55px;
+            }
+            #timebar{
+                display: flex;
+                width: 390px;
+                height: 59px;
+                justify-content: center;
+                align-items: flex-end;
+                flex-shrink: 0;
+               
+            }
+            #time{
+                display: flex;
+                width: 54px;
+                height: 20px;
+                flex-shrink: 0;
+                color: #000;
+                text-align: center;
+                margin-right:60%;
+                margin-bottom:20px;
+                font-family: 'SF Pro Text', Helvetica, Arial;
+                font-size: 16px;
+                font-style: normal;
+                font-weight: 500;
+                line-height: 21px; /* 131.25% */
+                letter-spacing: -0.32px;
+                margin-left:40px;
+                
+            }
+            #status{
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                gap: 8px;
+                flex: 1 0 0;
+                align-self: stretch;
+                margin-left: -80px;
+            }
+            #hellobox{
+                display: flex;
+                width: 389px;
+                height: 44px;
+                flex-shrink: 0;
+               
+            }
+            #back{
+                cursor: pointer;
+            }
+            #header{
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                width: 100px;
+                height: 25px;
+                flex-shrink: 0;
+                border-radius: 15px;
+                background: #FFF;
+                margin-right:-120px;
+                margin-left:20px;
+                margin-top:10px;
+            }
+            #function{
+                width:50px;
+                color: #4E5459;
+                text-align: center;
+                font-family: 'IBM Plex Sans KR', sans-serif;
+                font-size: 16px;
+                font-style: normal;
+                font-weight: 800;
+                letter-spacing: -0.32px;
+                margin-left: 5px;
+            }
+            #icon{
+                display:flex;
+                width: 125px;
+                height: 38px;
+                flex-shrink: 0;
+                margin-left:67%;
+            }
+            #icon1{
+                display: flex;
+                width: 24px;
+                height: 24px;
+                flex-shrink: 0;
+                margin-top:14px;
+                margin-left:35%;
+                margin-top:10px;
+            }
+            
+            #icon2{
+                display: flex;
+                width: 24px;
+                height: 24px;
+                flex-shrink: 0;
+                margin-top:14px;
+                margin-left:10%;
+                margin-top:10px;
+
+            }
+            #icon1,#money1,#centerbutton-1,#centerbutton-2,select,option,#bottombutton-1,#bottombutton-2,#bottombutton-3,button{
+                cursor: pointer;
+            }
+            #bottombox-2{
+                cursor:not-allowed;
+            }
+            #moneybox{
+                width: 390px;
+                height: 220px;
+                flex-shrink: 0;
+                box-shadow: 0 4px 4px rgba(0, 0, 0, 0.2);
+
+            }
+            #money-ok{
+                display:flex;
+                width: 320.277px;
+                height: 60px;
+                flex-shrink: 0;
+                border-radius: 20px;
+                margin:auto;
+                margin-top:5%;
+            }
+            #profile{
+                width: 50px;
+                height: 54px;
+                flex-shrink: 0;
+            }
+            #logo{
+                margin:11px 13.5px;
+
+            }
+            #moneytext1{
+                width: 180px;
+                height: 27px;
+                flex-shrink: 0;
+            }
+            .account{
+                color: black;
+                font-family: 'IBM Plex Sans KR', sans-serif;
+                font-size: 16px;
+                font-style: normal;
+                font-weight: 800;
+                line-height: 21px; /* 131.25% */
+                letter-spacing: -0.32px;
+                display: block;
+                margin-top:12px;
+                margin-left:20px;
+            }
+            .account span{
+                color:black;
+                font-weight: 300;
+            }
+            .account1{
+                margin-top:-0px;
+                font-size:17px;
+                font-weight: 500;
+                margin-left:20px;
+                width:200px;
+            }
+            
+            #moneyLimit{
+                display:flex;
+            }
+            #moneylimit{
+                width: 190px;
+                height: 91px;
+                flex-shrink: 0;
+                margin-left:30px;
+                font-family: 'IBM Plex Sans KR', sans-serif;
+            }
+            #moneylimit2{
+                width: 150px;
+                height: 91px;
+                flex-shrink: 0;
+                text-align: center;
+                margin-left:10px;
+                font-family: 'IBM Plex Sans KR', sans-serif;
+            }
+            #limitText{
+                font-size:18px;
+            }
+            #moneylimit2 p:first-child{
+                color:blue;
+                color: #0085FF;
+            }
+            #centerbox-1{
+                width: 367px;
+                height: 30px;
+                flex-shrink: 0;
+                margin-top:10%;
+                margin-left:25px;  
+                display: flex;
+                line-height: 30px;
+                text-align: center;
+            }
+            #centerbutton-1{
+                width: 81px;
+                height: 30px;
+                flex-shrink: 0;
+                border-radius: 48px;
+                background: #0085FF;
+                color: #FFF;
+                text-align: center;
+                font-family: 'IBM Plex Sans KR', sans-serif;
+                font-size: 14px;
+                font-style: normal;
+                font-weight: 600;
+                line-height: 30px; /* 150% */
+                letter-spacing: -0.32px;
+            }
+            #centerbutton-1:active{
+                color:#000;
+                background: #EDECEC;
+
+            }
+            #centerbutton-2{
+                width: 95px;
+                height: 30px;
+                flex-shrink: 0;
+                border-radius: 48px;
+                background: #EDECEC;
+                color: #000;
+                text-align: center;
+                font-family: 'IBM Plex Sans KR', sans-serif;
+                font-size: 14px;
+                font-style: normal;
+                font-weight: 600;
+                line-height: 30px; /* 150% */
+                letter-spacing: -0.32px;
+                margin-left: 10px;
+            }
+            #centerbutton-2:active{
+                color: #FFF;
+                background: #0085FF;
+            }
+            #centerbox-2{
+                width: 367px;
+                height: 110px;
+                flex-shrink: 0;
+                margin-top:5%;
+                margin-left:18px;  
+            }
+            #enterNum{
+                width: 340.966px;
+                height: 86.853px;
+                flex-shrink: 0;
+                border-radius: 10px;
+                border: 1px solid #CCC;
+                margin-left:5px;
+            }
+            #receive{
+                width: 75px;
+                height: 32px;
+                flex-shrink: 0;
+                text-align: center;
+                line-height: 32px;
+                color: #7D828F;
+                font-family: 'IBM Plex Sans KR', sans-serif;
+                font-size: 15px;
+                font-style: normal;
+                font-weight: 500;
+            }
+            #receiveAccount{
+                width: 300px;
+                height: 40px;
+                flex-shrink: 0;
+                align-items: center;
+                display: flex;
+                margin-left:10px;
+            }
+            input{
+                margin-left:10px;
+                width:200px;
+                height:30px;
+                border-radius: 5px;
+                font-size: 16px;
+                margin-left: 25px;
+                border-style: none;
+            }
+            #bottombox-1{
+                width: 340px;
+                height: 50px;
+                flex-shrink: 0;
+                margin-left:18px;
+                display:flex;
+                align-items: center;
+                justify-content: space-between;
+                text-align: center;
+            }
+            #bottombutton-1{
+                width: 105px;
+                height: 44px;
+                flex-shrink: 0;
+                font-family: 'IBM Plex Sans KR', sans-serif;
+                font-size: 20px;
+                font-style: normal;
+                font-weight: 500;
+                line-height: normal;
+                
+                margin-left: 10px;
+            }
+            #bottombutton-1:active{
+                color: #0085FF;
+                text-decoration: underline;
+                text-underline-position : under;
+            }
+            #bottombutton-2{
+                width: 83px;
+                height: 44px;
+                flex-shrink: 0;
+                font-family: 'IBM Plex Sans KR', sans-serif;
+                font-size: 20px;
+                font-style: normal;
+                font-weight: 500;
+                line-height: normal;
+                margin-left:-7px;
+                color: #0085FF;
+                text-decoration: underline;
+                text-underline-position : under;
+            }
+            #bottombutton-2:active{
+                color: #0085FF;
+                text-decoration: underline;
+                text-underline-position : under;
+            }
+            #bottombutton-3{
+                width: 80px;
+                height: 44px;
+                flex-shrink: 0;
+                font-family: 'IBM Plex Sans KR', sans-serif;
+                font-size: 20px;
+                font-style: normal;
+                font-weight: 500;
+                line-height: normal;
+            }
+            #bottombutton-3:active{
+                color: #0085FF;
+                text-decoration: underline;
+                text-underline-position : under;
+            }
+            #bottombox-2{
+                width: 315px;
+                height: 100px;
+                display:flex;   
+                margin-left: 35px;
+                border-radius: 10px;
+                background-color: white;
+                border: 1px solid #ccc;
+            }
+            
+            
+            #recent{
+                width: 53px;
+                height: 88px;
+            }
+            #logo-2{
+                margin-top:65%;
+                margin-left:32%;
+            }
+            #recentAccount{
+                width: 350px;
+                height: 88px;
+                flex-shrink: 0;
+                line-height: 88px;
+                color: #686E7A;
+                font-family: 'IBM Plex Sans KR', sans-serif;
+                font-size: 15px;
+                font-style: normal;
+                font-weight: 500;
+                display:flex;
+                flex-direction: column;
+                justify-content: left;
+                margin-left: -90px;
+                margin-top: -10px;
+            }
+            .recent-account{
+                color: #4A4D52;
+                margin-left:-15px;
+            }
+            #recentAccount span{
+                height:20px;
+                line-height: 70px;
+            }
+            
+            #add-button{
+                width: 50px;
+                height: 88px;
+                flex-shrink: 0;
+            }
+            #delete-button{
+                width: 48px;
+                height: 88px;
+                flex-shrink: 0;
+            }
+            #add-button button, #delete-button button{
+                width: 29.955px;
+                height: 29.926px;
+                flex-shrink: 0;
+                margin-top:50%;
+                margin-left:15%;
+            }
+            #nextbutton{
+                margin-top:10%;
+                margin-left:8%;
+            }
+            #nextbutton button{
+                width: 326.868px;
+                height: 56.512px;
+                flex-shrink: 0;
+                border-radius: 10px;
+                background: #CCC;
+            }
+        
+            select::-ms-expand {
+            display: none; /* Microsoft Edge에서 화살표 제거 */
+            }
+
+            select {
+            appearance: none;
+            height:25px;
+            font-size: 16px;
+            }
+            #balance2{
+                text-align: right;
+                margin-left: 50px;
+            }
+
+            #toggleBox {
+                width: 390px;
+                height: 413px;
+                flex-shrink: 0;
+                border-radius: 39px 38px 10px 0px;
+                border:1px solid black;
+                background: #FFF;
+                display: none;
+                position: absolute;
+                bottom: 0;
+                left: 0;
+                z-index: 200;
+            }
+            #toggleHeader{
+                color: #000;
+                font-family: 'IBM Plex Sans KR', sans-serif;
+                font-size: 18px;
+                font-style: normal;
+                font-weight: 600;
+                line-height: 21px; /* 116.667% */
+                letter-spacing: -0.32px;
+                margin-left: 30px;
+                line-height: 50px;
+            }
+            #toggleClose{
+                margin-left: 240px;
+                cursor: pointer;
+            }
+            
+            #bottombox-2-t{
+                width: 315px;
+                height: 100px;
+                display:flex;   
+                margin-left: 35px;
+                border-radius: 10px;
+                background-color: white;
+                border: 1px solid #ccc;
+                margin-top: 20px;
+            }
+            #myAccount{
+                width: 53px;
+                height: 88px;
+            }
+            #logo-2{
+                margin-top:62%;
+                margin-left:27%;
+            }
+            #myAccount-1, #myAccount-2{
+                width: 230px;
+                height: 100px;
+                flex-shrink: 0;
+                line-height: 88px;
+                color: #686E7A;
+                font-family: 'IBM Plex Sans KR', sans-serif;
+                font-size: 15px;
+                font-style: normal;
+                font-weight: 500;
+                display:flex;
+                flex-direction: column;
+                justify-content: left;
+                margin-left: -70px;
+            }
+            
+            .myAccount-account{
+                color: #4A4D52;
+                margin-left: 35px;
+            }
+            #myAccount-1 span, #myAccount-2 span{
+                height:20px;
+                line-height: 70px;
+            }
+            #selectAccount-1,#selectAccount-2{
+                margin-left: 50px;
+                margin-top:35px;
+            }
+            #balance{
+                width:150px;
+                margin-right: -40px;
+            }
+            #camera{
+            position:fixed;
+            width:120px;
+            }
+
+           
+       
+    </style>
+</head>
+<body>
+    <div id="phone">
+        <img style="width:435px;  height:883px" src="../../IPhone/iPhone 14 Pro/Deep Purple.jpg">
+    </div>
+    <div id="fullscreen">
+        <div id="timebar">
+            <svg id="camera" xmlns="http://www.w3.org/2000/svg" width="270" height="74" viewBox="0 0 270 74" fill="none">
+                <rect width="270" height="73.8912" rx="35.067" fill="#0A0A0A"/>
+                <ellipse cx="232.466" cy="36.9456" rx="37.5341" ry="36.9456" fill="#0A0A0A"/>
+                <g opacity="0.7">
+                <path d="M232.528 58.3548C244.018 58.3548 253.329 49.0126 253.329 37.4925C253.329 25.9725 244.018 16.6302 232.528 16.6302C221.038 16.6302 211.727 25.9725 211.727 37.4925C211.727 49.0126 221.038 58.3548 232.528 58.3548Z" fill="url(#paint0_radial_1257_1597)"/>
+                <path d="M232.528 58.3548C244.018 58.3548 253.329 49.0126 253.329 37.4925C253.329 25.9725 244.018 16.6302 232.528 16.6302C221.038 16.6302 211.727 25.9725 211.727 37.4925C211.727 49.0126 221.038 58.3548 232.528 58.3548Z" fill="url(#paint1_angular_1257_1597)"/>
+                <path d="M232.528 58.3548C244.018 58.3548 253.329 49.0126 253.329 37.4925C253.329 25.9725 244.018 16.6302 232.528 16.6302C221.038 16.6302 211.727 25.9725 211.727 37.4925C211.727 49.0126 221.038 58.3548 232.528 58.3548Z" fill="url(#paint2_angular_1257_1597)"/>
+                <path d="M232.528 58.3548C244.018 58.3548 253.329 49.0126 253.329 37.4925C253.329 25.9725 244.018 16.6302 232.528 16.6302C221.038 16.6302 211.727 25.9725 211.727 37.4925C211.727 49.0126 221.038 58.3548 232.528 58.3548Z" stroke="#080F21" stroke-width="1.32163"/>
+                </g>
+                <line opacity="0.7" x1="232.504" y1="17.291" x2="232.504" y2="57.694" stroke="black" stroke-width="3.30408"/>
+                <defs>
+                <radialGradient id="paint0_radial_1257_1597" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(232.528 37.4925) rotate(90) scale(20.2015 20.1403)">
+                <stop offset="0.213542"/>
+                <stop offset="0.270833" stop-color="#081A32"/>
+                <stop offset="0.395833" stop-color="#1F3A58"/>
+                <stop offset="0.515625" stop-color="#375F90"/>
+                <stop offset="0.713542" stop-color="#274871"/>
+                <stop offset="0.916667" stop-color="#0D1528"/>
+                </radialGradient>
+                <radialGradient id="paint1_angular_1257_1597" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(232.528 37.4925) rotate(90) scale(20.2015 20.1403)">
+                <stop offset="0.411458" stop-opacity="0"/>
+                <stop offset="0.510417"/>
+                <stop offset="0.817708" stop-opacity="0"/>
+                </radialGradient>
+                <radialGradient id="paint2_angular_1257_1597" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(232.528 37.4925) rotate(90) scale(20.2015 20.1403)">
+                <stop/>
+                <stop offset="0.166667" stop-opacity="0"/>
+                <stop offset="0.885417" stop-opacity="0"/>
+                </radialGradient>
+                </defs>
+                </svg>
+            <div id="time">9:41</div>
+            <div id="status">
+                <div id="signal">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="13" viewBox="0 0 18 13" fill="none">
+                        <path d="M10.0011 3.68262C10.0011 3.13033 10.4488 2.68262 11.0011 2.68262H12.0011C12.5534 2.68262 13.0011 3.13033 13.0011 3.68262V11.6826C13.0011 12.2349 12.5534 12.6826 12.0011 12.6826H11.0011C10.4488 12.6826 10.0011 12.2349 10.0011 11.6826V3.68262Z" fill="black"/>
+                        <path d="M15.0011 1.68262C15.0011 1.13033 15.4488 0.682617 16.0011 0.682617H17.0011C17.5534 0.682617 18.0011 1.13033 18.0011 1.68262V11.6826C18.0011 12.2349 17.5534 12.6826 17.0011 12.6826H16.0011C15.4488 12.6826 15.0011 12.2349 15.0011 11.6826V1.68262Z" fill="black"/>
+                        <path d="M5.0011 7.18262C5.0011 6.63033 5.44881 6.18262 6.0011 6.18262H7.0011C7.55338 6.18262 8.0011 6.63033 8.0011 7.18262V11.6826C8.0011 12.2349 7.55338 12.6826 7.0011 12.6826H6.0011C5.44881 12.6826 5.0011 12.2349 5.0011 11.6826V7.18262Z" fill="black"/>
+                        <path d="M0.00109863 9.68262C0.00109863 9.13033 0.448814 8.68262 1.0011 8.68262H2.0011C2.55338 8.68262 3.0011 9.13033 3.0011 9.68262V11.6826C3.0011 12.2349 2.55338 12.6826 2.0011 12.6826H1.0011C0.448814 12.6826 0.00109863 12.2349 0.00109863 11.6826V9.68262Z" fill="black"/>
+                      </svg>
+                </div>
+                <div id="wifi">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="17" height="13" viewBox="0 0 17 13" fill="none">
+                        <path fill-rule="evenodd" clip-rule="evenodd" d="M8.50156 3.27014C10.9681 3.27025 13.3404 4.23767 15.128 5.97244C15.2626 6.10637 15.4777 6.10468 15.6103 5.96865L16.8971 4.64307C16.9642 4.57407 17.0016 4.48062 17.0011 4.38338C17.0005 4.28614 16.962 4.19314 16.8941 4.12495C12.2022 -0.464829 4.80018 -0.464829 0.108262 4.12495C0.040296 4.19309 0.00173311 4.28607 0.00110639 4.3833C0.000479673 4.48054 0.0378408 4.57402 0.104922 4.64307L1.39206 5.96865C1.52455 6.10488 1.73988 6.10657 1.87441 5.97244C3.66225 4.23755 6.03477 3.27014 8.50156 3.27014ZM8.53701 7.27199C9.89222 7.27191 11.1991 7.78608 12.2036 8.7146C12.3395 8.84638 12.5535 8.84352 12.686 8.70817L13.9713 7.38258C14.039 7.31305 14.0765 7.21873 14.0755 7.12071C14.0746 7.0227 14.0351 6.92917 13.9661 6.86106C10.907 3.95647 6.16962 3.95647 3.11055 6.86106C3.04145 6.92917 3.00202 7.02274 3.00111 7.12079C3.00021 7.21884 3.03789 7.31315 3.10572 7.38258L4.39064 8.70817C4.52308 8.84352 4.73712 8.84638 4.87299 8.7146C5.87688 7.78669 7.18269 7.27256 8.53701 7.27199ZM11.1507 9.85933C11.1526 9.95762 11.1148 10.0524 11.046 10.1212L8.82275 12.4115C8.75758 12.4788 8.66872 12.5167 8.57601 12.5167C8.48329 12.5167 8.39444 12.4788 8.32927 12.4115L6.10562 10.1212C6.03693 10.0523 5.99914 9.95754 6.00118 9.85925C6.00321 9.76096 6.0449 9.66788 6.11638 9.602C7.53625 8.37616 9.61577 8.37616 11.0356 9.602C11.1071 9.66794 11.1487 9.76104 11.1507 9.85933Z" fill="black"/>
+                      </svg>
+                </div>
+                <div id="battery">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="28" height="14" viewBox="0 0 28 14" fill="none">
+                        <path opacity="0.35" d="M0.528642 4.68262C0.528642 2.76483 2.08331 1.21016 4.0011 1.21016H21.0011C22.9189 1.21016 24.4736 2.76483 24.4736 4.68262V9.68262C24.4736 11.6004 22.9189 13.1551 21.0011 13.1551H4.0011C2.08331 13.1551 0.528642 11.6004 0.528642 9.68262V4.68262Z" stroke="#311717" stroke-width="1.05509"/>
+                        <path opacity="0.4" d="M26.0011 5.68262V9.90296C26.8502 9.54552 27.4023 8.71402 27.4023 7.79279C27.4023 6.87156 26.8502 6.04006 26.0011 5.68262Z" fill="#311717"/>
+                        <path d="M2.0011 4.68262C2.0011 3.57805 2.89653 2.68262 4.0011 2.68262H21.0011C22.1057 2.68262 23.0011 3.57805 23.0011 4.68262V9.68262C23.0011 10.7872 22.1057 11.6826 21.0011 11.6826H4.0011C2.89653 11.6826 2.0011 10.7872 2.0011 9.68262V4.68262Z" fill="#311717"/>
+                      </svg>
+                </div>
+            </div>
+        </div>
+        <div id="hellobox">
+            <div id="header">
+                <svg id="back" xmlns="http://www.w3.org/2000/svg" width="34" height="36" viewBox="0 0 34 36" fill="none">
+                    <path d="M21.25 27L12.75 18L21.25 9" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                <span id="function">송금</span>
+            </div>
+            <div id="icon">
+                <div id="icon1">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="25" height="24" viewBox="0 0 25 24" fill="none">
+                        <path d="M15.1894 21.7471C15.7198 21.7471 20.0885 21.6837 20.4635 21.3107C20.8386 20.9376 21.0493 20.4316 21.0493 19.904V8.96266L12.0493 2L3.04932 8.96266V19.904C3.04932 20.4316 3.26003 20.9376 3.6351 21.3107C4.01018 21.6837 8.01161 21.7003 8.54204 21.7003" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M9.41754 21.7471L9.50032 14.7434L15.0591 14.7432V21.7471" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                      </svg>
+                </div>
+                <div id="icon2">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 25 25" fill="none">
+                        <path d="M3.55908 12.5322H21.5591" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M3.55908 6.53223H21.5591" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M3.55908 18.5322H21.5591" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </div>
+            </div>
+        </div>
+
+        <div id="toggleBox">
+            <span id="toggleHeader">계좌 선택</span>
+            <svg id="toggleClose" xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 14 14" fill="none">
+                <path d="M13 1L1 13" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M1 1L13 13" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            <button id="bottombox-2-t">
+                <div id="myAccount">
+                    <svg id="logo-2" xmlns="http://www.w3.org/2000/svg" width="43" height="43" viewBox="0 0 43 43" fill="none">
+                        <circle cx="21.5" cy="21.5" r="21.5" fill="#54ADFF"/>
+                        <ellipse cx="26.8125" cy="17.5723" rx="1.5" ry="2.5" fill="white"/>
+                        <ellipse cx="15.8125" cy="17.5723" rx="1.5" ry="2.5" fill="white"/>
+                        <path fill-rule="evenodd" clip-rule="evenodd" d="M26.3125 25.0723C26.3125 27.8337 24.0739 30.0723 21.3125 30.0723C18.5511 30.0723 16.3125 27.8337 16.3125 25.0723C16.3125 22.3108 18.5511 20.0723 21.3125 20.0723C24.0739 20.0723 26.3125 22.3108 26.3125 25.0723ZM21.4037 23.1991C21.8827 23.1601 22.257 22.8248 22.257 22.4169C22.257 21.9828 21.8331 21.6309 21.3101 21.6309C20.7872 21.6309 20.3633 21.9828 20.3633 22.4169C20.3633 22.827 20.7416 23.1637 21.2242 23.1997L21.1445 26.6333H21.4834L21.4037 23.1991Z" fill="white"/>
+                        <path d="M28.8589 9.78002C29.7466 3.76213 38.5867 9.26735 32.5474 12.4777C39.8195 21.8036 33.9353 32.045 30.0842 36L30.5719 31.0441C19.8488 38.8466 -0.924627 28.0779 10.166 12.4533C5.00205 8.27864 12.8168 4.22594 14.2047 9.52369C19.5062 6.94564 26.0206 8.25419 28.8589 9.78002Z" stroke="white"/>
+                      </svg>
+                </div>
+                <div id="myAccount-1">
+                        <span>[바오 은행]</span>
+                        <span class="myAccount-account">XXXXX-YYYYY</span>    
+                </div>
+                <div id="selectAccount-1" class="svg-container">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="29" height="30" viewBox="0 0 29 30" fill="none">
+                        <rect width="29" height="29.0437" rx="10" fill="#0085FF"/>
+                        <path d="M9.00009 11L14.0001 19" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M19.0001 11L14.0001 19" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                      </svg>
+              </div>
+            </button>
+
+
+            <button id="bottombox-2-t">
+                <div id="myAccount">
+                    <svg id="logo-2" xmlns="http://www.w3.org/2000/svg" width="43" height="43" viewBox="0 0 43 43" fill="none">
+                        <circle cx="21.5" cy="21.5" r="21.5" fill="#54ADFF"/>
+                        <path d="M32.4178 16.7863C33.0129 18.5308 33.3422 20.4501 33.3422 22.4651C33.3422 30.4925 28.1169 37 21.6711 37C15.2253 37 10 30.4925 10 22.4651C10 15.1585 14.329 9.11111 19.9671 8.08395C20.6557 6.66137 22.1242 3.85416 22.4898 4.00591C22.9467 4.1956 23.1843 7.0445 23.8701 7.23064C24.9839 7.53296 27.5447 8.4162 28.5443 8.74816C29.2265 8.06844 30.7167 6.82044 31.2193 7.26621C31.8952 14.2373 28.0512 23.2819 22.3851 18.5112" stroke="white"/>
+                        <circle cx="22" cy="11" r="1" fill="white"/>
+                        <circle cx="27" cy="12" r="1" fill="white"/>
+                      </svg>
+                </div>
+                <div id="myAccount-2">
+                        <span>[냐옹 은행]</span>
+                        <span class="myAccount-account">XXXXX-YYYYY</span>    
+                </div>
+                <div id="selectAccount-2" class="svg-container">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="29" height="30" viewBox="0 0 29 30" fill="none">
+                        <rect width="29" height="29.0437" rx="10" fill="#D6D6D6"/>
+                        <path d="M9.00009 11L14.0001 19" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M19.0001 11L14.0001 19" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                      </svg>
+                </div>
+                
+            </button>
+        </div>
+
+        <div id="moneybox">
+            <div id="money-ok">
+                <div id="profile">
+                    <svg id="logo" xmlns="http://www.w3.org/2000/svg" width="43" height="43" viewBox="0 0 43 43" fill="none">
+                        <circle cx="21.5" cy="21.5" r="21.5" fill="#54ADFF"/>
+                        <ellipse cx="26.8125" cy="17.5723" rx="1.5" ry="2.5" fill="white"/>
+                        <ellipse cx="15.8125" cy="17.5723" rx="1.5" ry="2.5" fill="white"/>
+                        <path fill-rule="evenodd" clip-rule="evenodd" d="M26.3125 25.0723C26.3125 27.8337 24.0739 30.0723 21.3125 30.0723C18.5511 30.0723 16.3125 27.8337 16.3125 25.0723C16.3125 22.3108 18.5511 20.0723 21.3125 20.0723C24.0739 20.0723 26.3125 22.3108 26.3125 25.0723ZM21.4037 23.1991C21.8827 23.1601 22.257 22.8248 22.257 22.4169C22.257 21.9828 21.8331 21.6309 21.3101 21.6309C20.7872 21.6309 20.3633 21.9828 20.3633 22.4169C20.3633 22.827 20.7416 23.1637 21.2242 23.1997L21.1445 26.6333H21.4834L21.4037 23.1991Z" fill="white"/>
+                        <path d="M28.8589 9.78002C29.7466 3.76213 38.5867 9.26735 32.5474 12.4777C39.8195 21.8036 33.9353 32.045 30.0842 36L30.5719 31.0441C19.8488 38.8466 -0.924627 28.0779 10.166 12.4533C5.00205 8.27864 12.8168 4.22594 14.2047 9.52369C19.5062 6.94564 26.0206 8.25419 28.8589 9.78002Z" stroke="white"/>
+                      </svg>
+                </div>
+                <div id="moneytext1">
+                    <span class="account">[바오 은행]<span> 보통예탁금</span></span>
+                    <span class="account account1">XXXXX-YYYYY</span>            
+                </div>
+                
+            </div>
+            <hr style="width: 80%">
+            <div id="moneyLimit">
+                <div id="moneylimit">
+                    <div id="limitText">
+                        <p>출금가능금액</p>
+                        <p>1일 송금 잔여한도</p>
+                    </div>
+
+                </div>
+                <div id="moneylimit2">
+                    <div id="limitText">
+                        <p id="balance">&nbsp;</p>
+                        <p id="money_limit_display"></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="centerbox-1">
+            <div id="centerbutton-1">계좌송금</div><div id="centerbutton-2">휴대전화 송금</div>
+        </div>
+        <div id="centerbox-2">
+            <div id="enterNum">
+                <div id="receive"><span>받는 분</span></div>
+                <div id="receiveAccount">
+                    <select id="select1">
+                        <option value="value1">&nbsp;바오은행&nbsp;</option>
+                        <option value="value2">&nbsp;냐옹은행&nbsp;</option>
+                        <option value="value3">&nbsp;뿌우은행&nbsp;</option>
+                    </select>
+                    <input type="text" id="account_number" name="account_number" placeholder="계좌번호 입력 (12345-12345)" />
+                </div>
+
+            </div>
+        </div>
+        <div id="bottombox-1">
+            <div id="bottombutton-1"><span>최근 입금</span></div>
+            <div id="bottombutton-2"><span>내 계좌</span></div>
+            <div id="bottombutton-3"><span>자주쓰는</span></div>
+        </div>
+        <button id="bottombox-2">
+            <div id="recent">
+                <svg id="logo-2" xmlns="http://www.w3.org/2000/svg" width="43" height="43" viewBox="0 0 43 43" fill="none">
+                    <circle cx="21.5" cy="21.5" r="21.5" fill="#54ADFF"/>
+                    <path d="M32.4178 16.7863C33.0129 18.5308 33.3422 20.4501 33.3422 22.4651C33.3422 30.4925 28.1169 37 21.6711 37C15.2253 37 10 30.4925 10 22.4651C10 15.1585 14.329 9.11111 19.9671 8.08395C20.6557 6.66137 22.1242 3.85416 22.4898 4.00591C22.9467 4.1956 23.1843 7.0445 23.8701 7.23064C24.9839 7.53296 27.5447 8.4162 28.5443 8.74816C29.2265 8.06844 30.7167 6.82044 31.2193 7.26621C31.8952 14.2373 28.0512 23.2819 22.3851 18.5112" stroke="white"/>
+                    <circle cx="22" cy="11" r="1" fill="white"/>
+                    <circle cx="27" cy="12" r="1" fill="white"/>
+                  </svg>
+            </div>
+            <div id="recentAccount">
+                    <span>[냐옹 은행] <span id="account_name">이솔비</span></span><span style="margin-left: 25px;">(정기예금-입출금 불가)</span>
+                    <span class="recent-account">XXXXX-YYYYY</span><span id="balance2">잔액&nbsp;&nbsp;<span style="color:#0085FF">1,000,000원</span>    
+    
+            </div>
+        </button>
+        <hr style="width:80%">
+        <div id="nextbutton">
+            <button disabled>다음</button>
+        </div>
+        
+    </div>
+    
+</body>
+</html>

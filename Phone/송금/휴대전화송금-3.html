@@ -1,0 +1,556 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="preconnect" href="https://fonts.googleapis.com%22%3E/">
+    <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+KR&display=swap" rel="stylesheet">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>휴대전화송금-3</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+    <script>
+
+        $(document).ready(function() {
+            const accountNameP = localStorage.getItem('account_name-p');
+            const accountNumP = localStorage.getItem('account_number-p');
+            const sendMoney = localStorage.getItem('send_money');
+
+            $('#account_name_display').text(accountNameP);
+            $('.account_name_display').text(accountNameP);
+            $('#account_number_display').text(accountNumP).css("margin-left","140px");
+            $('#send_money').text(sendMoney);
+            $('.send_money').text(sendMoney);
+        });
+
+
+
+        $(document).ready(function() {
+
+            $("#button-cancel").click(function() {
+                window.location.href = "휴대전화송금-2.html";
+            });
+
+
+            $("#button-sendmoney").click(function() {
+                $("#popupBasic").css("display", "block");
+                $("#popupBackground").css("display", "block");
+            });
+            
+            function closePopup(popupId) {
+                $("#" + popupId).css("display", "none");
+                $("#popupBackground").css("display", "none");
+            }
+
+            $(".popup-button-no").click(function() {
+                closePopup($(this).closest('.popup').attr('id'));
+            });
+
+            $(".popup-button-yes").click(function() {
+                $("#popupCompleted").css("display", "block");
+                $("#popupBackground").css("display", "block");
+            });
+
+            $(".popup-button-close").click(function() {
+                closePopup($(this).closest('.popup-2').attr('id'));
+                $("#popupBasic").css("display", "none");
+
+
+            });
+        });
+
+        $(document).ready(function() {
+            $(".popup-button-close").click(function() {
+            window.location.href = "../phone.html";
+            });
+        });
+
+        
+        
+
+
+
+
+    </script>
+    <style>
+        body {
+                margin: 0; 
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                height: 100vh;
+            }
+            #phone{
+                position: absolute; 
+                top: 5; 
+                left: 5;
+                z-index: 1;   
+                margin-left: -18px;
+                margin-top: -5px;
+                width: 420px;
+                height: 880px;                
+            }
+            
+            #fullscreen{
+                width: 390px;
+                height: 844px;
+                background: #FFF;
+                border:1px solid #ccc;
+                margin:auto;
+                position:relative;
+                z-index: 2;
+                border-radius: 55px;
+            }
+            #timebar{
+                display: flex;
+                width: 390px;
+                height: 59px;
+                justify-content: center;
+                align-items: flex-end;
+                flex-shrink: 0;
+               
+            }
+            #time{
+                display: flex;
+                width: 54px;
+                height: 20px;
+                flex-shrink: 0;
+                color: #000;
+                text-align: center;
+                margin-right:60%;
+                margin-bottom:20px;
+                font-family: 'SF Pro Text', Helvetica, Arial;
+                font-size: 16px;
+                font-style: normal;
+                font-weight: 500;
+                line-height: 21px; /* 131.25% */
+                letter-spacing: -0.32px;
+                margin-left:40px;
+                
+            }
+            #status{
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                gap: 8px;
+                flex: 1 0 0;
+                align-self: stretch;
+                margin-left: -80px;
+            }
+            #checksendmoney {
+                width: 388px;
+                height: 71px;
+                flex-shrink: 0;
+                text-align: center;
+                line-height: 71px;
+                
+                
+            }
+            #checksendmoneytext1 {
+                color: #000;
+                font-family: 'IBM Plex Sans KR', sans-serif;
+                font-size: 20px;
+                font-style: normal;
+                font-weight: 600;
+                line-height: normal;
+            }
+            .sendmoney-info {
+            width: 366.821px;
+            height: 113.426px;
+            flex-shrink: 0;
+            border-radius: 10px;
+            border: 1px solid #CCC;
+            background: #EDECEC;
+            margin:auto;
+
+            }
+
+            #sendmoney, #moneyaccount, #receiver {
+                width: 366px;
+                height: 35px;
+                flex-shrink: 0;
+                padding: 0 10px;
+                margin-left: -15px;
+            }
+            
+            .gray {
+                color: #7D828F;
+                font-family: 'IBM Plex Sans KR', sans-serif;
+                font-size: 15px;
+                font-style: normal;
+                font-weight: 500;
+                line-height: 35px;
+                margin-left: 30px;
+            }
+            .blue-1{
+                color: #0085FF;
+                font-family: 'IBM Plex Sans KR', sans-serif;
+                font-size: 17px;
+                font-style: normal;
+                font-weight: 500;
+                line-height: 35px;
+                text-align: right;
+                margin-left: 42.5%;
+            }
+            .blue-2{
+                color: #0085FF;
+                font-family: 'IBM Plex Sans KR', sans-serif;
+                font-size: 17px;
+                font-style: normal;
+                font-weight: 500;
+                line-height: 35px;
+                margin-left: 110px;
+            }
+            .blue-3 {
+                color: #0085FF;
+                font-family: 'IBM Plex Sans KR', sans-serif;
+                font-size: 17px;
+                font-weight: 500;
+                line-height: 35px;
+                margin-left: 215px;
+            }
+            #receiver span.account_name_display{
+                font-size:17px;
+                font-weight: 500;
+            }
+            .tableform {
+                margin-left: 3px;
+                margin-top: 30px;
+            }
+
+            .row {
+                display: flex;
+            }
+            .row div.account_name_display{
+                color:#000;
+                font-weight: 200;
+            }
+            .box {
+                width: 120px;
+                height: 55px;
+                flex-shrink: 0;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                font-size: 16px;
+                border: 1px solid #ccc;
+                padding: 5px;
+                font-family: 'IBM Plex Sans KR', sans-serif;
+                text-align: center;
+            }
+
+            #tablebaobank, #sendsol, #sendsol2 {
+                text-align: right;
+                width: 240px;
+                font-size: 20px;
+            }
+
+            #baobanktext {
+                font-size: 16px;
+            }
+
+            #baobanknum {
+                font-size: 16px;
+            }
+
+            
+            .cancelAndsend {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+            }
+
+            #button-cancel, #button-sendmoney {
+                width: 138px;
+                height: 57px;
+                background-color: #ccc;
+                border: none;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                margin-top: 40px;
+                border-radius: 10px;
+                cursor: pointer;
+                
+
+            }
+
+            #button-sendmoney {
+                margin-left: 30px;
+            }
+
+            #canceltext, #sendmoneytext {
+                font-family: 'IBM Plex Sans KR', sans-serif;
+                font-size: 20px;
+                font-style: normal;
+                font-weight: 400;
+                line-height: normal;            
+            }
+            .popup {
+                display: none;
+                position: fixed;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+                padding: 20px;
+                background-color: #f6f6f6;
+                border: 2px solid black;
+                box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+                z-index: 9999;
+                max-width: 330px;
+                height:170px;
+                border-radius: 20px;
+                font-family: 'IBM Plex Sans KR', sans-serif;
+                color: #000;
+                font-size: 25px;
+                font-style: normal;
+                font-weight: 600;
+                text-align: center;
+            }
+            .popup-2{
+                display: none;
+                position: fixed;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+                padding: 20px;
+                background-color: #f6f6f6;
+                border: 2px solid black;
+                box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+                z-index: 9999;
+                max-width: 330px;
+                height:170px;
+                border-radius: 20px;
+                font-family: 'IBM Plex Sans KR', sans-serif;
+                color: #000;
+                font-size: 25px;
+                font-style: normal;
+                font-weight: 600;
+                text-align: center;
+            }
+            
+            
+            #popupBackground{
+                display: none;
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background-color: rgba(255, 255, 255, 0.5); /* 불투명 색 */
+                backdrop-filter: blur(5px); /* 블러처리 */
+                z-index: 9998; /* 팝업 창 뒤에 위치하도록 설정 */
+                justify-content: center;
+                align-items: center;
+            }
+            .popup-buttons{
+                display:inline-block;
+                width: 400px;
+            }
+            .popup-button-yes{
+                background-color: #ccc;
+                color:#000;
+                border-radius: 15px; 
+                border: 1px solid #CCC;
+                font-size: 20px; 
+                font-weight: 500; 
+                width: 150px; 
+                height: 60px; 
+                cursor: pointer;
+                text-align: center;
+                margin-top:10%;
+                margin-left:-70px;
+            }
+            .popup-button-no{
+                background-color: #CCC;
+                border-radius: 15px; 
+                border: 1px solid #CCC;
+                font-size: 20px; 
+                font-weight: 500; 
+                width: 150px; 
+                height: 60px; 
+                cursor: pointer;
+                text-align: center;
+                margin-left:30px;
+            }
+            .popup-button-yes:hover, #button-sendmoney:hover{
+                color:#FFF;
+                background-color:#0085FF
+                
+            }
+            .popup-button-no:hover, #button-cancel:hover{
+                color:#FFF;
+                background-color:#0085FF
+                
+            }
+
+            #account_name_display,.account_name_display{
+                color: #0085FF;
+                font-family: 'IBM Plex Sans KR', sans-serif;
+                font-size: 25px;
+                font-style: normal;
+                font-weight: 600;
+                line-height: normal;
+            }
+            
+            .popup-button-close{
+                cursor: pointer;
+                position:fixed;
+                top:15px;
+                right:15px;
+            }
+            #popupCompleted span{
+                text-align: center;
+            }
+
+            #send_money +span{
+                color: #0085FF;
+                font-family: 'IBM Plex Sans KR', sans-serif;
+                font-size: 17px;
+                font-style: normal;
+                line-height: normal;
+                margin-left: 10px;
+            }
+            .send_money,.send_money-1{
+                color: #0085FF;
+                
+            }
+            #camera{
+            position:fixed;
+            width:120px;
+            }
+    </style>
+</head>
+<body>
+    <div id="phone">
+        <img style="width:435px;  height:883px" src="../../IPhone/iPhone 14 Pro/Deep Purple.jpg">
+    </div>
+    <div id="fullscreen">
+        <div id="timebar">
+            <svg id="camera" xmlns="http://www.w3.org/2000/svg" width="270" height="74" viewBox="0 0 270 74" fill="none">
+                <rect width="270" height="73.8912" rx="35.067" fill="#0A0A0A"/>
+                <ellipse cx="232.466" cy="36.9456" rx="37.5341" ry="36.9456" fill="#0A0A0A"/>
+                <g opacity="0.7">
+                <path d="M232.528 58.3548C244.018 58.3548 253.329 49.0126 253.329 37.4925C253.329 25.9725 244.018 16.6302 232.528 16.6302C221.038 16.6302 211.727 25.9725 211.727 37.4925C211.727 49.0126 221.038 58.3548 232.528 58.3548Z" fill="url(#paint0_radial_1257_1597)"/>
+                <path d="M232.528 58.3548C244.018 58.3548 253.329 49.0126 253.329 37.4925C253.329 25.9725 244.018 16.6302 232.528 16.6302C221.038 16.6302 211.727 25.9725 211.727 37.4925C211.727 49.0126 221.038 58.3548 232.528 58.3548Z" fill="url(#paint1_angular_1257_1597)"/>
+                <path d="M232.528 58.3548C244.018 58.3548 253.329 49.0126 253.329 37.4925C253.329 25.9725 244.018 16.6302 232.528 16.6302C221.038 16.6302 211.727 25.9725 211.727 37.4925C211.727 49.0126 221.038 58.3548 232.528 58.3548Z" fill="url(#paint2_angular_1257_1597)"/>
+                <path d="M232.528 58.3548C244.018 58.3548 253.329 49.0126 253.329 37.4925C253.329 25.9725 244.018 16.6302 232.528 16.6302C221.038 16.6302 211.727 25.9725 211.727 37.4925C211.727 49.0126 221.038 58.3548 232.528 58.3548Z" stroke="#080F21" stroke-width="1.32163"/>
+                </g>
+                <line opacity="0.7" x1="232.504" y1="17.291" x2="232.504" y2="57.694" stroke="black" stroke-width="3.30408"/>
+                <defs>
+                <radialGradient id="paint0_radial_1257_1597" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(232.528 37.4925) rotate(90) scale(20.2015 20.1403)">
+                <stop offset="0.213542"/>
+                <stop offset="0.270833" stop-color="#081A32"/>
+                <stop offset="0.395833" stop-color="#1F3A58"/>
+                <stop offset="0.515625" stop-color="#375F90"/>
+                <stop offset="0.713542" stop-color="#274871"/>
+                <stop offset="0.916667" stop-color="#0D1528"/>
+                </radialGradient>
+                <radialGradient id="paint1_angular_1257_1597" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(232.528 37.4925) rotate(90) scale(20.2015 20.1403)">
+                <stop offset="0.411458" stop-opacity="0"/>
+                <stop offset="0.510417"/>
+                <stop offset="0.817708" stop-opacity="0"/>
+                </radialGradient>
+                <radialGradient id="paint2_angular_1257_1597" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(232.528 37.4925) rotate(90) scale(20.2015 20.1403)">
+                <stop/>
+                <stop offset="0.166667" stop-opacity="0"/>
+                <stop offset="0.885417" stop-opacity="0"/>
+                </radialGradient>
+                </defs>
+                </svg>
+            <div id="time">9:41</div>
+            <div id="status">
+                <div id="signal">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="13" viewBox="0 0 18 13" fill="none">
+                        <path d="M10.0011 3.68262C10.0011 3.13033 10.4488 2.68262 11.0011 2.68262H12.0011C12.5534 2.68262 13.0011 3.13033 13.0011 3.68262V11.6826C13.0011 12.2349 12.5534 12.6826 12.0011 12.6826H11.0011C10.4488 12.6826 10.0011 12.2349 10.0011 11.6826V3.68262Z" fill="black"/>
+                        <path d="M15.0011 1.68262C15.0011 1.13033 15.4488 0.682617 16.0011 0.682617H17.0011C17.5534 0.682617 18.0011 1.13033 18.0011 1.68262V11.6826C18.0011 12.2349 17.5534 12.6826 17.0011 12.6826H16.0011C15.4488 12.6826 15.0011 12.2349 15.0011 11.6826V1.68262Z" fill="black"/>
+                        <path d="M5.0011 7.18262C5.0011 6.63033 5.44881 6.18262 6.0011 6.18262H7.0011C7.55338 6.18262 8.0011 6.63033 8.0011 7.18262V11.6826C8.0011 12.2349 7.55338 12.6826 7.0011 12.6826H6.0011C5.44881 12.6826 5.0011 12.2349 5.0011 11.6826V7.18262Z" fill="black"/>
+                        <path d="M0.00109863 9.68262C0.00109863 9.13033 0.448814 8.68262 1.0011 8.68262H2.0011C2.55338 8.68262 3.0011 9.13033 3.0011 9.68262V11.6826C3.0011 12.2349 2.55338 12.6826 2.0011 12.6826H1.0011C0.448814 12.6826 0.00109863 12.2349 0.00109863 11.6826V9.68262Z" fill="black"/>
+                      </svg>
+                </div>
+                <div id="wifi">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="17" height="13" viewBox="0 0 17 13" fill="none">
+                        <path fill-rule="evenodd" clip-rule="evenodd" d="M8.50156 3.27014C10.9681 3.27025 13.3404 4.23767 15.128 5.97244C15.2626 6.10637 15.4777 6.10468 15.6103 5.96865L16.8971 4.64307C16.9642 4.57407 17.0016 4.48062 17.0011 4.38338C17.0005 4.28614 16.962 4.19314 16.8941 4.12495C12.2022 -0.464829 4.80018 -0.464829 0.108262 4.12495C0.040296 4.19309 0.00173311 4.28607 0.00110639 4.3833C0.000479673 4.48054 0.0378408 4.57402 0.104922 4.64307L1.39206 5.96865C1.52455 6.10488 1.73988 6.10657 1.87441 5.97244C3.66225 4.23755 6.03477 3.27014 8.50156 3.27014ZM8.53701 7.27199C9.89222 7.27191 11.1991 7.78608 12.2036 8.7146C12.3395 8.84638 12.5535 8.84352 12.686 8.70817L13.9713 7.38258C14.039 7.31305 14.0765 7.21873 14.0755 7.12071C14.0746 7.0227 14.0351 6.92917 13.9661 6.86106C10.907 3.95647 6.16962 3.95647 3.11055 6.86106C3.04145 6.92917 3.00202 7.02274 3.00111 7.12079C3.00021 7.21884 3.03789 7.31315 3.10572 7.38258L4.39064 8.70817C4.52308 8.84352 4.73712 8.84638 4.87299 8.7146C5.87688 7.78669 7.18269 7.27256 8.53701 7.27199ZM11.1507 9.85933C11.1526 9.95762 11.1148 10.0524 11.046 10.1212L8.82275 12.4115C8.75758 12.4788 8.66872 12.5167 8.57601 12.5167C8.48329 12.5167 8.39444 12.4788 8.32927 12.4115L6.10562 10.1212C6.03693 10.0523 5.99914 9.95754 6.00118 9.85925C6.00321 9.76096 6.0449 9.66788 6.11638 9.602C7.53625 8.37616 9.61577 8.37616 11.0356 9.602C11.1071 9.66794 11.1487 9.76104 11.1507 9.85933Z" fill="black"/>
+                      </svg>
+                </div>
+                <div id="battery">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="28" height="14" viewBox="0 0 28 14" fill="none">
+                        <path opacity="0.35" d="M0.528642 4.68262C0.528642 2.76483 2.08331 1.21016 4.0011 1.21016H21.0011C22.9189 1.21016 24.4736 2.76483 24.4736 4.68262V9.68262C24.4736 11.6004 22.9189 13.1551 21.0011 13.1551H4.0011C2.08331 13.1551 0.528642 11.6004 0.528642 9.68262V4.68262Z" stroke="#311717" stroke-width="1.05509"/>
+                        <path opacity="0.4" d="M26.0011 5.68262V9.90296C26.8502 9.54552 27.4023 8.71402 27.4023 7.79279C27.4023 6.87156 26.8502 6.04006 26.0011 5.68262Z" fill="#311717"/>
+                        <path d="M2.0011 4.68262C2.0011 3.57805 2.89653 2.68262 4.0011 2.68262H21.0011C22.1057 2.68262 23.0011 3.57805 23.0011 4.68262V9.68262C23.0011 10.7872 22.1057 11.6826 21.0011 11.6826H4.0011C2.89653 11.6826 2.0011 10.7872 2.0011 9.68262V4.68262Z" fill="#311717"/>
+                      </svg>
+                </div>
+            </div>
+        </div>
+        <div id="checksendmoney">
+            <span id="checksendmoneytext1">송금확인</span>
+        </div>
+        <div class="sendmoney-info">
+            <div id="sendmoney">
+                <span class="gray">보낼 금액</span>
+                <span class="blue-1" id="send_money"></span><span>원</span>
+            </div>
+            <div id="moneyaccount">
+                <span class="gray">전화번호</span>
+                <span class="blue-2" id="account_number_display"></span>
+            </div>
+            <div id="receiver">
+                <span class="gray">받는 분</span>
+                <span class="blue-3 account_name_display"></span>
+            </div>
+            
+        </div>
+        <div class="tableform">
+            <div class="row">
+                <div class="box" id="tablesendaccount">출금계좌</div>
+                <div class="box" id="tablebaobank">
+                    <span id="baobanktext">[바오 은행]</span>
+                    <span id="baobanknum">730 1912 1943 23</span>
+                </div>
+            </div>
+            <div class="row">
+                <div class="box" id="sendperson">보내는 사람</div>
+                <div class="box" id="sendsol">이솔비</div>
+            </div>
+            <div class="row">
+                <div class="box" id="receiverperson">받는 사람</div>
+                <div class="box account_name_display" id="sendsol2"></div>
+            </div>
+        </div>
+        <div class="cancelAndsend">
+            <button id="button-cancel">
+                <span id="canceltext">
+                    취소
+                </span>
+            </button>
+            <button id="button-sendmoney">
+                <span id="sendmoneytext">
+                    송금
+                </span>
+            </button>
+        </div>
+    </div>
+
+    <div id="popupBackground"></div>
+    <div id="popupBasic" class="popup">
+        <span><span id="account_name_display"></span>님께 &nbsp;<span class="send_money"></span><span class=send_money-1>원</span>을 <br>송금하시겠습니까?</span>
+        <div class="popup-buttons">
+            <button class="popup-button-yes" onclick="navigateToSelectPage('basic')">예</button>
+            <button class="popup-button-no" onclick="closePopup('popupBasic')">아니요</button>
+        </div>
+    </div>
+
+    <div id="popupCompleted" class="popup-2">
+        <br>
+        <span><span class="account_name_display"></span>님께<br>송금이 완료되었습니다.</span>
+        <div class="popup-buttons">
+            <svg class="popup-button-close" onclick="closePopup('popupCompleted')" xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 14 14" fill="none">
+                <path d="M13 1L1 13" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M1 1L13 13" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+        </div>
+    </div>
+    
+
+</body>
+</html>
