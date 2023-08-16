@@ -7,14 +7,14 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+KR&display=swap" rel="stylesheet">
-    <title>계좌/자산 조회</title>
-    <style media="screen">
+    <title>계좌/자산 확인 모드</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+
+    <style>
         body {
             margin: 0px;
-            font-size: 18px;
         }
         #box {
-            display:flex;
             position: relative;
             height: auto;
             margin: auto;
@@ -22,124 +22,123 @@
         }
 
         #left {
-            background: #F7F2FF;
             float: left;
             height: 100vh;
-            width: 40%;
+            width: 50vw;
             position: relative;
-            border: 1px solid black;
         }
-        .title1{
-            color: #005ECC;
-            margin-left:10%;
-            font-family: 'IBM Plex Sans KR', sans-serif;
-            font-size: 45px;
-            font-style: normal;
-            font-weight: 400;
-            line-height: normal;
-        }
-        .title2{
-            color: #000;
-            margin-left:10%;
-            font-family: 'IBM Plex Sans KR', sans-serif;
-            font-size: 30px;
-            font-style: normal;
-            font-weight: 400;
-            line-height: normal;
+        iframe{
+            width:100%;
+            height:100%;
+            border-style:none;
         }
         #right {
             float: left;
             height: 100vh;
-            width: 60%;
+            width: 40vw;
             position: relative; 
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            border: 1px solid black;
         }
-        #center {
-            background-color: #FFF;
-            border: 2px solid black;
-            height: 30vh;
-            width: 100vw;
-            border: 1px solid black;
+        #text{
+            width: 40vw;
+            height: 217px;
+            text-align: center;
+            color: #000;
+            font-family: 'IBM Plex Sans KR', sans-serif;
+            font-size: 36px;
+            font-style: normal;
+            font-weight: 800;
+            line-height: normal;
+            letter-spacing: -0.333px;
         }
-        #title {
-            width: 99%;
-            height: 60%;
-            margin-top: 35%;
-            fill: rgba(227, 229, 248, 0.45);
+
+        #text2{
+            width: 40vw;
+            height: 217px;
+            text-align: center;
+            color: #000;
+            font-family: 'IBM Plex Sans KR', sans-serif;
+            font-size: 36px;
+            font-style: normal;
+            font-weight: 800;
+            line-height: normal;
+            letter-spacing: -0.333px;
         }
-       
-        #logo {
-            width: 420px;
-            height: 280px;
+
+        .container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh; /* 화면 높이에 맞게 세로 중앙 정렬 */
+            /* 기타 스타일 설정 */
+        }
+
+        .content {
+            display: flex;
+            flex-direction: column;
+            gap: 20px; /* 요소 사이의 간격 조절 */
+            /* 기타 스타일 설정 */
+        }
+
+        /* 기존의 나머지 스타일 설정 */
+
+        
+        
+        svg{
+            width: 100px;
+            height: 100px;
             flex-shrink: 0;
-            margin-left:10%;
+            fill: #AEC4D9;
         }
-        #button1, #button2 {
-            border-radius: 20px;
-            background: #F4EEFF;
-            box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25), 0px 4px 4px 0px rgba(0, 0, 0, 0.25) inset;
-            width: 453px;
-            height: 113px;
-            font-size: 20px;
-            margin: 10px;
-            border: 1px solid black;
-        }
-
-        /* 팝업창 스타일 */
-        .popup {
-            display: none;
-            position: fixed;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            padding: 20px;
-            background-color: #FFF;
-            border: 2px solid black;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
-            z-index: 9999;
-            max-width: 400px;
-            
-        }
-        img{
-            width:100px;
-            height:100px;
-        
-        }
-        .popup p {
-            font-size: 16px;
-            margin: 10px 0;
-            border: 1px solid black;
-        }
-
-        .popup-close {
-            position: absolute;
-            top: 10px;
-            right: 10px;
-            cursor: pointer;
-            border: 1px solid black;
+        #numtext {
+            color: #D27A7A;
+            text-align: center;
+            font-family: Inter;
+            font-size: 50px;
+            font-style: normal;
+            font-weight: 800;
+            line-height: normal;
         }
         
-
         
     </style>
 </head>
 <body>
-    <div id="box">
+    <div id="box" class="container">
         <div id="left">
-            <div id="title">
-                <h1> 계좌/자산 조회 모드</h1>
-                <div id="logo">
-                </div>
-            </div>
+            <iframe id="phoneFrame" src="../Phone/phone.html"></iframe>
         </div>
-        <div id="right">
-        
+        <div id="right" class="content">
+            <div id="text">
+                <span id="numtext">1 .</span>
+                <span>하단의 두번 째 메뉴에 있는 계좌/자산 버튼을 누르세요.</span>
+            </div>
+            <div id="text2">
+                <span id="numtext">2.</span>
+                <span>입출금과 예적금 목록에 있는 나의 계좌들을 확인할 수 있고 내 자산이 얼마 있는지 알 수 있습니다.</span>
+            </div>
+
         </div>
     </div>
+    
+    
+
+    <script>
+
+$(document).ready(function() {
+    
+    $("#phoneFrame").on("load", function() {
+            $(this).contents().find("#money").css("transform", "scale(1.5)").css('border','1px solid black');
+            $(this).contents().find("#enterNum").css("transform", "scale(1.4)").css("background-color","#fff");
+            $(this).contents().find(".enterNum-tuto").css("transform", "scale(1.4)").css("background-color","#fff");
+            $(this).contents().find("#fullscreen2").css("opacity", "0").css("background-color","#fff");
+
+    });
+});
+    </script>
 
 </body>
 </html>
